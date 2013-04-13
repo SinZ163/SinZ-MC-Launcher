@@ -62,6 +62,14 @@ namespace SinZ_MC_Launcher {
             //END SETTINGS
 
             QueryRepo repo = new QueryRepo();
+            Dictionary<String, object> db = repo.parseRepo();
+
+            //MessageBox.Show("Parse success");//debug
+
+            Dictionary<String, object> v1_5_1 = (Dictionary<String,object>)db["1_5_1"];
+            Dictionary<String, object> v1_5_1_jarMods = (Dictionary<String,object>)v1_5_1["jarMods"];
+            Dictionary<String, object> minecraftForge = (Dictionary<String,object>)v1_5_1_jarMods["Minecraft Forge"];
+            MessageBox.Show(minecraftForge["version"].ToString());
         }
 
         private void MainForm_Load(object sender, EventArgs e) {
