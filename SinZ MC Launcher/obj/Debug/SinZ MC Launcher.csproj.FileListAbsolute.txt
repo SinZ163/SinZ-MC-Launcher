@@ -7,3 +7,6 @@ C:\Users\SinZ\Documents\GitHub\SinZ MC Launcher\SinZ MC Launcher\obj\Debug\SinZ_
 C:\Users\SinZ\Documents\GitHub\SinZ MC Launcher\SinZ MC Launcher\obj\Debug\SinZ MC Launcher.csproj.GenerateResource.Cache
 C:\Users\SinZ\Documents\GitHub\SinZ MC Launcher\SinZ MC Launcher\obj\Debug\SinZ MC Launcher.exe
 C:\Users\SinZ\Documents\GitHub\SinZ MC Launcher\SinZ MC Launcher\obj\Debug\SinZ MC Launcher.pdb
+C:\Users\SinZ\Documents\GitHub\SinZ-MC-Launcher\SinZ MC Launcher\bin\Debug\SinZ MC Launcher.exe.config
+C:\Users\SinZ\Documents\GitHub\SinZ-MC-Launcher\SinZ MC Launcher\obj\Debug\SinZ MC Launcher.exe
+C:\Users\SinZ\Documents\GitHub\SinZ-MC-Launcher\SinZ MC Launcher\obj\Debug\SinZ MC Launcher.pdb
