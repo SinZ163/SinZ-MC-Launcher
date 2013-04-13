@@ -1,0 +1,28 @@
+{
+	"MCVer:" {
+		"Forge": “ForgeVersion”
+		"jarMods": {
+			"jarModName": {
+				"version": “Version”
+				"download": “Download Link”
+			}
+		}
+		"coreMods": {
+			"coreModName": {
+				"version": “Version”
+				"download": “Download Link”
+			}
+		}
+		"Mods": {
+			"modName": {
+				"version": “Version”
+				"download": “Download Link”
+			}
+		}
+	}
+}
+
+MCVer is a string eg "1_5_1"
+jarModName is the name of the actual mod eg "Optifine"
+coreModName is the name of the actual mod eg "Not Enough Items"
+modName is the name of the actual mod eg "Industrial Craft 2"

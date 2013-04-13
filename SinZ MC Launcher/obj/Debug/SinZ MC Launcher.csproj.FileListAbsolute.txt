@@ -1,0 +1,9 @@
+C:\Users\SinZ\Documents\GitHub\SinZ MC Launcher\SinZ MC Launcher\bin\Debug\SinZ MC Launcher.exe.config
+C:\Users\SinZ\Documents\GitHub\SinZ MC Launcher\SinZ MC Launcher\bin\Debug\SinZ MC Launcher.exe
+C:\Users\SinZ\Documents\GitHub\SinZ MC Launcher\SinZ MC Launcher\bin\Debug\SinZ MC Launcher.pdb
+C:\Users\SinZ\Documents\GitHub\SinZ MC Launcher\SinZ MC Launcher\obj\Debug\SinZ MC Launcher.csprojResolveAssemblyReference.cache
+C:\Users\SinZ\Documents\GitHub\SinZ MC Launcher\SinZ MC Launcher\obj\Debug\SinZ_MC_Launcher.MainForm.resources
+C:\Users\SinZ\Documents\GitHub\SinZ MC Launcher\SinZ MC Launcher\obj\Debug\SinZ_MC_Launcher.Properties.Resources.resources
+C:\Users\SinZ\Documents\GitHub\SinZ MC Launcher\SinZ MC Launcher\obj\Debug\SinZ MC Launcher.csproj.GenerateResource.Cache
+C:\Users\SinZ\Documents\GitHub\SinZ MC Launcher\SinZ MC Launcher\obj\Debug\SinZ MC Launcher.exe
+C:\Users\SinZ\Documents\GitHub\SinZ MC Launcher\SinZ MC Launcher\obj\Debug\SinZ MC Launcher.pdb
