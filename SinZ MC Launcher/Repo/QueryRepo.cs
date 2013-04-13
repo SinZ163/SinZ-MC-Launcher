@@ -11,15 +11,15 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 
 
-namespace SinZ_MC_Launcher {
-    class QueryRepo {
+namespace SinZ_MC_Launcher.Repo {
+    class Query {
 
         String location = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), ".sinzmc/");
         Uri repo = new Uri("http://sinz.mca.d3s.co/repo/test.txt");
 
         Boolean isDownloading = true;
 
-        public QueryRepo() {
+        public Query() {
             WebClient client = new WebClient();
             client.DownloadFileCompleted += QueryCompleted;
             client.DownloadFileAsync(repo, Path.Combine(location, "modList.txt"));

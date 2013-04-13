@@ -9,6 +9,8 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SinZ_MC_Launcher.Login;
+using SinZ_MC_Launcher.Repo;
 
 namespace SinZ_MC_Launcher {
     public partial class MainForm : Form {
@@ -33,7 +35,7 @@ namespace SinZ_MC_Launcher {
 
 
         private void launchButton_Click(object sender, EventArgs e) {
-            Login login = new Login(userText.Text, passText.Text);
+            Login.Login login = new Login.Login(userText.Text, passText.Text);
             this.username = login.username;
             this.sessionID = login.sessionID;
             if (login.error == "Success") {
@@ -61,7 +63,7 @@ namespace SinZ_MC_Launcher {
             stream.Close();
             //END SETTINGS
 
-            QueryRepo repo = new QueryRepo();
+            Query repo = new Query();
             Dictionary<String, object> db = repo.parseRepo();
 
             //MessageBox.Show("Parse success");//debug

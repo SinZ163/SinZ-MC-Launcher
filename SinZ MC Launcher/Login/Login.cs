@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SinZ_MC_Launcher {
+namespace SinZ_MC_Launcher.Login {
     class Login {
 
         public string error;

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SharpLauncher;
 
-namespace SinZ_MC_Launcher {
+namespace SinZ_MC_Launcher.Login {
     class LastLogin {
 
         private static readonly byte[] LastLoginSalt = new byte[] { 0x0c, 0x9d, 0x4a, 0xe4, 0x1e, 0x83, 0x15, 0xfc };
