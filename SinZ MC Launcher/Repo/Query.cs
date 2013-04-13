@@ -20,6 +20,7 @@ namespace SinZ_MC_Launcher.Repo {
         Boolean isDownloading = true;
 
         public Query() {
+            Console.WriteLine("Querying Repository");
             WebClient client = new WebClient();
             client.DownloadFileCompleted += QueryCompleted;
             client.DownloadFileAsync(repo, Path.Combine(location, "modList.txt"));
@@ -32,6 +33,7 @@ namespace SinZ_MC_Launcher.Repo {
             isDownloading = false;
         }
         public Dictionary<String, object> parseRepo() {
+            Console.WriteLine("Reading repository");
             FileStream stream = new FileStream(Path.Combine(location, "modList.txt"), FileMode.Open);
             StreamReader reader = new StreamReader(stream);
             String json = reader.ReadToEnd();

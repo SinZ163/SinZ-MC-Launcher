@@ -1,22 +1,22 @@
 {
     "MCVer:" {
         "jarMods": {
-            "jarModName": {
+            "jarModName": [{
                 "version": "Version",
                 "download": "Download Link"
-            }
+            }]
         },
         "coreMods": {
-            "coreModName": {
+            "coreModName": [{
                 "version": "Version",
                 "download": "Download Link"
-            }
+            }]
         },
         "Mods": {
-            "modName": {
+            "modName": [{
                 "version": "Version",
                 "download": "Download Link"
-            }
+            }]
         }
     }
 }

@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SinZ_MC_Launcher.Download;
 using SinZ_MC_Launcher.Login;
 using SinZ_MC_Launcher.Repo;
 
@@ -35,6 +36,7 @@ namespace SinZ_MC_Launcher {
 
 
         private void launchButton_Click(object sender, EventArgs e) {
+            Console.WriteLine("Attempting Login!");
             Login.Login login = new Login.Login(userText.Text, passText.Text);
             this.username = login.username;
             this.sessionID = login.sessionID;
@@ -65,13 +67,9 @@ namespace SinZ_MC_Launcher {
 
             Query repo = new Query();
             Dictionary<String, object> db = repo.parseRepo();
+            Console.WriteLine("Finished reading repository");
 
-            //MessageBox.Show("Parse success");//debug
-
-            Dictionary<String, object> v1_5_1 = (Dictionary<String,object>)db["1_5_1"];
-            Dictionary<String, object> v1_5_1_jarMods = (Dictionary<String,object>)v1_5_1["jarMods"];
-            Dictionary<String, object> minecraftForge = (Dictionary<String,object>)v1_5_1_jarMods["Minecraft Forge"];
-            MessageBox.Show(minecraftForge["version"].ToString());
+            Mod minecraftForge = new Mod(db, "Minecraft Forge", "jarMods", "1_5_1");
         }
 
         private void MainForm_Load(object sender, EventArgs e) {
