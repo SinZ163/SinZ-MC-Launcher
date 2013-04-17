@@ -1,0 +1,20 @@
+{
+	"Minecraft Forge": [{
+		"type": "jarMod",
+		"version": "7.7.1.651",
+		"download": "http://files.minecraftforge.net/minecraftforge/minecraftforge-universal-1.5.1-7.7.1.651.zip"},{
+		"type": "jarMod",
+		"version": "7.7.1.652",
+		"download": "http://files.minecraftforge.net/minecraftforge/minecraftforge-universal-1.5.1-7.7.1.652.zip"
+	}],
+	"Not Enough Items": [{
+	    "type": "coreMod",
+		"version": "10.0.5.2",
+		"download": "http://www.chickenbones.craftsaddle.org/Files/New_Versions/1.5.1/NotEnoughItems%201.5.2.9.jar"
+	}],
+	"Modular Power Suits": [{
+		"type": "mod",
+		"version": "0.4.2.314",
+		"download": "http://build.technicpack.net/job/Machine-Muse-Power-Suits/lastSuccessfulBuild/artifact/build/dist/ModularPowersuits-0.4.2-314.jar"
+	}]
+}

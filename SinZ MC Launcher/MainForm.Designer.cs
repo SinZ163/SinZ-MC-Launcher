@@ -29,15 +29,14 @@
             this.userLabel = new System.Windows.Forms.Label();
             this.passLabel = new System.Windows.Forms.Label();
             this.rememberBox = new System.Windows.Forms.CheckBox();
-            this.queryMCBox = new System.Windows.Forms.DomainUpDown();
-            this.queryTypeBox = new System.Windows.Forms.DomainUpDown();
-            this.queryModBox = new System.Windows.Forms.DomainUpDown();
-            this.queryVersionBox = new System.Windows.Forms.DomainUpDown();
             this.loginStatus = new System.Windows.Forms.Label();
             this.queryHostText = new System.Windows.Forms.TextBox();
             this.queryPortText = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.queryButton = new System.Windows.Forms.Button();
+            this.modBox = new System.Windows.Forms.ComboBox();
+            this.mcVersionBox = new System.Windows.Forms.ComboBox();
+            this.versionBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // loginButton
@@ -102,45 +101,6 @@
             this.rememberBox.Text = "Remember Me!";
             this.rememberBox.UseVisualStyleBackColor = true;
             // 
-            // queryMCBox
-            // 
-            this.queryMCBox.Location = new System.Drawing.Point(12, 12);
-            this.queryMCBox.Name = "queryMCBox";
-            this.queryMCBox.Size = new System.Drawing.Size(120, 20);
-            this.queryMCBox.TabIndex = 14;
-            this.queryMCBox.Text = "Minecraft Versions";
-            this.queryMCBox.Visible = false;
-            this.queryMCBox.SelectedItemChanged += new System.EventHandler(this.queryMCBox_SelectedItemChanged);
-            // 
-            // queryTypeBox
-            // 
-            this.queryTypeBox.Location = new System.Drawing.Point(138, 12);
-            this.queryTypeBox.Name = "queryTypeBox";
-            this.queryTypeBox.Size = new System.Drawing.Size(120, 20);
-            this.queryTypeBox.TabIndex = 15;
-            this.queryTypeBox.Text = "Mod Types";
-            this.queryTypeBox.Visible = false;
-            this.queryTypeBox.SelectedItemChanged += new System.EventHandler(this.queryTypeBox_SelectedItemChanged);
-            // 
-            // queryModBox
-            // 
-            this.queryModBox.Location = new System.Drawing.Point(264, 12);
-            this.queryModBox.Name = "queryModBox";
-            this.queryModBox.Size = new System.Drawing.Size(120, 20);
-            this.queryModBox.TabIndex = 16;
-            this.queryModBox.Text = "Mods";
-            this.queryModBox.Visible = false;
-            this.queryModBox.SelectedItemChanged += new System.EventHandler(this.queryModBox_SelectedItemChanged);
-            // 
-            // queryVersionBox
-            // 
-            this.queryVersionBox.Location = new System.Drawing.Point(390, 12);
-            this.queryVersionBox.Name = "queryVersionBox";
-            this.queryVersionBox.Size = new System.Drawing.Size(120, 20);
-            this.queryVersionBox.TabIndex = 17;
-            this.queryVersionBox.Text = "Versions";
-            this.queryVersionBox.Visible = false;
-            // 
             // loginStatus
             // 
             this.loginStatus.AutoSize = true;
@@ -183,21 +143,51 @@
             this.queryButton.UseVisualStyleBackColor = true;
             this.queryButton.Click += new System.EventHandler(this.queryButton_Click);
             // 
+            // modBox
+            // 
+            this.modBox.FormattingEnabled = true;
+            this.modBox.Location = new System.Drawing.Point(139, 12);
+            this.modBox.Name = "modBox";
+            this.modBox.Size = new System.Drawing.Size(121, 21);
+            this.modBox.Sorted = true;
+            this.modBox.TabIndex = 23;
+            this.modBox.Text = "Mods";
+            this.modBox.SelectedIndexChanged += new System.EventHandler(this.modBox_SelectedIndexChanged);
+            // 
+            // mcVersionBox
+            // 
+            this.mcVersionBox.FormattingEnabled = true;
+            this.mcVersionBox.Location = new System.Drawing.Point(12, 11);
+            this.mcVersionBox.Name = "mcVersionBox";
+            this.mcVersionBox.Size = new System.Drawing.Size(121, 21);
+            this.mcVersionBox.TabIndex = 24;
+            this.mcVersionBox.Text = "MCVersion";
+            this.mcVersionBox.Visible = false;
+            // 
+            // versionBox
+            // 
+            this.versionBox.FormattingEnabled = true;
+            this.versionBox.Location = new System.Drawing.Point(264, 12);
+            this.versionBox.Name = "versionBox";
+            this.versionBox.Size = new System.Drawing.Size(121, 21);
+            this.versionBox.Sorted = true;
+            this.versionBox.TabIndex = 25;
+            this.versionBox.Text = "Versions";
+            // 
             // MainForm
             // 
             this.AcceptButton = this.loginButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.versionBox);
+            this.Controls.Add(this.mcVersionBox);
+            this.Controls.Add(this.modBox);
             this.Controls.Add(this.queryButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.queryPortText);
             this.Controls.Add(this.queryHostText);
             this.Controls.Add(this.loginStatus);
-            this.Controls.Add(this.queryVersionBox);
-            this.Controls.Add(this.queryModBox);
-            this.Controls.Add(this.queryTypeBox);
-            this.Controls.Add(this.queryMCBox);
             this.Controls.Add(this.rememberBox);
             this.Controls.Add(this.passLabel);
             this.Controls.Add(this.userLabel);
@@ -220,15 +210,14 @@
         private System.Windows.Forms.Label userLabel;
         private System.Windows.Forms.Label passLabel;
         private System.Windows.Forms.CheckBox rememberBox;
-        private System.Windows.Forms.DomainUpDown queryMCBox;
-        private System.Windows.Forms.DomainUpDown queryTypeBox;
-        private System.Windows.Forms.DomainUpDown queryModBox;
-        private System.Windows.Forms.DomainUpDown queryVersionBox;
         private System.Windows.Forms.Label loginStatus;
         private System.Windows.Forms.TextBox queryHostText;
         private System.Windows.Forms.TextBox queryPortText;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button queryButton;
+        private System.Windows.Forms.ComboBox modBox;
+        private System.Windows.Forms.ComboBox mcVersionBox;
+        private System.Windows.Forms.ComboBox versionBox;
     }
 }
 

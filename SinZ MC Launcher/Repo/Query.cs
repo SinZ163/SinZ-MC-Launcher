@@ -15,18 +15,34 @@ namespace SinZ_MC_Launcher.Repo {
     class Query {
 
         String location = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), ".sinzmc/");
-        Uri repo = new Uri("http://sinz.mca.d3s.co/repo/test.txt");
+        Uri versionCheck = new Uri("http://sinz.mca.d3s.co/repo/versions.txt");
 
         Boolean isDownloading = true;
+        String version = "";
 
         public Query() {
             Console.WriteLine("Querying Repository");
             WebClient client = new WebClient();
-            client.DownloadFileCompleted += QueryCompleted;
-            client.DownloadFileAsync(repo, Path.Combine(location, "modList.txt"));
+            client.DownloadStringCompleted += VersionDetected;
+            client.DownloadStringAsync(versionCheck);
+            //client.DownloadFileCompleted += QueryCompleted;
+            //client.DownloadFileAsync(repo, Path.Combine(location, "modList.txt"));
             while (isDownloading) {
                 Application.DoEvents();
             }
+        }
+
+        private void VersionDetected(object sender, DownloadStringCompletedEventArgs e) {
+            WebClient client = new WebClient();
+            client.DownloadFileCompleted += QueryCompleted;
+            if (!e.Result.Contains('|')) {
+                version = e.Result;
+            }
+            else {
+                String[] versions = e.Result.Split('|');
+                version = versions.Last<String>();
+            }
+            client.DownloadFileAsync(new Uri("http://sinz.mca.d3s.co/repo/" + version + ".txt"), Path.Combine(location, version + ".txt"));
         }
 
         private void QueryCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e) {
@@ -34,7 +50,7 @@ namespace SinZ_MC_Launcher.Repo {
         }
         public Dictionary<String, object> parseRepo() {
             Console.WriteLine("Reading repository");
-            FileStream stream = new FileStream(Path.Combine(location, "modList.txt"), FileMode.Open);
+            FileStream stream = new FileStream(Path.Combine(location, version + ".txt"), FileMode.Open);
             StreamReader reader = new StreamReader(stream);
             String json = reader.ReadToEnd();
             return deserializeToDictionary(json);

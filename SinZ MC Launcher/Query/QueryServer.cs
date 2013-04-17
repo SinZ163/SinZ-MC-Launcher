@@ -21,6 +21,7 @@ namespace SinZ_MC_Launcher.Query {
         String[] result;
         public Dictionary<String, String> output = new Dictionary<String, String>();
         public List<String> players = new List<String>();
+        public Dictionary<string, string> plugins;
 
 
         public QueryServer(String address, int port) {
@@ -45,6 +46,10 @@ namespace SinZ_MC_Launcher.Query {
                 for (int i = 0; i + 1 < result.Length; i = i + 2) {
                     output[result[i]] = result[i + 1];
                 }
+                if (output["plugins"] != "") {
+                    plugins = ParsePlugins(output["plugins"]);
+                }
+                output.Remove("plugins");
             }
             catch (Exception) {
                 MessageBox.Show("An error occured querying that server");
@@ -90,8 +95,8 @@ namespace SinZ_MC_Launcher.Query {
             Console.WriteLine("Receieved Query Response");
             data = data.Skip(16).ToArray<byte>();
             List<String> strings = new List<String>();
-            bool reading = true;
-            while (reading) {
+            int i = 0;
+            while (i <= 20) {
                 List<byte> tempString = new List<byte>();
                 while (data[0] != 0x00) {
                     tempString.Add(data[0]);
@@ -99,16 +104,12 @@ namespace SinZ_MC_Launcher.Query {
                 }
                 data = data.Skip(1).ToArray<byte>();
                 String tmp = Encoding.UTF8.GetString(tempString.ToArray());
-                if (tmp.Length == 0) {
-                    reading = false;
-                    break;
-                } else {
-                    strings.Add(tmp);
-                }
+                strings.Add(tmp);
+                i++;
             }
             result = strings.ToArray(); //Most of the output
             data = data.Skip(10).ToArray<byte>();
-            reading = true;
+            bool reading = true;
             while (reading) {
                 List<byte> tempString = new List<byte>();
                 while (data[0] != 0x00) {
@@ -125,6 +126,17 @@ namespace SinZ_MC_Launcher.Query {
                     players.Add(tmp);
                 }
             }
+        }
+        public static Dictionary<String, String> ParsePlugins(String pluginDump) {
+            Dictionary<String, String> output = new Dictionary<string, string>();
+            String[] pluginSplit = pluginDump.Split(':');
+            output["SERVER_MOD"] = pluginSplit[0];
+            String[] plugins = pluginSplit[1].Split(';');
+            foreach (String data in plugins) {
+                String[] plugin = data.Split(' ');
+                output[plugin[0]] = plugin[1];
+            }
+            return output;
         }
        
     }

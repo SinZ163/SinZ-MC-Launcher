@@ -94,47 +94,21 @@ namespace SinZ_MC_Launcher {
             Repo.Query repo = new Repo.Query();
             db = repo.parseRepo();
             Console.WriteLine("Finished reading repository");
-            foreach (String version in db.Keys) {
-                queryMCBox.Items.Add(version);
+            foreach (String modName in db.Keys) {
+                //modName == Minecraft Forge, Not Enough Items, Modular Power Suits
+                modBox.Items.Add(modName);
             }
-            queryMCBox.Update();
-            queryMCBox.SelectedIndex = 0;
-
-            queryMCBox.Visible = true;
-            queryTypeBox.Visible = true;
-            queryModBox.Visible = true;
-            queryVersionBox.Visible = true;
+            modBox.SelectedIndex = 0;
         }
 
-        private void queryMCBox_SelectedItemChanged(object sender, EventArgs e) {
-            Dictionary<String, object> types = (Dictionary<String, object>)db[queryMCBox.SelectedItem.ToString()];
-            queryTypeBox.Items.Clear();
-            foreach (String type in types.Keys) {
-                queryTypeBox.Items.Add(type);
+        private void modBox_SelectedIndexChanged(object sender, EventArgs e) {
+            versionBox.Items.Clear();
+            JArray mod = (JArray) db[modBox.SelectedItem.ToString()];
+            for (int i = 0; i < mod.Count; i++) {
+                JToken version = mod[i];
+                versionBox.Items.Add(version["version"]);
             }
-            queryTypeBox.SelectedIndex = 0;
-        }
-        private void queryTypeBox_SelectedItemChanged(object sender, EventArgs e) {
-            Dictionary<String, object> types = (Dictionary<String, object>)db[queryMCBox.SelectedItem.ToString()];
-            Dictionary<String, object> mods = (Dictionary<String, object>)types[queryTypeBox.SelectedItem.ToString()];
-            Console.WriteLine(queryMCBox.SelectedItem.ToString());
-            Console.WriteLine(queryTypeBox.SelectedItem.ToString());
-            queryModBox.Items.Clear();
-            foreach (String mod in mods.Keys) {
-                queryModBox.Items.Add(mod);
-            }
-            queryModBox.SelectedIndex = 0;
-        }
-        private void queryModBox_SelectedItemChanged(object sender, EventArgs e) {
-            Dictionary<String, object> types = (Dictionary<String, object>)db[queryMCBox.SelectedItem.ToString()];
-            Dictionary<String, object> mods = (Dictionary<String, object>)types[queryTypeBox.SelectedItem.ToString()];
-            JArray versions = (JArray)mods[queryModBox.SelectedItem.ToString()];
-            queryVersionBox.Items.Clear();
-            for (int i = 0; i < versions.Count; i++) {
-                JToken version = versions[i];
-                queryVersionBox.Items.Add(version["version"]);
-            }
-            queryVersionBox.SelectedIndex = 0;
+            versionBox.SelectedIndex = 0;
         }
 
         private void queryButton_Click(object sender, EventArgs e) {
@@ -146,6 +120,15 @@ namespace SinZ_MC_Launcher {
             String data = "";
             foreach (String msg in query.output.Values) {
                 data += "|" + msg;
+            }
+            if (query.plugins.Keys.Count > 0) {
+                MessageBox.Show(query.plugins["SERVER_MOD"]);
+                query.plugins.Remove("SERVER_MOD");
+                String pluginList = "";
+                foreach (String key in query.plugins.Keys) {
+                    pluginList += key + "_" + query.plugins[key] + " | ";
+                }
+                MessageBox.Show(pluginList);
             }
             MessageBox.Show(data);
             MessageBox.Show(playerList);
