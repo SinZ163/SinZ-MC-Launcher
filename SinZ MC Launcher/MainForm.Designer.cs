@@ -37,6 +37,20 @@
             this.modBox = new System.Windows.Forms.ComboBox();
             this.mcVersionBox = new System.Windows.Forms.ComboBox();
             this.versionBox = new System.Windows.Forms.ComboBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.modList = new System.Windows.Forms.TabPage();
+            this.queryList = new System.Windows.Forms.TabPage();
+            this.consoleList = new System.Windows.Forms.TabPage();
+            this.consoleBox = new System.Windows.Forms.TextBox();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tabControl1.SuspendLayout();
+            this.modList.SuspendLayout();
+            this.queryList.SuspendLayout();
+            this.consoleList.SuspendLayout();
             this.SuspendLayout();
             // 
             // loginButton
@@ -91,6 +105,7 @@
             // 
             // rememberBox
             // 
+            this.rememberBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.rememberBox.AutoSize = true;
             this.rememberBox.Checked = true;
             this.rememberBox.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -112,14 +127,14 @@
             // 
             // queryHostText
             // 
-            this.queryHostText.Location = new System.Drawing.Point(566, 12);
+            this.queryHostText.Location = new System.Drawing.Point(6, 6);
             this.queryHostText.Name = "queryHostText";
             this.queryHostText.Size = new System.Drawing.Size(100, 20);
             this.queryHostText.TabIndex = 19;
             // 
             // queryPortText
             // 
-            this.queryPortText.Location = new System.Drawing.Point(672, 12);
+            this.queryPortText.Location = new System.Drawing.Point(112, 6);
             this.queryPortText.Name = "queryPortText";
             this.queryPortText.Size = new System.Drawing.Size(100, 20);
             this.queryPortText.TabIndex = 20;
@@ -127,7 +142,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(566, 35);
+            this.label1.Location = new System.Drawing.Point(6, 29);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(108, 13);
             this.label1.TabIndex = 21;
@@ -135,7 +150,7 @@
             // 
             // queryButton
             // 
-            this.queryButton.Location = new System.Drawing.Point(680, 38);
+            this.queryButton.Location = new System.Drawing.Point(120, 32);
             this.queryButton.Name = "queryButton";
             this.queryButton.Size = new System.Drawing.Size(75, 23);
             this.queryButton.TabIndex = 22;
@@ -146,7 +161,7 @@
             // modBox
             // 
             this.modBox.FormattingEnabled = true;
-            this.modBox.Location = new System.Drawing.Point(139, 12);
+            this.modBox.Location = new System.Drawing.Point(133, 7);
             this.modBox.Name = "modBox";
             this.modBox.Size = new System.Drawing.Size(121, 21);
             this.modBox.Sorted = true;
@@ -157,7 +172,7 @@
             // mcVersionBox
             // 
             this.mcVersionBox.FormattingEnabled = true;
-            this.mcVersionBox.Location = new System.Drawing.Point(12, 11);
+            this.mcVersionBox.Location = new System.Drawing.Point(7, 7);
             this.mcVersionBox.Name = "mcVersionBox";
             this.mcVersionBox.Size = new System.Drawing.Size(121, 21);
             this.mcVersionBox.TabIndex = 24;
@@ -167,12 +182,126 @@
             // versionBox
             // 
             this.versionBox.FormattingEnabled = true;
-            this.versionBox.Location = new System.Drawing.Point(264, 12);
+            this.versionBox.Location = new System.Drawing.Point(260, 7);
             this.versionBox.Name = "versionBox";
             this.versionBox.Size = new System.Drawing.Size(121, 21);
             this.versionBox.Sorted = true;
             this.versionBox.TabIndex = 25;
             this.versionBox.Text = "Versions";
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Controls.Add(this.modList);
+            this.tabControl1.Controls.Add(this.queryList);
+            this.tabControl1.Controls.Add(this.consoleList);
+            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(760, 470);
+            this.tabControl1.TabIndex = 27;
+            // 
+            // modList
+            // 
+            this.modList.Controls.Add(this.label2);
+            this.modList.Controls.Add(this.button2);
+            this.modList.Controls.Add(this.button1);
+            this.modList.Controls.Add(this.comboBox1);
+            this.modList.Controls.Add(this.listView1);
+            this.modList.Controls.Add(this.mcVersionBox);
+            this.modList.Controls.Add(this.versionBox);
+            this.modList.Controls.Add(this.modBox);
+            this.modList.Location = new System.Drawing.Point(4, 22);
+            this.modList.Name = "modList";
+            this.modList.Padding = new System.Windows.Forms.Padding(3);
+            this.modList.Size = new System.Drawing.Size(752, 444);
+            this.modList.TabIndex = 0;
+            this.modList.Text = "Mod List";
+            this.modList.UseVisualStyleBackColor = true;
+            // 
+            // queryList
+            // 
+            this.queryList.Controls.Add(this.queryHostText);
+            this.queryList.Controls.Add(this.queryButton);
+            this.queryList.Controls.Add(this.queryPortText);
+            this.queryList.Controls.Add(this.label1);
+            this.queryList.Location = new System.Drawing.Point(4, 22);
+            this.queryList.Name = "queryList";
+            this.queryList.Padding = new System.Windows.Forms.Padding(3);
+            this.queryList.Size = new System.Drawing.Size(752, 444);
+            this.queryList.TabIndex = 1;
+            this.queryList.Text = "Query Server";
+            this.queryList.UseVisualStyleBackColor = true;
+            // 
+            // consoleList
+            // 
+            this.consoleList.Controls.Add(this.consoleBox);
+            this.consoleList.Location = new System.Drawing.Point(4, 22);
+            this.consoleList.Name = "consoleList";
+            this.consoleList.Padding = new System.Windows.Forms.Padding(3);
+            this.consoleList.Size = new System.Drawing.Size(752, 444);
+            this.consoleList.TabIndex = 2;
+            this.consoleList.Text = "Launcher Console";
+            this.consoleList.UseVisualStyleBackColor = true;
+            // 
+            // consoleBox
+            // 
+            this.consoleBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.consoleBox.Location = new System.Drawing.Point(6, 6);
+            this.consoleBox.Multiline = true;
+            this.consoleBox.Name = "consoleBox";
+            this.consoleBox.ReadOnly = true;
+            this.consoleBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.consoleBox.Size = new System.Drawing.Size(740, 432);
+            this.consoleBox.TabIndex = 0;
+            // 
+            // listView1
+            // 
+            this.listView1.Location = new System.Drawing.Point(7, 34);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(374, 404);
+            this.listView1.TabIndex = 26;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(387, 34);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 27;
+            this.comboBox1.Text = "(new)";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(387, 6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(90, 23);
+            this.button1.TabIndex = 28;
+            this.button1.Text = "Add to Modlist";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(387, 412);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(90, 23);
+            this.button2.TabIndex = 29;
+            this.button2.Text = "Save Modlist";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(481, 234);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(133, 13);
+            this.label2.TabIndex = 30;
+            this.label2.Text = "No work done on this at all";
             // 
             // MainForm
             // 
@@ -180,13 +309,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
-            this.Controls.Add(this.versionBox);
-            this.Controls.Add(this.mcVersionBox);
-            this.Controls.Add(this.modBox);
-            this.Controls.Add(this.queryButton);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.queryPortText);
-            this.Controls.Add(this.queryHostText);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.loginStatus);
             this.Controls.Add(this.rememberBox);
             this.Controls.Add(this.passLabel);
@@ -197,6 +320,13 @@
             this.Name = "MainForm";
             this.Text = "SinZ MC Launcher - v0.0.1";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.tabControl1.ResumeLayout(false);
+            this.modList.ResumeLayout(false);
+            this.modList.PerformLayout();
+            this.queryList.ResumeLayout(false);
+            this.queryList.PerformLayout();
+            this.consoleList.ResumeLayout(false);
+            this.consoleList.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -218,6 +348,16 @@
         private System.Windows.Forms.ComboBox modBox;
         private System.Windows.Forms.ComboBox mcVersionBox;
         private System.Windows.Forms.ComboBox versionBox;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage modList;
+        private System.Windows.Forms.TabPage queryList;
+        private System.Windows.Forms.TabPage consoleList;
+        private System.Windows.Forms.TextBox consoleBox;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label2;
     }
 }
 

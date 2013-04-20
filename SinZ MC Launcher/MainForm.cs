@@ -11,9 +11,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
 using SinZ_MC_Launcher.Download;
+using SinZ_MC_Launcher.Launch;
 using SinZ_MC_Launcher.Login;
 using SinZ_MC_Launcher.Query;
 using SinZ_MC_Launcher.Repo;
+using SinZ_MC_Launcher.UI;
 
 namespace SinZ_MC_Launcher {
     public partial class MainForm : Form {
@@ -30,6 +32,8 @@ namespace SinZ_MC_Launcher {
             };
             InitializeComponent();
         }
+        TextWriter _writer = null;
+
         String location = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), ".sinzmc/");
 
         String username;
@@ -40,12 +44,16 @@ namespace SinZ_MC_Launcher {
 
 
         private void MainForm_Load(object sender, EventArgs e) {
-            lastLogin = new LastLogin();
-
+            //CONSOLE
+            _writer = new ConsoleStringWriter(consoleBox);
+            Console.SetOut(_writer);
+            //END CONSOLE
             if (!Directory.Exists(location))
                 Directory.CreateDirectory(location);
 
             //SETTINGS
+            lastLogin = new LastLogin();
+
             if (File.Exists(Path.Combine(location, "lastlogin"))) {
                 String[] lastLoginData = lastLogin.GetLastLogin();
                 userText.Text = lastLoginData[0];
@@ -99,6 +107,8 @@ namespace SinZ_MC_Launcher {
                 modBox.Items.Add(modName);
             }
             modBox.SelectedIndex = 0;
+
+            LaunchMinecraft mc = new LaunchMinecraft(Path.Combine(location, ".minecraft", "bin"), username, sessionID, true);
         }
 
         private void modBox_SelectedIndexChanged(object sender, EventArgs e) {

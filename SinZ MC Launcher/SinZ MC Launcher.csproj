@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Download\LWJGL.cs" />
+    <Compile Include="Launch\LaunchMinecraft.cs" />
     <Compile Include="Login\LastLogin.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -82,6 +83,7 @@
     <Compile Include="Query\QueryServer.cs" />
     <Compile Include="Repo\Query.cs" />
     <Compile Include="Download\VannilaMinecraft.cs" />
+    <Compile Include="UI\ConsoleStringWriter.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
