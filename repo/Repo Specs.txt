@@ -1,17 +1,19 @@
 {
-	"modName": [{
-		"type": "Type",
-		"version": "Version",
-		"download": "Download Link"
-	}],
-	"secondModName": [{
-		"type": "Type",
-		"version": "Version",
-		"download": "Download Link"
-	}]
+	"modName": {
+		"Version": {
+        	"type": "Type",
+            "download": "Download Link"
+        }
+	},
+	"secondModName": {
+		"Version": {
+        	"type": "Type",
+            "download": "Download Link"
+        }
+	}
 }
 
-type can be either:
+"Type" can be either:
 "jarMod"
 "coreMod"
 "mod"

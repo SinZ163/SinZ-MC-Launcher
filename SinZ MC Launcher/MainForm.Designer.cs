@@ -32,7 +32,6 @@
             this.loginStatus = new System.Windows.Forms.Label();
             this.queryHostText = new System.Windows.Forms.TextBox();
             this.queryPortText = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.queryButton = new System.Windows.Forms.Button();
             this.modBox = new System.Windows.Forms.ComboBox();
             this.mcVersionBox = new System.Windows.Forms.ComboBox();
@@ -136,24 +135,16 @@
             // 
             this.queryHostText.Location = new System.Drawing.Point(6, 6);
             this.queryHostText.Name = "queryHostText";
-            this.queryHostText.Size = new System.Drawing.Size(100, 20);
+            this.queryHostText.Size = new System.Drawing.Size(159, 20);
             this.queryHostText.TabIndex = 19;
             // 
             // queryPortText
             // 
-            this.queryPortText.Location = new System.Drawing.Point(112, 6);
+            this.queryPortText.Location = new System.Drawing.Point(171, 6);
+            this.queryPortText.MaxLength = 5;
             this.queryPortText.Name = "queryPortText";
-            this.queryPortText.Size = new System.Drawing.Size(100, 20);
+            this.queryPortText.Size = new System.Drawing.Size(41, 20);
             this.queryPortText.TabIndex = 20;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 13);
-            this.label1.TabIndex = 21;
-            this.label1.Text = "Query hostname, port";
             // 
             // queryButton
             // 
@@ -281,7 +272,6 @@
             this.queryList.Controls.Add(this.queryHostText);
             this.queryList.Controls.Add(this.queryButton);
             this.queryList.Controls.Add(this.queryPortText);
-            this.queryList.Controls.Add(this.label1);
             this.queryList.Location = new System.Drawing.Point(4, 22);
             this.queryList.Name = "queryList";
             this.queryList.Padding = new System.Windows.Forms.Padding(3);
@@ -305,18 +295,16 @@
             this.pluginsLabel.AutoSize = true;
             this.pluginsLabel.Location = new System.Drawing.Point(6, 96);
             this.pluginsLabel.Name = "pluginsLabel";
-            this.pluginsLabel.Size = new System.Drawing.Size(54, 13);
+            this.pluginsLabel.Size = new System.Drawing.Size(0, 13);
             this.pluginsLabel.TabIndex = 24;
-            this.pluginsLabel.Text = "PLUGINS";
             // 
             // serverModLabel
             // 
             this.serverModLabel.AutoSize = true;
             this.serverModLabel.Location = new System.Drawing.Point(6, 69);
             this.serverModLabel.Name = "serverModLabel";
-            this.serverModLabel.Size = new System.Drawing.Size(82, 13);
+            this.serverModLabel.Size = new System.Drawing.Size(0, 13);
             this.serverModLabel.TabIndex = 23;
-            this.serverModLabel.Text = "SERVER_MOD";
             // 
             // consoleList
             // 
@@ -419,7 +407,6 @@
         private System.Windows.Forms.Label loginStatus;
         private System.Windows.Forms.TextBox queryHostText;
         private System.Windows.Forms.TextBox queryPortText;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button queryButton;
         private System.Windows.Forms.ComboBox modBox;
         private System.Windows.Forms.ComboBox mcVersionBox;

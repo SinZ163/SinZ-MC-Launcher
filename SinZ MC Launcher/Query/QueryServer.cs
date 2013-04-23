@@ -38,7 +38,7 @@ namespace SinZ_MC_Launcher.Query {
 
         }
         public void DoQuery() {
-            //try {
+            try {
                 SendHandshake();
                 ReceiveHandshake();
                 SendFullRequest();
@@ -50,20 +50,24 @@ namespace SinZ_MC_Launcher.Query {
                     plugins = ParsePlugins(output["plugins"]);
                 }
                 output.Remove("plugins");
+            }
+            catch (SocketException e) {
+                MessageBox.Show("Server is down or doesn't like Query");
+            }
             /*}
             catch (Exception) {
                 MessageBox.Show("An error occured querying that server");
             }*/            
         }
         public void SendHandshake() {
-            Console.WriteLine("Sending Query Handshake");
+            //Console.WriteLine("Sending Query Handshake");
             byte[] data = {0xFE,0xFD,0x09,0x01,0x01,0x01,0x01};
             client.Send(data, data.Length);
         }
         public void ReceiveHandshake() {
-            Console.WriteLine("Waiting for Query Response...");
+            //Console.WriteLine("Waiting for Query Response...");
             byte[] data = client.Receive(ref connection);
-            Console.WriteLine("Receieved Query Response");
+            //Console.WriteLine("Receieved Query Response");
             data = data.Skip(5).ToArray<byte>();
             List<byte> tempString = new List<byte>();
             while (data[0] != 0x00) {
@@ -76,7 +80,7 @@ namespace SinZ_MC_Launcher.Query {
         }
 
         public void SendFullRequest() {
-            Console.WriteLine("Sending Query Request");
+            //Console.WriteLine("Sending Query Request");
             List<byte> data = new List<byte>{
                 0xFE, 0xFD,
                 0x00,
@@ -90,9 +94,9 @@ namespace SinZ_MC_Launcher.Query {
             client.Send(data.ToArray(), data.Count);
         }
         public void ReceiveFullRequest() {
-            Console.WriteLine("Waiting for Query Response...");
+            //Console.WriteLine("Waiting for Query Response...");
             byte[] data = client.Receive(ref connection);
-            Console.WriteLine("Receieved Query Response");
+            //Console.WriteLine("Receieved Query Response");
             data = data.Skip(16).ToArray<byte>();
             List<String> strings = new List<String>();
             int i = 0;
