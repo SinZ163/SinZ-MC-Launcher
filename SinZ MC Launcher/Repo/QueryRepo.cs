@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 
 
 namespace SinZ_MC_Launcher.Repo {
-    class Query {
+    class QueryRepo {
 
         String location = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), ".sinzmc/");
         Uri versionCheck = new Uri("http://sinz.mca.d3s.co/repo/versions.txt");
@@ -20,7 +20,7 @@ namespace SinZ_MC_Launcher.Repo {
         Boolean isDownloading = true;
         String version = "";
 
-        public Query() {
+        public QueryRepo() {
             Console.WriteLine("Querying Repository");
             WebClient client = new WebClient();
             client.DownloadStringCompleted += VersionDetected;

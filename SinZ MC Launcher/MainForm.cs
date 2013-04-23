@@ -15,6 +15,7 @@ using SinZ_MC_Launcher.Launch;
 using SinZ_MC_Launcher.Login;
 using SinZ_MC_Launcher.Query;
 using SinZ_MC_Launcher.Repo;
+using SinZ_MC_Launcher.Server;
 using SinZ_MC_Launcher.UI;
 
 namespace SinZ_MC_Launcher {
@@ -99,7 +100,7 @@ namespace SinZ_MC_Launcher {
             stream.Close();
             //END SETTINGS
 
-            Repo.Query repo = new Repo.Query();
+            Repo.QueryRepo repo = new Repo.QueryRepo();
             db = repo.parseRepo();
             Console.WriteLine("Finished reading repository");
             foreach (String modName in db.Keys) {
@@ -108,7 +109,8 @@ namespace SinZ_MC_Launcher {
             }
             modBox.SelectedIndex = 0;
 
-            LaunchMinecraft mc = new LaunchMinecraft(Path.Combine(location, ".minecraft", "bin"), username, sessionID, true);
+            //Resources downloadResources = new Resources();
+            //LaunchMinecraft mc = new LaunchMinecraft(Path.Combine(location, "vannila_13w16a"), username, sessionID, true);
         }
 
         private void modBox_SelectedIndexChanged(object sender, EventArgs e) {
@@ -123,25 +125,39 @@ namespace SinZ_MC_Launcher {
 
         private void queryButton_Click(object sender, EventArgs e) {
             QueryServer query = new QueryServer(queryHostText.Text, int.Parse(queryPortText.Text));
-            String playerList = "";
+            //String playerList = "";
             foreach (String msg in query.players) {
-                playerList += "|"+msg;
+                //playerList += "|"+msg;
+                playerList.Items.Add(msg);
             }
             String data = "";
             foreach (String msg in query.output.Values) {
                 data += "|" + msg;
             }
-            if (query.plugins.Keys.Count > 0) {
-                MessageBox.Show(query.plugins["SERVER_MOD"]);
-                query.plugins.Remove("SERVER_MOD");
-                String pluginList = "";
-                foreach (String key in query.plugins.Keys) {
-                    pluginList += key + "_" + query.plugins[key] + " | ";
+            try {
+                if (query.plugins.Keys.Count > 0) {
+                    //MessageBox.Show(query.plugins["SERVER_MOD"]);
+                    serverModLabel.Text = query.plugins["SERVER_MOD"];
+                    query.plugins.Remove("SERVER_MOD");
+                    String pluginList = "";
+                    foreach (String key in query.plugins.Keys) {
+                        pluginList += key + "_" + query.plugins[key] + " | ";
+                    }
+                    //MessageBox.Show(pluginList);
+                    pluginsLabel.Text = pluginList;
                 }
-                MessageBox.Show(pluginList);
             }
-            MessageBox.Show(data);
-            MessageBox.Show(playerList);
+            catch (Exception) {
+            }
+            //MessageBox.Show(data);
+            //MessageBox.Show(playerList);
+        }
+
+        private void initStatusBox_Click(object sender, EventArgs e) {
+            ServerStatus status = new ServerStatus();
+            foreach (String key in status.output.Keys) {
+                serverStatus.Items.Add(key, (String)status.output[key]);
+            }
         }
     }
 }

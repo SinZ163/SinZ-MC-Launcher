@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -9,15 +10,15 @@ using System.Windows.Forms;
 namespace SinZ_MC_Launcher.UI {
     class ConsoleStringWriter : TextWriter {
         TextBox _output = null;
- 
         public ConsoleStringWriter(TextBox output)
         {
             _output = output;
         }
- 
+
         public override void Write(char value)
         {
             base.Write(value);
+            
             _output.AppendText(value.ToString()); // When character data is written, append it to the text box.
         }
  

@@ -39,18 +39,25 @@
             this.versionBox = new System.Windows.Forms.ComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.modList = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.listView1 = new System.Windows.Forms.ListView();
             this.queryList = new System.Windows.Forms.TabPage();
+            this.playerList = new System.Windows.Forms.ListView();
+            this.pluginsLabel = new System.Windows.Forms.Label();
+            this.serverModLabel = new System.Windows.Forms.Label();
             this.consoleList = new System.Windows.Forms.TabPage();
             this.consoleBox = new System.Windows.Forms.TextBox();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.serverStatusList = new System.Windows.Forms.TabPage();
+            this.initStatusBox = new System.Windows.Forms.Button();
+            this.serverStatus = new System.Windows.Forms.ListView();
             this.tabControl1.SuspendLayout();
             this.modList.SuspendLayout();
             this.queryList.SuspendLayout();
             this.consoleList.SuspendLayout();
+            this.serverStatusList.SuspendLayout();
             this.SuspendLayout();
             // 
             // loginButton
@@ -197,6 +204,7 @@
             this.tabControl1.Controls.Add(this.modList);
             this.tabControl1.Controls.Add(this.queryList);
             this.tabControl1.Controls.Add(this.consoleList);
+            this.tabControl1.Controls.Add(this.serverStatusList);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -221,8 +229,55 @@
             this.modList.Text = "Mod List";
             this.modList.UseVisualStyleBackColor = true;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(481, 234);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(133, 13);
+            this.label2.TabIndex = 30;
+            this.label2.Text = "No work done on this at all";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(387, 412);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(90, 23);
+            this.button2.TabIndex = 29;
+            this.button2.Text = "Save Modlist";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(387, 6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(90, 23);
+            this.button1.TabIndex = 28;
+            this.button1.Text = "Add to Modlist";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(387, 34);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 27;
+            this.comboBox1.Text = "(new)";
+            // 
+            // listView1
+            // 
+            this.listView1.Location = new System.Drawing.Point(7, 34);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(374, 404);
+            this.listView1.TabIndex = 26;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            // 
             // queryList
             // 
+            this.queryList.Controls.Add(this.playerList);
+            this.queryList.Controls.Add(this.pluginsLabel);
+            this.queryList.Controls.Add(this.serverModLabel);
             this.queryList.Controls.Add(this.queryHostText);
             this.queryList.Controls.Add(this.queryButton);
             this.queryList.Controls.Add(this.queryPortText);
@@ -234,6 +289,34 @@
             this.queryList.TabIndex = 1;
             this.queryList.Text = "Query Server";
             this.queryList.UseVisualStyleBackColor = true;
+            // 
+            // playerList
+            // 
+            this.playerList.Location = new System.Drawing.Point(492, 6);
+            this.playerList.MultiSelect = false;
+            this.playerList.Name = "playerList";
+            this.playerList.Size = new System.Drawing.Size(254, 432);
+            this.playerList.TabIndex = 25;
+            this.playerList.UseCompatibleStateImageBehavior = false;
+            this.playerList.View = System.Windows.Forms.View.List;
+            // 
+            // pluginsLabel
+            // 
+            this.pluginsLabel.AutoSize = true;
+            this.pluginsLabel.Location = new System.Drawing.Point(6, 96);
+            this.pluginsLabel.Name = "pluginsLabel";
+            this.pluginsLabel.Size = new System.Drawing.Size(54, 13);
+            this.pluginsLabel.TabIndex = 24;
+            this.pluginsLabel.Text = "PLUGINS";
+            // 
+            // serverModLabel
+            // 
+            this.serverModLabel.AutoSize = true;
+            this.serverModLabel.Location = new System.Drawing.Point(6, 69);
+            this.serverModLabel.Name = "serverModLabel";
+            this.serverModLabel.Size = new System.Drawing.Size(82, 13);
+            this.serverModLabel.TabIndex = 23;
+            this.serverModLabel.Text = "SERVER_MOD";
             // 
             // consoleList
             // 
@@ -259,49 +342,41 @@
             this.consoleBox.Size = new System.Drawing.Size(740, 432);
             this.consoleBox.TabIndex = 0;
             // 
-            // listView1
+            // serverStatusList
             // 
-            this.listView1.Location = new System.Drawing.Point(7, 34);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(374, 404);
-            this.listView1.TabIndex = 26;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.serverStatusList.Controls.Add(this.initStatusBox);
+            this.serverStatusList.Controls.Add(this.serverStatus);
+            this.serverStatusList.Location = new System.Drawing.Point(4, 22);
+            this.serverStatusList.Name = "serverStatusList";
+            this.serverStatusList.Padding = new System.Windows.Forms.Padding(3);
+            this.serverStatusList.Size = new System.Drawing.Size(752, 444);
+            this.serverStatusList.TabIndex = 3;
+            this.serverStatusList.Text = "Server Status";
+            this.serverStatusList.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // initStatusBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(387, 34);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 27;
-            this.comboBox1.Text = "(new)";
+            this.initStatusBox.Location = new System.Drawing.Point(7, 4);
+            this.initStatusBox.Name = "initStatusBox";
+            this.initStatusBox.Size = new System.Drawing.Size(97, 36);
+            this.initStatusBox.TabIndex = 1;
+            this.initStatusBox.Text = "Refresh Status";
+            this.initStatusBox.UseVisualStyleBackColor = true;
+            this.initStatusBox.Click += new System.EventHandler(this.initStatusBox_Click);
             // 
-            // button1
+            // serverStatus
             // 
-            this.button1.Location = new System.Drawing.Point(387, 6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(90, 23);
-            this.button1.TabIndex = 28;
-            this.button1.Text = "Add to Modlist";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(387, 412);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(90, 23);
-            this.button2.TabIndex = 29;
-            this.button2.Text = "Save Modlist";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(481, 234);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(133, 13);
-            this.label2.TabIndex = 30;
-            this.label2.Text = "No work done on this at all";
+            this.serverStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.serverStatus.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.serverStatus.Location = new System.Drawing.Point(4, 46);
+            this.serverStatus.MultiSelect = false;
+            this.serverStatus.Name = "serverStatus";
+            this.serverStatus.Size = new System.Drawing.Size(742, 395);
+            this.serverStatus.TabIndex = 0;
+            this.serverStatus.UseCompatibleStateImageBehavior = false;
+            this.serverStatus.View = System.Windows.Forms.View.List;
             // 
             // MainForm
             // 
@@ -327,6 +402,7 @@
             this.queryList.PerformLayout();
             this.consoleList.ResumeLayout(false);
             this.consoleList.PerformLayout();
+            this.serverStatusList.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -358,6 +434,12 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label serverModLabel;
+        private System.Windows.Forms.Label pluginsLabel;
+        private System.Windows.Forms.ListView playerList;
+        private System.Windows.Forms.TabPage serverStatusList;
+        private System.Windows.Forms.ListView serverStatus;
+        private System.Windows.Forms.Button initStatusBox;
     }
 }
 

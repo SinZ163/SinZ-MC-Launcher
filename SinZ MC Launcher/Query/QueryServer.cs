@@ -38,7 +38,7 @@ namespace SinZ_MC_Launcher.Query {
 
         }
         public void DoQuery() {
-            try {
+            //try {
                 SendHandshake();
                 ReceiveHandshake();
                 SendFullRequest();
@@ -50,10 +50,10 @@ namespace SinZ_MC_Launcher.Query {
                     plugins = ParsePlugins(output["plugins"]);
                 }
                 output.Remove("plugins");
-            }
+            /*}
             catch (Exception) {
                 MessageBox.Show("An error occured querying that server");
-            }            
+            }*/            
         }
         public void SendHandshake() {
             Console.WriteLine("Sending Query Handshake");
@@ -131,10 +131,15 @@ namespace SinZ_MC_Launcher.Query {
             Dictionary<String, String> output = new Dictionary<string, string>();
             String[] pluginSplit = pluginDump.Split(':');
             output["SERVER_MOD"] = pluginSplit[0];
-            String[] plugins = pluginSplit[1].Split(';');
-            foreach (String data in plugins) {
-                String[] plugin = data.Split(' ');
-                output[plugin[0]] = plugin[1];
+            try {
+                String[] plugins = pluginSplit[1].Split(';');
+                foreach (String data in plugins) {
+                    String[] plugin = data.Split(' ');
+                    output[plugin[0]] = plugin[1];
+                }
+            }
+            catch (Exception) {
+                Console.WriteLine("No mods/plugins, but there is a server package, DAFUQ");
             }
             return output;
         }

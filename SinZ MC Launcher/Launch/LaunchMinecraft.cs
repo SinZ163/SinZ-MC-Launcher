@@ -33,7 +33,7 @@ namespace SinZ_MC_Launcher.Launch {
             message += "\"";
             MessageBox.Show(message);
 
-            ProcessStartInfo procStartInfo = new System.Diagnostics.ProcessStartInfo("cmd.exe", "/q /c java -Djava.library.path=\"natives\" -cp "+message+" net.minecraft.client.main.Main --username " + username + " --session " + sessionID);
+            ProcessStartInfo procStartInfo = new System.Diagnostics.ProcessStartInfo("cmd.exe", "/q /c java -Djava.library.path=\"natives\" -cp "+message+" net.minecraft.client.main.Main --workDir \""+path+"\" --username " + username + " --session " + sessionID);
             procStartInfo.WorkingDirectory = path;
             Process proc = new System.Diagnostics.Process();
 
