@@ -114,11 +114,10 @@ namespace SinZ_MC_Launcher {
         }
 
         private void modBox_SelectedIndexChanged(object sender, EventArgs e) {
+            Dictionary<String, object> mod = (Dictionary<String,object>)db[modBox.SelectedItem.ToString()];
             versionBox.Items.Clear();
-            JArray mod = (JArray) db[modBox.SelectedItem.ToString()];
-            for (int i = 0; i < mod.Count; i++) {
-                JToken version = mod[i];
-                versionBox.Items.Add(version["version"]);
+            foreach (String key in mod.Keys) {
+                versionBox.Items.Add(key);
             }
             versionBox.SelectedIndex = 0;
         }

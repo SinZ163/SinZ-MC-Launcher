@@ -1,11 +1,11 @@
 {
     "Minecraft Forge": {
         "7.7.1.651": {
-            "type": "jarMod"
+            "type": "jarMod",
             "download": "http://files.minecraftforge.net/minecraftforge/minecraftforge-universal-1.5.1-7.7.1.651.zip",
-        }
+        },
         "7.7.1.652": {
-            "type": "jarMod"
+            "type": "jarMod",
             "download": "http://files.minecraftforge.net/minecraftforge/minecraftforge-universal-1.5.1-7.7.1.652.zip"
         }
     },
