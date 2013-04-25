@@ -17,40 +17,35 @@ namespace SinZ_MC_Launcher.Repo {
         String location = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), ".sinzmc/");
         Uri versionCheck = new Uri("http://sinz.mca.d3s.co/repo/versions.txt");
 
-        Boolean isDownloading = true;
         String version = "";
 
         public QueryRepo() {
-            Console.WriteLine("Querying Repository");
-            WebClient client = new WebClient();
-            client.DownloadStringCompleted += VersionDetected;
-            client.DownloadStringAsync(versionCheck);
+            Thread thread = new Thread(new ThreadStart(CheckVersions));
+            thread.Start();
             //client.DownloadFileCompleted += QueryCompleted;
             //client.DownloadFileAsync(repo, Path.Combine(location, "modList.txt"));
-            while (isDownloading) {
+            while (thread.IsAlive) {
                 Application.DoEvents();
             }
         }
-
-        private void VersionDetected(object sender, DownloadStringCompletedEventArgs e) {
+        private void CheckVersions() {
+            //Console.WriteLine("Querying Repository");
             WebClient client = new WebClient();
-            client.DownloadFileCompleted += QueryCompleted;
-            if (!e.Result.Contains('|')) {
-                version = e.Result;
+            String result = client.DownloadString(versionCheck);
+
+            if (!result.Contains('|')) {
+                version = result;
             }
             else {
-                String[] versions = e.Result.Split('|');
+                String[] versions = result.Split('|');
                 version = versions.Last<String>();
             }
-            client.DownloadFileAsync(new Uri("http://sinz.mca.d3s.co/repo/" + version + ".txt"), Path.Combine(location, version + ".txt"));
-        }
-
-        private void QueryCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e) {
-            isDownloading = false;
+            client.DownloadFile(new Uri("http://sinz.mca.d3s.co/repo/" + version + ".txt"), Path.Combine(location, version + ".txt"));
+            parseRepo();
         }
         public Dictionary<String, object> parseRepo() {
-            Console.WriteLine("Reading repository");
-            FileStream stream = new FileStream(Path.Combine(location, version + ".txt"), FileMode.Open);
+            //Console.WriteLine("Reading repository");
+            FileStream stream = new FileStream(Path.Combine(location, version + ".txt"), FileMode.Open, FileAccess.Read);
             StreamReader reader = new StreamReader(stream);
             String json = reader.ReadToEnd();
             return deserializeToDictionary(json);

@@ -28,7 +28,7 @@ namespace SinZ_MC_Launcher.Login {
         private void DoLogin() {
             WebClient client = new WebClient();
             try {
-                String result = client.DownloadString(new Uri("https://login.minecraft.net?user=" + username + "&password=" + password + "&version=1337"));
+                String result = client.DownloadString(new Uri("https://login.minecraft.net?user=" + Uri.EscapeUriString(username) + "&password=" + Uri.EscapeUriString(password) + "&version=1337"));
                 if (result.Contains(':')) {
                     //YAY LOGIN WORKED
                     String[] output = result.Split(':');

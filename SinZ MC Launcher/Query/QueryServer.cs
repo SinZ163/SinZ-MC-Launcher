@@ -75,7 +75,7 @@ namespace SinZ_MC_Launcher.Query {
                 data = data.Skip(1).ToArray<byte>();
             }
             String tmp = Encoding.UTF8.GetString(tempString.ToArray());
-            Console.WriteLine("Token: " + tmp);
+            //Console.WriteLine("Token: " + tmp);
             token = int.Parse(tmp);
         }
 
@@ -133,17 +133,17 @@ namespace SinZ_MC_Launcher.Query {
         }
         public static Dictionary<String, String> ParsePlugins(String pluginDump) {
             Dictionary<String, String> output = new Dictionary<string, string>();
-            String[] pluginSplit = pluginDump.Split(':');
+            String[] pluginSplit = pluginDump.Split(new Char[]{':'}, StringSplitOptions.RemoveEmptyEntries);
             output["SERVER_MOD"] = pluginSplit[0];
             try {
-                String[] plugins = pluginSplit[1].Split(';');
+                String[] plugins = pluginSplit[1].Split(new Char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (String data in plugins) {
                     String[] plugin = data.Split(' ');
-                    output[plugin[0]] = plugin[1];
+                    output[plugin[1]] = plugin[2];
                 }
             }
             catch (Exception) {
-                Console.WriteLine("No mods/plugins, but there is a server package, DAFUQ");
+                MessageBox.Show("No mods/plugins, but there is a server package, DAFUQ");
             }
             return output;
         }

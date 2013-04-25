@@ -155,7 +155,8 @@ namespace SinZ_MC_Launcher {
         private void initStatusBox_Click(object sender, EventArgs e) {
             ServerStatus status = new ServerStatus();
             foreach (String key in status.output.Keys) {
-                serverStatus.Items.Add(key, (String)status.output[key]);
+                serverNameLabel.Text += key + Environment.NewLine;
+                serverStatusLabel.Text += status.output[key].ToString() + Environment.NewLine;
             }
         }
     }

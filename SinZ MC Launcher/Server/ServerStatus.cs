@@ -31,7 +31,7 @@ namespace SinZ_MC_Launcher.Server {
             serverResult = serverResult.TrimEnd(']');
             serverResult = Regex.Replace(serverResult, "},{", ",");
 
-            MessageBox.Show(serverResult);
+            //MessageBox.Show(serverResult);
             JObject rawOutput = JObject.Parse(serverResult);
 
             IList<string> keys = rawOutput.Properties().Select(p => p.Name).ToList();
@@ -65,7 +65,7 @@ namespace SinZ_MC_Launcher.Server {
                 }
             }
 
-            return input;
+            return output;
         }
         //Got from http://stackoverflow.com/questions/1207731
         private static Dictionary<string, object> deserializeToDictionary(string jo) {

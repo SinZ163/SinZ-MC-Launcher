@@ -51,7 +51,8 @@
             this.consoleBox = new System.Windows.Forms.TextBox();
             this.serverStatusList = new System.Windows.Forms.TabPage();
             this.initStatusBox = new System.Windows.Forms.Button();
-            this.serverStatus = new System.Windows.Forms.ListView();
+            this.serverNameLabel = new System.Windows.Forms.Label();
+            this.serverStatusLabel = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.modList.SuspendLayout();
             this.queryList.SuspendLayout();
@@ -228,6 +229,7 @@
             this.label2.Size = new System.Drawing.Size(133, 13);
             this.label2.TabIndex = 30;
             this.label2.Text = "No work done on this at all";
+            this.label2.Visible = false;
             // 
             // button2
             // 
@@ -237,6 +239,7 @@
             this.button2.TabIndex = 29;
             this.button2.Text = "Save Modlist";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
             // 
             // button1
             // 
@@ -246,6 +249,7 @@
             this.button1.TabIndex = 28;
             this.button1.Text = "Add to Modlist";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             // 
             // comboBox1
             // 
@@ -255,6 +259,7 @@
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 27;
             this.comboBox1.Text = "(new)";
+            this.comboBox1.Visible = false;
             // 
             // listView1
             // 
@@ -263,6 +268,7 @@
             this.listView1.Size = new System.Drawing.Size(374, 404);
             this.listView1.TabIndex = 26;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.Visible = false;
             // 
             // queryList
             // 
@@ -332,8 +338,9 @@
             // 
             // serverStatusList
             // 
+            this.serverStatusList.Controls.Add(this.serverStatusLabel);
+            this.serverStatusList.Controls.Add(this.serverNameLabel);
             this.serverStatusList.Controls.Add(this.initStatusBox);
-            this.serverStatusList.Controls.Add(this.serverStatus);
             this.serverStatusList.Location = new System.Drawing.Point(4, 22);
             this.serverStatusList.Name = "serverStatusList";
             this.serverStatusList.Padding = new System.Windows.Forms.Padding(3);
@@ -352,19 +359,21 @@
             this.initStatusBox.UseVisualStyleBackColor = true;
             this.initStatusBox.Click += new System.EventHandler(this.initStatusBox_Click);
             // 
-            // serverStatus
+            // serverNameLabel
             // 
-            this.serverStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.serverStatus.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.serverStatus.Location = new System.Drawing.Point(4, 46);
-            this.serverStatus.MultiSelect = false;
-            this.serverStatus.Name = "serverStatus";
-            this.serverStatus.Size = new System.Drawing.Size(742, 395);
-            this.serverStatus.TabIndex = 0;
-            this.serverStatus.UseCompatibleStateImageBehavior = false;
-            this.serverStatus.View = System.Windows.Forms.View.List;
+            this.serverNameLabel.AutoSize = true;
+            this.serverNameLabel.Location = new System.Drawing.Point(7, 47);
+            this.serverNameLabel.Name = "serverNameLabel";
+            this.serverNameLabel.Size = new System.Drawing.Size(0, 13);
+            this.serverNameLabel.TabIndex = 2;
+            // 
+            // serverStatusLabel
+            // 
+            this.serverStatusLabel.AutoSize = true;
+            this.serverStatusLabel.Location = new System.Drawing.Point(145, 47);
+            this.serverStatusLabel.Name = "serverStatusLabel";
+            this.serverStatusLabel.Size = new System.Drawing.Size(0, 13);
+            this.serverStatusLabel.TabIndex = 3;
             // 
             // MainForm
             // 
@@ -391,6 +400,7 @@
             this.consoleList.ResumeLayout(false);
             this.consoleList.PerformLayout();
             this.serverStatusList.ResumeLayout(false);
+            this.serverStatusList.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -425,8 +435,9 @@
         private System.Windows.Forms.Label pluginsLabel;
         private System.Windows.Forms.ListView playerList;
         private System.Windows.Forms.TabPage serverStatusList;
-        private System.Windows.Forms.ListView serverStatus;
         private System.Windows.Forms.Button initStatusBox;
+        private System.Windows.Forms.Label serverNameLabel;
+        private System.Windows.Forms.Label serverStatusLabel;
     }
 }
 
