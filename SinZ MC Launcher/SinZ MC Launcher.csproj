@@ -68,7 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Download\LWJGL.cs" />
-    <Compile Include="Download\Resources.cs" />
+    <Compile Include="Download\Assets.cs" />
     <Compile Include="Launch\LaunchMinecraft.cs" />
     <Compile Include="Login\LastLogin.cs" />
     <Compile Include="MainForm.cs">

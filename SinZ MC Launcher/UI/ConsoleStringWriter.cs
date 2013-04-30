@@ -9,8 +9,8 @@ using System.Windows.Forms;
 
 namespace SinZ_MC_Launcher.UI {
     class ConsoleStringWriter : TextWriter {
-        TextBox _output = null;
-        public ConsoleStringWriter(TextBox output)
+        MainForm _output = null;
+        public ConsoleStringWriter(MainForm output)
         {
             _output = output;
         }
@@ -19,7 +19,7 @@ namespace SinZ_MC_Launcher.UI {
         {
             base.Write(value);
             
-            _output.AppendText(value.ToString()); // When character data is written, append it to the text box.
+            _output.UpdateConsole(value.ToString()); // When character data is written, append it to the text box.
         }
  
         public override Encoding Encoding

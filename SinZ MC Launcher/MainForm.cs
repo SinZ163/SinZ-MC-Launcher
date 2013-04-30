@@ -48,7 +48,7 @@ namespace SinZ_MC_Launcher {
 
         private void MainForm_Load(object sender, EventArgs e) {
             //CONSOLE
-            _writer = new ConsoleStringWriter(consoleBox);
+            _writer = new ConsoleStringWriter(this);
             Console.SetOut(_writer);
             //END CONSOLE
             if (!Directory.Exists(location))
@@ -114,7 +114,7 @@ namespace SinZ_MC_Launcher {
             }
             modBox.SelectedIndex = 0;
 
-            Resources downloadResources = new Resources();
+            Assets downloadResources = new Assets();
             //LaunchMinecraft mc = new LaunchMinecraft(Path.Combine(location, "vannila_13w16a"), username, sessionID, true);
         }
 
@@ -173,6 +173,16 @@ namespace SinZ_MC_Launcher {
                     serverNameLabel.Text += key + Environment.NewLine;
                     serverStatusLabel.Text += statusReport[key].ToString() + Environment.NewLine;
                 }
+            }
+        }
+
+        private delegate void UpdateConsole_(String text);
+        public void UpdateConsole(String text) {
+            if (this.InvokeRequired) {
+                this.Invoke(new UpdateConsole_(UpdateConsole), text);
+            }
+            else {
+                consoleBox.AppendText(text);
             }
         }
     }
