@@ -14,14 +14,11 @@ namespace SinZ_MC_Launcher.Server {
     class ServerStatus {
         Uri serverCheck = new Uri("http://status.mojang.com/check");
  
-        public Dictionary<String, object> output = new Dictionary<string, object>();
-
-        public ServerStatus() {
+        private MainForm form;
+        public ServerStatus(MainForm form) {
+            this.form = form;
             Thread thread = new Thread(new ThreadStart(doStatus));
             thread.Start();
-            while (thread.IsAlive) {
-                Application.DoEvents();
-            }
         }
         public void doStatus() {
             WebClient client = new WebClient();
@@ -33,6 +30,7 @@ namespace SinZ_MC_Launcher.Server {
 
             //MessageBox.Show(serverResult);
             JObject rawOutput = JObject.Parse(serverResult);
+            Dictionary<String, object> output = new Dictionary<string, object>();
 
             IList<string> keys = rawOutput.Properties().Select(p => p.Name).ToList();
             foreach (String key in keys) {
@@ -40,7 +38,7 @@ namespace SinZ_MC_Launcher.Server {
                 //MessageBox.Show(key);
                 //MessageBox.Show(rawOutput[key].ToString());
             }
-            output = parseStatus(output);
+            form.UpdateServerStatus(parseStatus(output));
         }
         public static Dictionary<String, object> parseStatus(Dictionary<String, object> input) {
             const String GREEN= "Servers are Online, no problems detected.";
@@ -80,6 +78,12 @@ namespace SinZ_MC_Launcher.Server {
                 }
             }
             return values2;
+        }
+
+
+        public void Refresh() {
+            Thread thread = new Thread(new ThreadStart(doStatus));
+            thread.Start();
         }
     }
 }

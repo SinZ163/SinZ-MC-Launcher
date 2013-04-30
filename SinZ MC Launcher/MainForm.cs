@@ -43,6 +43,8 @@ namespace SinZ_MC_Launcher {
 
         Dictionary<String, object> db;
 
+        ServerStatus status;
+
 
         private void MainForm_Load(object sender, EventArgs e) {
             //CONSOLE
@@ -67,6 +69,9 @@ namespace SinZ_MC_Launcher {
             }
             catch (Exception) { }
             //END SETTINGS
+
+            //SERVER STATUS
+            status = new ServerStatus(this);
         }
 
         private void loginButton_Click(object sender, EventArgs e) {
@@ -109,7 +114,7 @@ namespace SinZ_MC_Launcher {
             }
             modBox.SelectedIndex = 0;
 
-            //Resources downloadResources = new Resources();
+            Resources downloadResources = new Resources();
             //LaunchMinecraft mc = new LaunchMinecraft(Path.Combine(location, "vannila_13w16a"), username, sessionID, true);
         }
 
@@ -153,10 +158,21 @@ namespace SinZ_MC_Launcher {
         }
 
         private void initStatusBox_Click(object sender, EventArgs e) {
-            ServerStatus status = new ServerStatus();
-            foreach (String key in status.output.Keys) {
-                serverNameLabel.Text += key + Environment.NewLine;
-                serverStatusLabel.Text += status.output[key].ToString() + Environment.NewLine;
+            status.Refresh();
+        }
+
+        private delegate void UpdateServerStatus_(Dictionary<String, object> statusReport);
+        public void UpdateServerStatus(Dictionary<String, object> statusReport) {
+            if (this.InvokeRequired) {
+                this.Invoke(new UpdateServerStatus_(UpdateServerStatus), statusReport);
+            }
+            else {
+                serverNameLabel.Text = "";
+                serverStatusLabel.Text = "";
+                foreach (String key in statusReport.Keys) {
+                    serverNameLabel.Text += key + Environment.NewLine;
+                    serverStatusLabel.Text += statusReport[key].ToString() + Environment.NewLine;
+                }
             }
         }
     }
