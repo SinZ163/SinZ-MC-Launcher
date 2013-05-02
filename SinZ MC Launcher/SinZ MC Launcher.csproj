@@ -70,6 +70,7 @@
     <Compile Include="Download\LWJGL.cs" />
     <Compile Include="Download\Assets.cs" />
     <Compile Include="Launch\LaunchMinecraft.cs" />
+    <Compile Include="Download\Libraries.cs" />
     <Compile Include="Login\LastLogin.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -82,6 +83,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query\QueryServer.cs" />
+    <Compile Include="Repo\QueryNEM.cs" />
     <Compile Include="Repo\QueryRepo.cs" />
     <Compile Include="Download\VannilaMinecraft.cs" />
     <Compile Include="Server\ServerStatus.cs" />

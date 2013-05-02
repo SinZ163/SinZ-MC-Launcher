@@ -45,6 +45,8 @@ namespace SinZ_MC_Launcher {
 
         ServerStatus status;
 
+        private Dictionary<string, Dictionary<string, string>> nemDB;
+
 
         private void MainForm_Load(object sender, EventArgs e) {
             //CONSOLE
@@ -115,6 +117,7 @@ namespace SinZ_MC_Launcher {
             modBox.SelectedIndex = 0;
 
             Assets downloadResources = new Assets();
+            Libraries downloadLibraries = new Libraries("13w17a");
             //LaunchMinecraft mc = new LaunchMinecraft(Path.Combine(location, "vannila_13w16a"), username, sessionID, true);
         }
 
@@ -183,6 +186,26 @@ namespace SinZ_MC_Launcher {
             }
             else {
                 consoleBox.AppendText(text);
+            }
+        }
+
+        private void nemRefreshButton_Click(object sender, EventArgs e) {
+            QueryNEM nemQuery = new QueryNEM();
+            nemDB = nemQuery.NEMDB;
+            nemModList.Items.Clear();
+            foreach (String modName in nemQuery.NEMDB.Keys) {
+                nemModList.Items.Add(modName);
+            }
+        }
+
+        private void nemModList_SelectedIndexChanged(object sender, EventArgs e) {
+            if (nemModList.SelectedItems.Count > 0) {
+                Console.WriteLine(nemModList.SelectedItems[0].Text);
+                Uri test = new Uri(nemDB[nemModList.SelectedItems[0].Text]["longurl"]);
+                Console.WriteLine(test);
+                webBrowser.Url = new Uri(nemDB[nemModList.SelectedItems[0].Text]["longurl"]);
+
+                tabControl1.SelectTab(browserTab);
             }
         }
     }

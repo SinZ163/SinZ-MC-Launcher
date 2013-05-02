@@ -1,4 +1,5 @@
-﻿namespace SinZ_MC_Launcher {
+﻿using System.Windows.Forms;
+namespace SinZ_MC_Launcher {
     partial class MainForm {
         /// <summary>
         /// Required designer variable.
@@ -50,14 +51,21 @@
             this.consoleList = new System.Windows.Forms.TabPage();
             this.consoleBox = new System.Windows.Forms.TextBox();
             this.serverStatusList = new System.Windows.Forms.TabPage();
-            this.initStatusBox = new System.Windows.Forms.Button();
-            this.serverNameLabel = new System.Windows.Forms.Label();
             this.serverStatusLabel = new System.Windows.Forms.Label();
+            this.serverNameLabel = new System.Windows.Forms.Label();
+            this.initStatusBox = new System.Windows.Forms.Button();
+            this.nemTab = new System.Windows.Forms.TabPage();
+            this.nemModList = new System.Windows.Forms.ListView();
+            this.nemRefreshButton = new System.Windows.Forms.Button();
+            this.browserTab = new System.Windows.Forms.TabPage();
+            this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.tabControl1.SuspendLayout();
             this.modList.SuspendLayout();
             this.queryList.SuspendLayout();
             this.consoleList.SuspendLayout();
             this.serverStatusList.SuspendLayout();
+            this.nemTab.SuspendLayout();
+            this.browserTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // loginButton
@@ -197,6 +205,8 @@
             this.tabControl1.Controls.Add(this.queryList);
             this.tabControl1.Controls.Add(this.consoleList);
             this.tabControl1.Controls.Add(this.serverStatusList);
+            this.tabControl1.Controls.Add(this.nemTab);
+            this.tabControl1.Controls.Add(this.browserTab);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -349,6 +359,22 @@
             this.serverStatusList.Text = "Server Status";
             this.serverStatusList.UseVisualStyleBackColor = true;
             // 
+            // serverStatusLabel
+            // 
+            this.serverStatusLabel.AutoSize = true;
+            this.serverStatusLabel.Location = new System.Drawing.Point(145, 47);
+            this.serverStatusLabel.Name = "serverStatusLabel";
+            this.serverStatusLabel.Size = new System.Drawing.Size(0, 13);
+            this.serverStatusLabel.TabIndex = 3;
+            // 
+            // serverNameLabel
+            // 
+            this.serverNameLabel.AutoSize = true;
+            this.serverNameLabel.Location = new System.Drawing.Point(7, 47);
+            this.serverNameLabel.Name = "serverNameLabel";
+            this.serverNameLabel.Size = new System.Drawing.Size(0, 13);
+            this.serverNameLabel.TabIndex = 2;
+            // 
             // initStatusBox
             // 
             this.initStatusBox.Location = new System.Drawing.Point(7, 4);
@@ -359,21 +385,62 @@
             this.initStatusBox.UseVisualStyleBackColor = true;
             this.initStatusBox.Click += new System.EventHandler(this.initStatusBox_Click);
             // 
-            // serverNameLabel
+            // nemTab
             // 
-            this.serverNameLabel.AutoSize = true;
-            this.serverNameLabel.Location = new System.Drawing.Point(7, 47);
-            this.serverNameLabel.Name = "serverNameLabel";
-            this.serverNameLabel.Size = new System.Drawing.Size(0, 13);
-            this.serverNameLabel.TabIndex = 2;
+            this.nemTab.Controls.Add(this.nemModList);
+            this.nemTab.Controls.Add(this.nemRefreshButton);
+            this.nemTab.Location = new System.Drawing.Point(4, 22);
+            this.nemTab.Name = "nemTab";
+            this.nemTab.Padding = new System.Windows.Forms.Padding(3);
+            this.nemTab.Size = new System.Drawing.Size(752, 444);
+            this.nemTab.TabIndex = 4;
+            this.nemTab.Text = "Not Enough Mods";
+            this.nemTab.UseVisualStyleBackColor = true;
             // 
-            // serverStatusLabel
+            // nemModList
             // 
-            this.serverStatusLabel.AutoSize = true;
-            this.serverStatusLabel.Location = new System.Drawing.Point(145, 47);
-            this.serverStatusLabel.Name = "serverStatusLabel";
-            this.serverStatusLabel.Size = new System.Drawing.Size(0, 13);
-            this.serverStatusLabel.TabIndex = 3;
+            this.nemModList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.nemModList.Location = new System.Drawing.Point(7, 37);
+            this.nemModList.MultiSelect = false;
+            this.nemModList.Name = "nemModList";
+            this.nemModList.Size = new System.Drawing.Size(739, 401);
+            this.nemModList.TabIndex = 1;
+            this.nemModList.UseCompatibleStateImageBehavior = false;
+            this.nemModList.View = System.Windows.Forms.View.List;
+            this.nemModList.SelectedIndexChanged += new System.EventHandler(this.nemModList_SelectedIndexChanged);
+            // 
+            // nemRefreshButton
+            // 
+            this.nemRefreshButton.Location = new System.Drawing.Point(7, 7);
+            this.nemRefreshButton.Name = "nemRefreshButton";
+            this.nemRefreshButton.Size = new System.Drawing.Size(75, 23);
+            this.nemRefreshButton.TabIndex = 0;
+            this.nemRefreshButton.Text = "Refresh!";
+            this.nemRefreshButton.UseVisualStyleBackColor = true;
+            this.nemRefreshButton.Click += new System.EventHandler(this.nemRefreshButton_Click);
+            // 
+            // browserTab
+            // 
+            this.browserTab.Controls.Add(this.webBrowser);
+            this.browserTab.Location = new System.Drawing.Point(4, 22);
+            this.browserTab.Name = "browserTab";
+            this.browserTab.Padding = new System.Windows.Forms.Padding(3);
+            this.browserTab.Size = new System.Drawing.Size(752, 444);
+            this.browserTab.TabIndex = 5;
+            this.browserTab.Text = "Web Browser";
+            this.browserTab.UseVisualStyleBackColor = true;
+            // 
+            // webBrowser
+            // 
+            this.webBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser.Location = new System.Drawing.Point(3, 3);
+            this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser.Name = "webBrowser";
+            this.webBrowser.ScriptErrorsSuppressed = true;
+            this.webBrowser.Size = new System.Drawing.Size(746, 438);
+            this.webBrowser.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -390,7 +457,7 @@
             this.Controls.Add(this.passText);
             this.Controls.Add(this.loginButton);
             this.Name = "MainForm";
-            this.Text = "SinZ MC Launcher - v0.0.1";
+            this.Text = "SinZ MC Launcher - "+Application.ProductVersion;
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.modList.ResumeLayout(false);
@@ -401,6 +468,8 @@
             this.consoleList.PerformLayout();
             this.serverStatusList.ResumeLayout(false);
             this.serverStatusList.PerformLayout();
+            this.nemTab.ResumeLayout(false);
+            this.browserTab.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -438,6 +507,11 @@
         private System.Windows.Forms.Button initStatusBox;
         private System.Windows.Forms.Label serverNameLabel;
         private System.Windows.Forms.Label serverStatusLabel;
+        private System.Windows.Forms.TabPage nemTab;
+        private System.Windows.Forms.Button nemRefreshButton;
+        private System.Windows.Forms.ListView nemModList;
+        private System.Windows.Forms.TabPage browserTab;
+        private System.Windows.Forms.WebBrowser webBrowser;
     }
 }
 
