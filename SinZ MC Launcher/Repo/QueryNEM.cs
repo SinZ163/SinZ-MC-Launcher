@@ -25,13 +25,13 @@ namespace SinZ_MC_Launcher.Repo {
             String nemOutput = client.DownloadString(serverURL);
             JArray jsonArray = JArray.Parse(nemOutput);
             foreach (JObject mod in jsonArray) {
-                NEMDB.Add(mod["name"].ToString(), new Dictionary<String, String> {
-                    {"version", mod["version"].ToString() },
-                    {"longurl", mod["longurl"].ToString() },
-                    {"shorturl", mod["shorturl"].ToString() },
-                    {"aliases", mod["aliases"].ToString() },
-                    {"comment", mod["comment"].ToString() }
-                });
+                IList<string> keys = mod.Properties().Select(p => p.Name).ToList();
+                Dictionary<String,String> modInfo = new Dictionary<String,String>();
+                foreach (String key in keys) {
+                    modInfo.Add(key, mod[key].ToString());
+                }
+                modInfo.Remove("name");
+                NEMDB.Add(mod["name"].ToString(), modInfo);
             }
         }
     }
