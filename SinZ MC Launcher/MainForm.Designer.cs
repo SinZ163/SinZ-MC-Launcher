@@ -59,6 +59,7 @@ namespace SinZ_MC_Launcher {
             this.nemRefreshButton = new System.Windows.Forms.Button();
             this.browserTab = new System.Windows.Forms.TabPage();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
+            this.nemCountLabel = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.modList.SuspendLayout();
             this.queryList.SuspendLayout();
@@ -387,6 +388,7 @@ namespace SinZ_MC_Launcher {
             // 
             // nemTab
             // 
+            this.nemTab.Controls.Add(this.nemCountLabel);
             this.nemTab.Controls.Add(this.nemModList);
             this.nemTab.Controls.Add(this.nemRefreshButton);
             this.nemTab.Location = new System.Drawing.Point(4, 22);
@@ -442,6 +444,14 @@ namespace SinZ_MC_Launcher {
             this.webBrowser.Size = new System.Drawing.Size(746, 438);
             this.webBrowser.TabIndex = 0;
             // 
+            // nemCountLabel
+            // 
+            this.nemCountLabel.AutoSize = true;
+            this.nemCountLabel.Location = new System.Drawing.Point(88, 12);
+            this.nemCountLabel.Name = "nemCountLabel";
+            this.nemCountLabel.Size = new System.Drawing.Size(0, 13);
+            this.nemCountLabel.TabIndex = 2;
+            // 
             // MainForm
             // 
             this.AcceptButton = this.loginButton;
@@ -457,7 +467,7 @@ namespace SinZ_MC_Launcher {
             this.Controls.Add(this.passText);
             this.Controls.Add(this.loginButton);
             this.Name = "MainForm";
-            this.Text = "SinZ MC Launcher - "+Application.ProductVersion;
+            this.Text = "SinZ MC Launcher - 11.0.51106.1";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.modList.ResumeLayout(false);
@@ -469,6 +479,7 @@ namespace SinZ_MC_Launcher {
             this.serverStatusList.ResumeLayout(false);
             this.serverStatusList.PerformLayout();
             this.nemTab.ResumeLayout(false);
+            this.nemTab.PerformLayout();
             this.browserTab.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -512,6 +523,7 @@ namespace SinZ_MC_Launcher {
         private System.Windows.Forms.ListView nemModList;
         private System.Windows.Forms.TabPage browserTab;
         private System.Windows.Forms.WebBrowser webBrowser;
+        private Label nemCountLabel;
     }
 }
 

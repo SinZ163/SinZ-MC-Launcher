@@ -196,6 +196,7 @@ namespace SinZ_MC_Launcher {
             foreach (String modName in nemQuery.NEMDB.Keys) {
                 nemModList.Items.Add(modName);
             }
+            nemCountLabel.Text = nemDB.Keys.Count + " mods loaded!";
         }
 
         private void nemModList_SelectedIndexChanged(object sender, EventArgs e) {
