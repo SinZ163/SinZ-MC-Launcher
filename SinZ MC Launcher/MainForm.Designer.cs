@@ -12,6 +12,7 @@ namespace SinZ_MC_Launcher {
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing) {
             if (disposing && (components != null)) {
+                _writer.Dispose();
                 components.Dispose();
             }
             base.Dispose(disposing);

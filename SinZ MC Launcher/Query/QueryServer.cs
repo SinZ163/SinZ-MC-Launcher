@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SinZ_MC_Launcher.Query {
-    class QueryServer {
+    class QueryServer : IDisposable
+    {
 
         UdpClient client;
         IPAddress[] ip;
@@ -23,7 +24,35 @@ namespace SinZ_MC_Launcher.Query {
         public List<String> players = new List<String>();
         public Dictionary<string, string> plugins;
 
+        private bool disposed = false;
+        public void Dispose()
+        {
+            Dispose(true);
+            // This object will be cleaned up by the Dispose method. 
+            // Therefore, you should call GC.SupressFinalize to 
+            // take this object off the finalization queue 
+            // and prevent finalization code for this object 
+            // from executing a second time.
+            GC.SuppressFinalize(this);
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            // Check to see if Dispose has already been called. 
+            if (!this.disposed)
+            {
+                // If disposing equals true, dispose all managed 
+                // and unmanaged resources. 
+                if (disposing)
+                {
+                    // Dispose managed resources.
+                    client.Close();
+                }
 
+                // Note disposing has been done.
+                disposed = true;
+
+            }
+        }
         public QueryServer(String address, int port) {
             this.port = port;
             ip = Dns.GetHostAddresses(address);

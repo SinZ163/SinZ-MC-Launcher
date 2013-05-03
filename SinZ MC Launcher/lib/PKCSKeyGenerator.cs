@@ -9,7 +9,7 @@ namespace SharpLauncher
     /// <summary>
     /// This class is used to emulate the Java based PBEWithMD5AndDES functionality of the Demo system.
     /// </summary>
-    public class PKCSKeyGenerator
+    public class PKCSKeyGenerator : IDisposable
     {
         /// <summary>
         /// Key used in the encryption algorythm.
@@ -31,6 +31,36 @@ namespace SharpLauncher
         /// </summary>
         public PKCSKeyGenerator()
         {
+        }
+
+        private bool disposed = false;
+        public void Dispose()
+        {
+            Dispose(true);
+            // This object will be cleaned up by the Dispose method. 
+            // Therefore, you should call GC.SupressFinalize to 
+            // take this object off the finalization queue 
+            // and prevent finalization code for this object 
+            // from executing a second time.
+            GC.SuppressFinalize(this);
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            // Check to see if Dispose has already been called. 
+            if (!this.disposed)
+            {
+                // If disposing equals true, dispose all managed 
+                // and unmanaged resources. 
+                if (disposing)
+                {
+                    // Dispose managed resources.
+                    des.Dispose();
+                }
+
+                // Note disposing has been done.
+                disposed = true;
+
+            }
         }
 
         /// <summary>
