@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Ionic.Zip;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -17,6 +18,7 @@ namespace SinZ_MC_Launcher.Download {
         String location = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), ".sinzmc/");
         private string version;
 
+        List<String> natives = new List<string>();
         private List<String> results = new List<string>();
 
         public Libraries(String version) {
@@ -32,6 +34,31 @@ namespace SinZ_MC_Launcher.Download {
             while (downloadThread.IsAlive)
             {
                 Application.DoEvents();
+            }
+            Thread installThread = new Thread(new ThreadStart(InstallNatives));
+            installThread.Start();
+            while (installThread.IsAlive)
+            {
+                Application.DoEvents();
+            }
+        }
+
+        private void InstallNatives()
+        {
+            foreach (String native in natives)
+            {
+                using (ZipFile nativeFile = ZipFile.Read(Path.Combine(location, "libraries", native)))
+                {
+                    foreach (ZipEntry file in nativeFile)
+                    {
+                        if (!file.FileName.Contains("META-INF"))
+                        {
+                            if (!Directory.Exists(Path.Combine(location, "versions", version, version + "-natives")))
+                                Directory.CreateDirectory(Path.Combine(location, "versions", version, version + "-natives"));
+                            file.Extract(Path.Combine(location, "versions", version, version + "-natives"));
+                        }
+                    }
+                }
             }
         }
 
@@ -83,6 +110,7 @@ namespace SinZ_MC_Launcher.Download {
                 a[0] = a[0].Replace('.', '/');
                 if (natives.Contains(library))
                 {
+                    this.natives.Add(a[0] + Path.DirectorySeparatorChar + a[1] + Path.DirectorySeparatorChar + a[2] + Path.DirectorySeparatorChar + a[1] + "-" + a[2] + "-natives-windows.jar");
                     results.Add(a[0] + Path.DirectorySeparatorChar + a[1] + Path.DirectorySeparatorChar + a[2] + Path.DirectorySeparatorChar + a[1] + "-" + a[2] + "-natives-windows.jar");
                 }
                 else

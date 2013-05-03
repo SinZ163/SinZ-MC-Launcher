@@ -116,7 +116,7 @@ namespace SinZ_MC_Launcher {
             }
             modBox.SelectedIndex = 0;
 
-            //Assets downloadResources = new Assets();
+            Assets downloadAssets = new Assets();
             Libraries downloadLibraries = new Libraries("13w17a");
             //LaunchMinecraft mc = new LaunchMinecraft(Path.Combine(location, "vannila_13w16a"), username, sessionID, true);
         }
