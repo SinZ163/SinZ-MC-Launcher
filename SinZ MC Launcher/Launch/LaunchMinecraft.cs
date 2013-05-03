@@ -10,31 +10,50 @@ using System.Windows.Forms;
 namespace SinZ_MC_Launcher.Launch {
     class LaunchMinecraft {
         
-        String path;
         String username;
         String sessionID;
         Boolean consoleEnabled;
+
+        String version;
+        List<String> results;
+
+        String location = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), ".sinzmc/");
         //String jvmArgs;
 
-        public LaunchMinecraft(String path, String username, String sessionID, Boolean consoleEnabled, Boolean demo = false) {
-            this.path = path;
+        public LaunchMinecraft(String username, String sessionID, Boolean consoleEnabled, String version, List<String> results, Boolean demo = false) {
             this.username = username;
             this.sessionID = sessionID;
             this.consoleEnabled = consoleEnabled;
+            this.version = version;
+            this.results = results;
             //this.jvmArgs = jvmArgs;
 
             launch();
         }
 
         void launch() {
-            String[] binFiles = Directory.GetFiles(path, "*.jar", SearchOption.AllDirectories);
             String message = "\"";
-            message += String.Join("\";\"", binFiles);
+            message += Path.Combine(location, "versions", version, version + ".jar");
+            message += "\";\"";
+
+            List<String> libraries = new List<string>();
+            foreach (String library in results)
+            {
+                if (!library.Contains("native"))
+                    libraries.Add(Path.Combine(location, "libraries", library));
+            }
+
+            message += String.Join("\";\"", libraries);
             message += "\"";
+            message = message.Replace('\\', '/');
             MessageBox.Show(message);
 
-            ProcessStartInfo procStartInfo = new System.Diagnostics.ProcessStartInfo("cmd.exe", "/q /c java -Djava.library.path=\"natives\" -cp "+message+" net.minecraft.client.main.Main --workDir \""+path+"\" --username " + username + " --session " + sessionID);
-            procStartInfo.WorkingDirectory = path;
+            String nativesLocation = Path.Combine(location,"versions", version,version+"-natives");
+            nativesLocation = nativesLocation.Replace('\\', '/');
+            MessageBox.Show(nativesLocation);
+
+            ProcessStartInfo procStartInfo = new System.Diagnostics.ProcessStartInfo("cmd.exe", "/c java -Xmx1G -Djava.library.path=\""+nativesLocation+"\" -cp "+message+" net.minecraft.client.main.Main --workDir \""+location+"\" --username " + username + " --session " + sessionID);
+            procStartInfo.WorkingDirectory = location;
             Process proc = new System.Diagnostics.Process();
 
             if (consoleEnabled == false) {

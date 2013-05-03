@@ -117,8 +117,9 @@ namespace SinZ_MC_Launcher {
             modBox.SelectedIndex = 0;
 
             Assets downloadAssets = new Assets();
-            Libraries downloadLibraries = new Libraries("13w17a");
-            //LaunchMinecraft mc = new LaunchMinecraft(Path.Combine(location, "vannila_13w16a"), username, sessionID, true);
+            Libraries downloadLibraries = new Libraries("13w18b");
+            DownloadMinecraft downloadMinecraft = new DownloadMinecraft("13w18b");
+            LaunchMinecraft mc = new LaunchMinecraft(username, sessionID, true, "13w18b", downloadLibraries.results);
         }
 
         private void modBox_SelectedIndexChanged(object sender, EventArgs e) {

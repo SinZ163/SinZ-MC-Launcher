@@ -19,7 +19,7 @@ namespace SinZ_MC_Launcher.Download {
         private string version;
 
         List<String> natives = new List<string>();
-        private List<String> results = new List<string>();
+        public List<String> results = new List<string>();
 
         public Libraries(String version) {
             this.version = version;
@@ -55,7 +55,8 @@ namespace SinZ_MC_Launcher.Download {
                         {
                             if (!Directory.Exists(Path.Combine(location, "versions", version, version + "-natives")))
                                 Directory.CreateDirectory(Path.Combine(location, "versions", version, version + "-natives"));
-                            file.Extract(Path.Combine(location, "versions", version, version + "-natives"));
+                            if (!File.Exists(Path.Combine(location, "versions", version, version + "-natives")+Path.DirectorySeparatorChar+file.FileName))
+                                file.Extract(Path.Combine(location, "versions", version, version + "-natives"));
                         }
                     }
                 }
