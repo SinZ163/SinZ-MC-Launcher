@@ -80,7 +80,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Download\LWJGL.cs" />
     <Compile Include="Download\Assets.cs" />
     <Compile Include="Launch\LaunchMinecraft.cs" />
     <Compile Include="Download\Libraries.cs" />
