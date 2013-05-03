@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace SinZ_MC_Launcher.Server {
+namespace SinZ_MC_Launcher.Mojang {
     class ServerStatus {
         Uri serverCheck = new Uri("http://status.mojang.com/check");
  

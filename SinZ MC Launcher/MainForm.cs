@@ -15,7 +15,7 @@ using SinZ_MC_Launcher.Launch;
 using SinZ_MC_Launcher.Login;
 using SinZ_MC_Launcher.Query;
 using SinZ_MC_Launcher.Repo;
-using SinZ_MC_Launcher.Server;
+using SinZ_MC_Launcher.Mojang;
 using SinZ_MC_Launcher.UI;
 
 namespace SinZ_MC_Launcher {
@@ -44,6 +44,7 @@ namespace SinZ_MC_Launcher {
         Dictionary<String, object> db;
 
         ServerStatus status;
+        VersionList versionList;
 
         private Dictionary<string, Dictionary<string, string>> nemDB;
 
@@ -74,6 +75,11 @@ namespace SinZ_MC_Launcher {
 
             //SERVER STATUS
             status = new ServerStatus(this);
+            //END SERVER STATUS
+
+            //VERSIONLIST
+            versionList = new VersionList(this);
+            //END VERSIONLIST
         }
 
         private void loginButton_Click(object sender, EventArgs e) {
@@ -117,9 +123,9 @@ namespace SinZ_MC_Launcher {
             modBox.SelectedIndex = 0;
 
             Assets downloadAssets = new Assets();
-            Libraries downloadLibraries = new Libraries("13w18b");
-            DownloadMinecraft downloadMinecraft = new DownloadMinecraft("13w18b");
-            LaunchMinecraft mc = new LaunchMinecraft(username, sessionID, true, "13w18b", downloadLibraries.results);
+            Libraries downloadLibraries = new Libraries((String)minecraftVersionBox.SelectedItem);
+            DownloadMinecraft downloadMinecraft = new DownloadMinecraft((String)minecraftVersionBox.SelectedItem);
+            LaunchMinecraft mc = new LaunchMinecraft(username, sessionID, true, (String)minecraftVersionBox.SelectedItem, downloadLibraries.results);
         }
 
         private void modBox_SelectedIndexChanged(object sender, EventArgs e) {
@@ -208,6 +214,25 @@ namespace SinZ_MC_Launcher {
                 webBrowser.Url = new Uri(nemDB[nemModList.SelectedItems[0].Text]["longurl"]);
 
                 tabControl1.SelectTab(browserTab);
+            }
+        }
+
+        private delegate void UpdateVersionList_(List<String> versions);
+        public void UpdateVersionList(List<String> versions)
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new UpdateVersionList_(UpdateVersionList), versions);
+            }
+            else
+            {
+                minecraftVersionBox.Items.Clear();
+                foreach (String version in versions)
+                {
+                    minecraftVersionBox.Items.Add(version);
+                }
+                minecraftVersionBox.SelectedIndex = 0;
+                loginButton.Enabled = true;
             }
         }
     }

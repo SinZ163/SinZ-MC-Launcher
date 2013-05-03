@@ -55,11 +55,12 @@ namespace SinZ_MC_Launcher {
             this.serverNameLabel = new System.Windows.Forms.Label();
             this.initStatusBox = new System.Windows.Forms.Button();
             this.nemTab = new System.Windows.Forms.TabPage();
+            this.nemCountLabel = new System.Windows.Forms.Label();
             this.nemModList = new System.Windows.Forms.ListView();
             this.nemRefreshButton = new System.Windows.Forms.Button();
             this.browserTab = new System.Windows.Forms.TabPage();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
-            this.nemCountLabel = new System.Windows.Forms.Label();
+            this.minecraftVersionBox = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.modList.SuspendLayout();
             this.queryList.SuspendLayout();
@@ -72,6 +73,7 @@ namespace SinZ_MC_Launcher {
             // loginButton
             // 
             this.loginButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.loginButton.Enabled = false;
             this.loginButton.Location = new System.Drawing.Point(675, 506);
             this.loginButton.Name = "loginButton";
             this.loginButton.Size = new System.Drawing.Size(97, 44);
@@ -399,6 +401,14 @@ namespace SinZ_MC_Launcher {
             this.nemTab.Text = "Not Enough Mods";
             this.nemTab.UseVisualStyleBackColor = true;
             // 
+            // nemCountLabel
+            // 
+            this.nemCountLabel.AutoSize = true;
+            this.nemCountLabel.Location = new System.Drawing.Point(88, 12);
+            this.nemCountLabel.Name = "nemCountLabel";
+            this.nemCountLabel.Size = new System.Drawing.Size(0, 13);
+            this.nemCountLabel.TabIndex = 2;
+            // 
             // nemModList
             // 
             this.nemModList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -444,13 +454,14 @@ namespace SinZ_MC_Launcher {
             this.webBrowser.Size = new System.Drawing.Size(746, 438);
             this.webBrowser.TabIndex = 0;
             // 
-            // nemCountLabel
+            // minecraftVersionBox
             // 
-            this.nemCountLabel.AutoSize = true;
-            this.nemCountLabel.Location = new System.Drawing.Point(88, 12);
-            this.nemCountLabel.Name = "nemCountLabel";
-            this.nemCountLabel.Size = new System.Drawing.Size(0, 13);
-            this.nemCountLabel.TabIndex = 2;
+            this.minecraftVersionBox.FormattingEnabled = true;
+            this.minecraftVersionBox.Location = new System.Drawing.Point(13, 485);
+            this.minecraftVersionBox.Name = "minecraftVersionBox";
+            this.minecraftVersionBox.Size = new System.Drawing.Size(121, 21);
+            this.minecraftVersionBox.TabIndex = 28;
+            this.minecraftVersionBox.Text = "Versions";
             // 
             // MainForm
             // 
@@ -458,6 +469,7 @@ namespace SinZ_MC_Launcher {
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.minecraftVersionBox);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.loginStatus);
             this.Controls.Add(this.rememberBox);
@@ -524,6 +536,7 @@ namespace SinZ_MC_Launcher {
         private System.Windows.Forms.TabPage browserTab;
         private System.Windows.Forms.WebBrowser webBrowser;
         private Label nemCountLabel;
+        private ComboBox minecraftVersionBox;
     }
 }
 
