@@ -205,11 +205,11 @@ namespace SinZ_MC_Launcher {
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Controls.Add(this.nemTab);
             this.tabControl1.Controls.Add(this.modList);
             this.tabControl1.Controls.Add(this.queryList);
             this.tabControl1.Controls.Add(this.consoleList);
             this.tabControl1.Controls.Add(this.serverStatusList);
-            this.tabControl1.Controls.Add(this.nemTab);
             this.tabControl1.Controls.Add(this.browserTab);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
@@ -480,7 +480,7 @@ namespace SinZ_MC_Launcher {
             this.Controls.Add(this.passText);
             this.Controls.Add(this.loginButton);
             this.Name = "MainForm";
-            this.Text = "SinZ MC Launcher - "+Application.ProductVersion;
+            this.Text = "SinZ MC Launcher - 11.0.51106.1";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.modList.ResumeLayout(false);
