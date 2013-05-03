@@ -86,6 +86,7 @@
     </Compile>
     <Compile Include="Login\Login.cs" />
     <Compile Include="lib\PKCSKeyGenerator.cs" />
+    <Compile Include="Modlist\ReadModlist.cs" />
     <Compile Include="Mojang\VersionList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

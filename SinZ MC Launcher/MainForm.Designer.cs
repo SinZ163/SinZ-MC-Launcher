@@ -62,6 +62,10 @@ namespace SinZ_MC_Launcher {
             this.browserTab = new System.Windows.Forms.TabPage();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.minecraftVersionBox = new System.Windows.Forms.ComboBox();
+            this.modpackTab = new System.Windows.Forms.TabPage();
+            this.modpackRefreshButton = new System.Windows.Forms.Button();
+            this.modpackVersionBox = new System.Windows.Forms.ComboBox();
+            this.modpackModList = new System.Windows.Forms.ListView();
             this.tabControl1.SuspendLayout();
             this.modList.SuspendLayout();
             this.queryList.SuspendLayout();
@@ -69,6 +73,7 @@ namespace SinZ_MC_Launcher {
             this.serverStatusList.SuspendLayout();
             this.nemTab.SuspendLayout();
             this.browserTab.SuspendLayout();
+            this.modpackTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // loginButton
@@ -211,6 +216,7 @@ namespace SinZ_MC_Launcher {
             this.tabControl1.Controls.Add(this.consoleList);
             this.tabControl1.Controls.Add(this.serverStatusList);
             this.tabControl1.Controls.Add(this.browserTab);
+            this.tabControl1.Controls.Add(this.modpackTab);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -464,6 +470,48 @@ namespace SinZ_MC_Launcher {
             this.minecraftVersionBox.TabIndex = 28;
             this.minecraftVersionBox.Text = "Versions";
             // 
+            // modpackTab
+            // 
+            this.modpackTab.Controls.Add(this.modpackModList);
+            this.modpackTab.Controls.Add(this.modpackVersionBox);
+            this.modpackTab.Controls.Add(this.modpackRefreshButton);
+            this.modpackTab.Location = new System.Drawing.Point(4, 22);
+            this.modpackTab.Name = "modpackTab";
+            this.modpackTab.Padding = new System.Windows.Forms.Padding(3);
+            this.modpackTab.Size = new System.Drawing.Size(752, 444);
+            this.modpackTab.TabIndex = 6;
+            this.modpackTab.Text = "Modpacks";
+            this.modpackTab.UseVisualStyleBackColor = true;
+            // 
+            // modpackRefreshButton
+            // 
+            this.modpackRefreshButton.Location = new System.Drawing.Point(7, 7);
+            this.modpackRefreshButton.Name = "modpackRefreshButton";
+            this.modpackRefreshButton.Size = new System.Drawing.Size(75, 23);
+            this.modpackRefreshButton.TabIndex = 0;
+            this.modpackRefreshButton.Text = "Refresh!";
+            this.modpackRefreshButton.UseVisualStyleBackColor = true;
+            this.modpackRefreshButton.Click += new System.EventHandler(this.modpackRefreshButton_Click);
+            // 
+            // modpackVersionBox
+            // 
+            this.modpackVersionBox.FormattingEnabled = true;
+            this.modpackVersionBox.Location = new System.Drawing.Point(7, 37);
+            this.modpackVersionBox.Name = "modpackVersionBox";
+            this.modpackVersionBox.Size = new System.Drawing.Size(121, 21);
+            this.modpackVersionBox.TabIndex = 1;
+            this.modpackVersionBox.Text = "Modlist version";
+            this.modpackVersionBox.SelectedIndexChanged += new System.EventHandler(this.modpackVersionBox_SelectedIndexChanged);
+            // 
+            // modpackModList
+            // 
+            this.modpackModList.Location = new System.Drawing.Point(7, 65);
+            this.modpackModList.Name = "modpackModList";
+            this.modpackModList.Size = new System.Drawing.Size(216, 373);
+            this.modpackModList.TabIndex = 2;
+            this.modpackModList.UseCompatibleStateImageBehavior = false;
+            this.modpackModList.View = System.Windows.Forms.View.List;
+            // 
             // MainForm
             // 
             this.AcceptButton = this.loginButton;
@@ -494,6 +542,7 @@ namespace SinZ_MC_Launcher {
             this.nemTab.ResumeLayout(false);
             this.nemTab.PerformLayout();
             this.browserTab.ResumeLayout(false);
+            this.modpackTab.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -538,6 +587,10 @@ namespace SinZ_MC_Launcher {
         private System.Windows.Forms.WebBrowser webBrowser;
         private Label nemCountLabel;
         private ComboBox minecraftVersionBox;
+        private TabPage modpackTab;
+        private Button modpackRefreshButton;
+        private ComboBox modpackVersionBox;
+        private ListView modpackModList;
     }
 }
 

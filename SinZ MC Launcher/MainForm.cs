@@ -17,6 +17,7 @@ using SinZ_MC_Launcher.Query;
 using SinZ_MC_Launcher.Repo;
 using SinZ_MC_Launcher.Mojang;
 using SinZ_MC_Launcher.UI;
+using SinZ_MC_Launcher.Modlist;
 
 namespace SinZ_MC_Launcher {
     public partial class MainForm : Form {
@@ -233,6 +234,26 @@ namespace SinZ_MC_Launcher {
                 }
                 minecraftVersionBox.SelectedIndex = 0;
                 loginButton.Enabled = true;
+            }
+        }
+
+        ReadModlist modlist;
+        private void modpackRefreshButton_Click(object sender, EventArgs e)
+        {
+            modlist = new ReadModlist();
+            modpackVersionBox.Items.Clear();
+            foreach(String version in modlist.modlist.Keys) {
+                modpackVersionBox.Items.Add(version);
+            }
+            modpackVersionBox.SelectedIndex = 0;
+        }
+
+        private void modpackVersionBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            modpackModList.Items.Clear();
+            foreach (String mod in modlist.modlist[(String)modpackVersionBox.SelectedItem].Keys)
+            {
+                modpackModList.Items.Add(mod + " - " + modlist.modlist[(String)modpackVersionBox.SelectedItem][mod]);
             }
         }
     }
