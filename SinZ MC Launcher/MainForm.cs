@@ -44,9 +44,11 @@ namespace SinZ_MC_Launcher {
         String sessionID;
         LastLogin lastLogin;
 
+        ConsoleStringWriter _writer;
         private void MainForm_Load(object sender, EventArgs e) {
             //CONSOLE
-            Console.SetOut(new ConsoleStringWriter(this));
+            _writer = new ConsoleStringWriter(this);
+            Console.SetOut(_writer);
             //END CONSOLE
             if (!Directory.Exists(location))
                 Directory.CreateDirectory(location);
