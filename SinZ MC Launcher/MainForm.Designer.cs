@@ -39,6 +39,10 @@ namespace SinZ_MC_Launcher {
             this.mcVersionBox = new System.Windows.Forms.ComboBox();
             this.versionBox = new System.Windows.Forms.ComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.nemTab = new System.Windows.Forms.TabPage();
+            this.nemCountLabel = new System.Windows.Forms.Label();
+            this.nemModList = new System.Windows.Forms.ListView();
+            this.nemRefreshButton = new System.Windows.Forms.Button();
             this.modList = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
@@ -55,23 +59,20 @@ namespace SinZ_MC_Launcher {
             this.serverStatusLabel = new System.Windows.Forms.Label();
             this.serverNameLabel = new System.Windows.Forms.Label();
             this.initStatusBox = new System.Windows.Forms.Button();
-            this.nemTab = new System.Windows.Forms.TabPage();
-            this.nemCountLabel = new System.Windows.Forms.Label();
-            this.nemModList = new System.Windows.Forms.ListView();
-            this.nemRefreshButton = new System.Windows.Forms.Button();
             this.browserTab = new System.Windows.Forms.TabPage();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
-            this.minecraftVersionBox = new System.Windows.Forms.ComboBox();
             this.modpackTab = new System.Windows.Forms.TabPage();
-            this.modpackRefreshButton = new System.Windows.Forms.Button();
-            this.modpackVersionBox = new System.Windows.Forms.ComboBox();
             this.modpackModList = new System.Windows.Forms.ListView();
+            this.modpackVersionBox = new System.Windows.Forms.ComboBox();
+            this.modpackRefreshButton = new System.Windows.Forms.Button();
+            this.minecraftVersionBox = new System.Windows.Forms.ComboBox();
+            this.nemVersionBox = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
+            this.nemTab.SuspendLayout();
             this.modList.SuspendLayout();
             this.queryList.SuspendLayout();
             this.consoleList.SuspendLayout();
             this.serverStatusList.SuspendLayout();
-            this.nemTab.SuspendLayout();
             this.browserTab.SuspendLayout();
             this.modpackTab.SuspendLayout();
             this.SuspendLayout();
@@ -222,6 +223,52 @@ namespace SinZ_MC_Launcher {
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(760, 470);
             this.tabControl1.TabIndex = 27;
+            // 
+            // nemTab
+            // 
+            this.nemTab.Controls.Add(this.nemVersionBox);
+            this.nemTab.Controls.Add(this.nemCountLabel);
+            this.nemTab.Controls.Add(this.nemModList);
+            this.nemTab.Controls.Add(this.nemRefreshButton);
+            this.nemTab.Location = new System.Drawing.Point(4, 22);
+            this.nemTab.Name = "nemTab";
+            this.nemTab.Padding = new System.Windows.Forms.Padding(3);
+            this.nemTab.Size = new System.Drawing.Size(752, 444);
+            this.nemTab.TabIndex = 4;
+            this.nemTab.Text = "Not Enough Mods";
+            this.nemTab.UseVisualStyleBackColor = true;
+            // 
+            // nemCountLabel
+            // 
+            this.nemCountLabel.AutoSize = true;
+            this.nemCountLabel.Location = new System.Drawing.Point(88, 12);
+            this.nemCountLabel.Name = "nemCountLabel";
+            this.nemCountLabel.Size = new System.Drawing.Size(0, 13);
+            this.nemCountLabel.TabIndex = 2;
+            // 
+            // nemModList
+            // 
+            this.nemModList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.nemModList.Location = new System.Drawing.Point(7, 37);
+            this.nemModList.MultiSelect = false;
+            this.nemModList.Name = "nemModList";
+            this.nemModList.Size = new System.Drawing.Size(739, 401);
+            this.nemModList.TabIndex = 1;
+            this.nemModList.UseCompatibleStateImageBehavior = false;
+            this.nemModList.View = System.Windows.Forms.View.List;
+            this.nemModList.SelectedIndexChanged += new System.EventHandler(this.nemModList_SelectedIndexChanged);
+            // 
+            // nemRefreshButton
+            // 
+            this.nemRefreshButton.Location = new System.Drawing.Point(7, 7);
+            this.nemRefreshButton.Name = "nemRefreshButton";
+            this.nemRefreshButton.Size = new System.Drawing.Size(75, 23);
+            this.nemRefreshButton.TabIndex = 0;
+            this.nemRefreshButton.Text = "Refresh!";
+            this.nemRefreshButton.UseVisualStyleBackColor = true;
+            this.nemRefreshButton.Click += new System.EventHandler(this.nemRefreshButton_Click);
             // 
             // modList
             // 
@@ -395,51 +442,6 @@ namespace SinZ_MC_Launcher {
             this.initStatusBox.UseVisualStyleBackColor = true;
             this.initStatusBox.Click += new System.EventHandler(this.initStatusBox_Click);
             // 
-            // nemTab
-            // 
-            this.nemTab.Controls.Add(this.nemCountLabel);
-            this.nemTab.Controls.Add(this.nemModList);
-            this.nemTab.Controls.Add(this.nemRefreshButton);
-            this.nemTab.Location = new System.Drawing.Point(4, 22);
-            this.nemTab.Name = "nemTab";
-            this.nemTab.Padding = new System.Windows.Forms.Padding(3);
-            this.nemTab.Size = new System.Drawing.Size(752, 444);
-            this.nemTab.TabIndex = 4;
-            this.nemTab.Text = "Not Enough Mods";
-            this.nemTab.UseVisualStyleBackColor = true;
-            // 
-            // nemCountLabel
-            // 
-            this.nemCountLabel.AutoSize = true;
-            this.nemCountLabel.Location = new System.Drawing.Point(88, 12);
-            this.nemCountLabel.Name = "nemCountLabel";
-            this.nemCountLabel.Size = new System.Drawing.Size(0, 13);
-            this.nemCountLabel.TabIndex = 2;
-            // 
-            // nemModList
-            // 
-            this.nemModList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.nemModList.Location = new System.Drawing.Point(7, 37);
-            this.nemModList.MultiSelect = false;
-            this.nemModList.Name = "nemModList";
-            this.nemModList.Size = new System.Drawing.Size(739, 401);
-            this.nemModList.TabIndex = 1;
-            this.nemModList.UseCompatibleStateImageBehavior = false;
-            this.nemModList.View = System.Windows.Forms.View.List;
-            this.nemModList.SelectedIndexChanged += new System.EventHandler(this.nemModList_SelectedIndexChanged);
-            // 
-            // nemRefreshButton
-            // 
-            this.nemRefreshButton.Location = new System.Drawing.Point(7, 7);
-            this.nemRefreshButton.Name = "nemRefreshButton";
-            this.nemRefreshButton.Size = new System.Drawing.Size(75, 23);
-            this.nemRefreshButton.TabIndex = 0;
-            this.nemRefreshButton.Text = "Refresh!";
-            this.nemRefreshButton.UseVisualStyleBackColor = true;
-            this.nemRefreshButton.Click += new System.EventHandler(this.nemRefreshButton_Click);
-            // 
             // browserTab
             // 
             this.browserTab.Controls.Add(this.webBrowser);
@@ -461,15 +463,6 @@ namespace SinZ_MC_Launcher {
             this.webBrowser.Size = new System.Drawing.Size(746, 438);
             this.webBrowser.TabIndex = 0;
             // 
-            // minecraftVersionBox
-            // 
-            this.minecraftVersionBox.FormattingEnabled = true;
-            this.minecraftVersionBox.Location = new System.Drawing.Point(13, 485);
-            this.minecraftVersionBox.Name = "minecraftVersionBox";
-            this.minecraftVersionBox.Size = new System.Drawing.Size(121, 21);
-            this.minecraftVersionBox.TabIndex = 28;
-            this.minecraftVersionBox.Text = "Versions";
-            // 
             // modpackTab
             // 
             this.modpackTab.Controls.Add(this.modpackModList);
@@ -483,15 +476,14 @@ namespace SinZ_MC_Launcher {
             this.modpackTab.Text = "Modpacks";
             this.modpackTab.UseVisualStyleBackColor = true;
             // 
-            // modpackRefreshButton
+            // modpackModList
             // 
-            this.modpackRefreshButton.Location = new System.Drawing.Point(7, 7);
-            this.modpackRefreshButton.Name = "modpackRefreshButton";
-            this.modpackRefreshButton.Size = new System.Drawing.Size(75, 23);
-            this.modpackRefreshButton.TabIndex = 0;
-            this.modpackRefreshButton.Text = "Refresh!";
-            this.modpackRefreshButton.UseVisualStyleBackColor = true;
-            this.modpackRefreshButton.Click += new System.EventHandler(this.modpackRefreshButton_Click);
+            this.modpackModList.Location = new System.Drawing.Point(7, 65);
+            this.modpackModList.Name = "modpackModList";
+            this.modpackModList.Size = new System.Drawing.Size(216, 373);
+            this.modpackModList.TabIndex = 2;
+            this.modpackModList.UseCompatibleStateImageBehavior = false;
+            this.modpackModList.View = System.Windows.Forms.View.List;
             // 
             // modpackVersionBox
             // 
@@ -503,14 +495,37 @@ namespace SinZ_MC_Launcher {
             this.modpackVersionBox.Text = "Modlist version";
             this.modpackVersionBox.SelectedIndexChanged += new System.EventHandler(this.modpackVersionBox_SelectedIndexChanged);
             // 
-            // modpackModList
+            // modpackRefreshButton
             // 
-            this.modpackModList.Location = new System.Drawing.Point(7, 65);
-            this.modpackModList.Name = "modpackModList";
-            this.modpackModList.Size = new System.Drawing.Size(216, 373);
-            this.modpackModList.TabIndex = 2;
-            this.modpackModList.UseCompatibleStateImageBehavior = false;
-            this.modpackModList.View = System.Windows.Forms.View.List;
+            this.modpackRefreshButton.Location = new System.Drawing.Point(7, 7);
+            this.modpackRefreshButton.Name = "modpackRefreshButton";
+            this.modpackRefreshButton.Size = new System.Drawing.Size(75, 23);
+            this.modpackRefreshButton.TabIndex = 0;
+            this.modpackRefreshButton.Text = "Refresh!";
+            this.modpackRefreshButton.UseVisualStyleBackColor = true;
+            this.modpackRefreshButton.Click += new System.EventHandler(this.modpackRefreshButton_Click);
+            // 
+            // minecraftVersionBox
+            // 
+            this.minecraftVersionBox.FormattingEnabled = true;
+            this.minecraftVersionBox.Location = new System.Drawing.Point(13, 485);
+            this.minecraftVersionBox.Name = "minecraftVersionBox";
+            this.minecraftVersionBox.Size = new System.Drawing.Size(121, 21);
+            this.minecraftVersionBox.TabIndex = 28;
+            this.minecraftVersionBox.Text = "Versions";
+            // 
+            // nemVersionBox
+            // 
+            this.nemVersionBox.FormattingEnabled = true;
+            this.nemVersionBox.Items.AddRange(new object[] {
+            "1.4.6-1.4.7",
+            "1.5.1",
+            "1.5.2"});
+            this.nemVersionBox.Location = new System.Drawing.Point(88, 9);
+            this.nemVersionBox.Name = "nemVersionBox";
+            this.nemVersionBox.Size = new System.Drawing.Size(121, 21);
+            this.nemVersionBox.TabIndex = 3;
+            this.nemVersionBox.SelectedIndexChanged += new System.EventHandler(this.nemVersionBox_SelectedIndexChanged);
             // 
             // MainForm
             // 
@@ -531,6 +546,8 @@ namespace SinZ_MC_Launcher {
             this.Text = "SinZ MC Launcher - 11.0.51106.1";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabControl1.ResumeLayout(false);
+            this.nemTab.ResumeLayout(false);
+            this.nemTab.PerformLayout();
             this.modList.ResumeLayout(false);
             this.modList.PerformLayout();
             this.queryList.ResumeLayout(false);
@@ -539,8 +556,6 @@ namespace SinZ_MC_Launcher {
             this.consoleList.PerformLayout();
             this.serverStatusList.ResumeLayout(false);
             this.serverStatusList.PerformLayout();
-            this.nemTab.ResumeLayout(false);
-            this.nemTab.PerformLayout();
             this.browserTab.ResumeLayout(false);
             this.modpackTab.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -591,6 +606,7 @@ namespace SinZ_MC_Launcher {
         private Button modpackRefreshButton;
         private ComboBox modpackVersionBox;
         private ListView modpackModList;
+        private ComboBox nemVersionBox;
     }
 }
 

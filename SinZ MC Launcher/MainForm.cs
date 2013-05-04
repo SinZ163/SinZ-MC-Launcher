@@ -204,9 +204,11 @@ namespace SinZ_MC_Launcher {
 
         #region nemTab
         private Dictionary<string, Dictionary<string, string>> nemDB;
+        private String nemVersion;
+        QueryNEM nemQuery = new QueryNEM();
 
         private void nemRefreshButton_Click(object sender, EventArgs e) {
-            QueryNEM nemQuery = new QueryNEM();
+            nemQuery.UpdateQuery(nemVersion);
             nemDB = nemQuery.NEMDB;
             nemModList.Items.Clear();
             foreach (String modName in nemQuery.NEMDB.Keys) {
@@ -224,6 +226,11 @@ namespace SinZ_MC_Launcher {
 
                 tabControl1.SelectTab(browserTab);
             }
+        }
+
+        private void nemVersionBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            nemVersion = (String)nemVersionBox.SelectedItem;
         }
 #endregion
 
