@@ -20,7 +20,9 @@ using SinZ_MC_Launcher.UI;
 using SinZ_MC_Launcher.Modlist;
 
 namespace SinZ_MC_Launcher {
-    public partial class MainForm : Form {
+    public partial class MainForm : Form
+    {
+        #region FormCreation
         public MainForm() {
             AppDomain.CurrentDomain.AssemblyResolve += (sender, args) => {
                 string resourceName = new AssemblyName(args.Name).Name + ".dll";
@@ -34,7 +36,7 @@ namespace SinZ_MC_Launcher {
             };
             InitializeComponent();
         }
-        TextWriter _writer = null;
+        #endregion
 
         String location = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), ".sinzmc/");
 
@@ -42,18 +44,9 @@ namespace SinZ_MC_Launcher {
         String sessionID;
         LastLogin lastLogin;
 
-        Dictionary<String, object> db;
-
-        ServerStatus status;
-        VersionList versionList;
-
-        private Dictionary<string, Dictionary<string, string>> nemDB;
-
-
         private void MainForm_Load(object sender, EventArgs e) {
             //CONSOLE
-            _writer = new ConsoleStringWriter(this);
-            Console.SetOut(_writer);
+            Console.SetOut(new ConsoleStringWriter(this));
             //END CONSOLE
             if (!Directory.Exists(location))
                 Directory.CreateDirectory(location);
@@ -129,6 +122,9 @@ namespace SinZ_MC_Launcher {
             LaunchMinecraft mc = new LaunchMinecraft(username, sessionID, true, (String)minecraftVersionBox.SelectedItem, downloadLibraries.results);
         }
 
+        #region repo
+        Dictionary<String, object> db;
+
         private void modBox_SelectedIndexChanged(object sender, EventArgs e) {
             Dictionary<String, object> mod = (Dictionary<String,object>)db[modBox.SelectedItem.ToString()];
             versionBox.Items.Clear();
@@ -167,6 +163,10 @@ namespace SinZ_MC_Launcher {
             //MessageBox.Show(data);
             //MessageBox.Show(playerList);
         }
+#endregion
+
+        #region serverStatus
+        ServerStatus status;
 
         private void initStatusBox_Click(object sender, EventArgs e) {
             status.Refresh();
@@ -186,7 +186,9 @@ namespace SinZ_MC_Launcher {
                 }
             }
         }
+        #endregion
 
+        #region console
         private delegate void UpdateConsole_(String text);
         public void UpdateConsole(String text) {
             if (this.InvokeRequired) {
@@ -196,6 +198,10 @@ namespace SinZ_MC_Launcher {
                 consoleBox.AppendText(text);
             }
         }
+        #endregion
+
+        #region nemTab
+        private Dictionary<string, Dictionary<string, string>> nemDB;
 
         private void nemRefreshButton_Click(object sender, EventArgs e) {
             QueryNEM nemQuery = new QueryNEM();
@@ -217,6 +223,10 @@ namespace SinZ_MC_Launcher {
                 tabControl1.SelectTab(browserTab);
             }
         }
+#endregion
+
+        #region mcVersion
+        VersionList versionList;
 
         private delegate void UpdateVersionList_(List<String> versions);
         public void UpdateVersionList(List<String> versions)
@@ -236,7 +246,9 @@ namespace SinZ_MC_Launcher {
                 loginButton.Enabled = true;
             }
         }
+        #endregion
 
+        #region Modlist
         ReadModlist modlist;
         private void modpackRefreshButton_Click(object sender, EventArgs e)
         {
@@ -256,5 +268,6 @@ namespace SinZ_MC_Launcher {
                 modpackModList.Items.Add(mod + " - " + modlist.modlist[(String)modpackVersionBox.SelectedItem][mod]);
             }
         }
+        #endregion
     }
 }
