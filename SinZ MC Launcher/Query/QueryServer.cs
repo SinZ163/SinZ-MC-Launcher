@@ -80,7 +80,7 @@ namespace SinZ_MC_Launcher.Query {
                 }
                 output.Remove("plugins");
             }
-            catch (SocketException e) {
+            catch (SocketException) {
                 MessageBox.Show("Server is down or doesn't like Query");
             }
             /*}

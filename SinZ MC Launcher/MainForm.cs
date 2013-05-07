@@ -76,6 +76,10 @@ namespace SinZ_MC_Launcher {
             //VERSIONLIST
             versionList = new VersionList(this);
             //END VERSIONLIST
+
+            //NEM
+            nemVersionBox.SelectedIndex = nemVersionBox.Items.Count - 1;
+            //END NEM
         }
 
         private void loginButton_Click(object sender, EventArgs e) {
