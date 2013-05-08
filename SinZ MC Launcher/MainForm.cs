@@ -276,11 +276,19 @@ namespace SinZ_MC_Launcher {
         private void modpackRefreshButton_Click(object sender, EventArgs e)
         {
             modlist = new ReadModlist();
-            modpackVersionBox.Items.Clear();
-            foreach(String version in modlist.modlist.Keys) {
-                modpackVersionBox.Items.Add(version);
+            if (modlist.modlist.Count > 0)
+            {
+                modpackVersionBox.Items.Clear();
+                foreach (String version in modlist.modlist.Keys)
+                {
+                    modpackVersionBox.Items.Add(version);
+                }
+                modpackVersionBox.SelectedIndex = 0;
             }
-            modpackVersionBox.SelectedIndex = 0;
+            else
+            {
+                modpackVersionBox.Text = "Unable to get info on this modpack.";
+            }
         }
 
         private void modpackVersionBox_SelectedIndexChanged(object sender, EventArgs e)
