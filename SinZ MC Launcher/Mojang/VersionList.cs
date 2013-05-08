@@ -25,15 +25,22 @@ namespace SinZ_MC_Launcher.Mojang
 
         private void QueryVersionlist()
         {
-            WebClient client = new WebClient();
-            String versionInfo = client.DownloadString(DOWNLOAD_LINK + "versions/versions.json");
-            Dictionary<String, object> output = deserializeToDictionary(versionInfo);
-            JArray jsonArray = (JArray)output["versions"];
-            foreach (JObject version in jsonArray)
+            try
             {
-                versions.Add(version["id"].ToString());
+                WebClient client = new WebClient();
+                String versionInfo = client.DownloadString(DOWNLOAD_LINK + "versions/versions.json");
+                Dictionary<String, object> output = deserializeToDictionary(versionInfo);
+                JArray jsonArray = (JArray)output["versions"];
+                foreach (JObject version in jsonArray)
+                {
+                    versions.Add(version["id"].ToString());
+                }
+                form.UpdateVersionList(versions);
             }
-            form.UpdateVersionList(versions);
+            catch (WebException)
+            {
+                Console.WriteLine("The mojang download server must be down..");
+            }
         }
 
         //Got from http://stackoverflow.com/questions/1207731

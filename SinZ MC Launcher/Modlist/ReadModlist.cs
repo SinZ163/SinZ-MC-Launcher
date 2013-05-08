@@ -25,21 +25,32 @@ namespace SinZ_MC_Launcher.Modlist
 
         private void DownloadModlist()
         {
-            WebClient client = new WebClient();
-            String rawOutput = client.DownloadString(url);
-
-            modlist = new Dictionary<string, Dictionary<string, string>>();
-            JObject json = JObject.Parse(rawOutput);
-            IList<string> listVersions = json.Properties().Select(p => p.Name).ToList();
-            foreach (String version in listVersions)
+            try
             {
-                Dictionary<String, String> a = new Dictionary<string, string>();
-                IList<string> mods = ((JObject)json[version]).Properties().Select(p => p.Name).ToList();
-                foreach (String mod in mods)
+                WebClient client = new WebClient();
+                String rawOutput = client.DownloadString(url);
+
+                modlist = new Dictionary<string, Dictionary<string, string>>();
+                JObject json = JObject.Parse(rawOutput);
+                IList<string> listVersions = json.Properties().Select(p => p.Name).ToList();
+                foreach (String version in listVersions)
                 {
-                    a.Add(mod, json[version][mod].ToString());
+                    Dictionary<String, String> a = new Dictionary<string, string>();
+                    IList<string> mods = ((JObject)json[version]).Properties().Select(p => p.Name).ToList();
+                    foreach (String mod in mods)
+                    {
+                        a.Add(mod, json[version][mod].ToString());
+                    }
+                    modlist.Add(version, a);
                 }
-                modlist.Add(version, a);
+            }
+            catch (WebException)
+            {
+                Console.WriteLine("Webserver is completely down...");
+            }
+            catch (Newtonsoft.Json.JsonException)
+            {
+                Console.WriteLine("Something isn't right...");
             }
         }
     }

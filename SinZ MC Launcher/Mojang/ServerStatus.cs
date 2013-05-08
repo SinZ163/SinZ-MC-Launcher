@@ -21,24 +21,32 @@ namespace SinZ_MC_Launcher.Mojang {
             thread.Start();
         }
         public void doStatus() {
-            WebClient client = new WebClient();
-            String serverResult = client.DownloadString(serverCheck);
+            try
+            {
+                WebClient client = new WebClient();
+                String serverResult = client.DownloadString(serverCheck);
 
-            serverResult = serverResult.TrimStart('[');
-            serverResult = serverResult.TrimEnd(']');
-            serverResult = Regex.Replace(serverResult, "},{", ",");
+                serverResult = serverResult.TrimStart('[');
+                serverResult = serverResult.TrimEnd(']');
+                serverResult = Regex.Replace(serverResult, "},{", ",");
 
-            //MessageBox.Show(serverResult);
-            JObject rawOutput = JObject.Parse(serverResult);
-            Dictionary<String, object> output = new Dictionary<string, object>();
+                //MessageBox.Show(serverResult);
+                JObject rawOutput = JObject.Parse(serverResult);
+                Dictionary<String, object> output = new Dictionary<string, object>();
 
-            IList<string> keys = rawOutput.Properties().Select(p => p.Name).ToList();
-            foreach (String key in keys) {
-                output.Add(key, rawOutput[key].ToString());
-                //MessageBox.Show(key);
-                //MessageBox.Show(rawOutput[key].ToString());
+                IList<string> keys = rawOutput.Properties().Select(p => p.Name).ToList();
+                foreach (String key in keys)
+                {
+                    output.Add(key, rawOutput[key].ToString());
+                    //MessageBox.Show(key);
+                    //MessageBox.Show(rawOutput[key].ToString());
+                }
+                form.UpdateServerStatus(parseStatus(output));
             }
-            form.UpdateServerStatus(parseStatus(output));
+            catch (WebException)
+            {
+                Console.WriteLine("Well... The status server is offline.");
+            }
         }
         public static Dictionary<String, object> parseStatus(Dictionary<String, object> input) {
             const String GREEN= "Servers are Online, no problems detected.";
