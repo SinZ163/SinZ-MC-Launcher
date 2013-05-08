@@ -40,6 +40,7 @@ namespace SinZ_MC_Launcher {
             this.versionBox = new System.Windows.Forms.ComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.nemTab = new System.Windows.Forms.TabPage();
+            this.nemVersionBox = new System.Windows.Forms.ComboBox();
             this.nemCountLabel = new System.Windows.Forms.Label();
             this.nemModList = new System.Windows.Forms.ListView();
             this.nemRefreshButton = new System.Windows.Forms.Button();
@@ -66,7 +67,6 @@ namespace SinZ_MC_Launcher {
             this.modpackVersionBox = new System.Windows.Forms.ComboBox();
             this.modpackRefreshButton = new System.Windows.Forms.Button();
             this.minecraftVersionBox = new System.Windows.Forms.ComboBox();
-            this.nemVersionBox = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.nemTab.SuspendLayout();
             this.modList.SuspendLayout();
@@ -143,6 +143,7 @@ namespace SinZ_MC_Launcher {
             // 
             // loginStatus
             // 
+            this.loginStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.loginStatus.AutoSize = true;
             this.loginStatus.Location = new System.Drawing.Point(569, 485);
             this.loginStatus.Name = "loginStatus";
@@ -164,6 +165,7 @@ namespace SinZ_MC_Launcher {
             this.queryPortText.Name = "queryPortText";
             this.queryPortText.Size = new System.Drawing.Size(41, 20);
             this.queryPortText.TabIndex = 20;
+            this.queryPortText.Text = "25565";
             // 
             // queryButton
             // 
@@ -237,6 +239,19 @@ namespace SinZ_MC_Launcher {
             this.nemTab.TabIndex = 4;
             this.nemTab.Text = "Not Enough Mods";
             this.nemTab.UseVisualStyleBackColor = true;
+            // 
+            // nemVersionBox
+            // 
+            this.nemVersionBox.FormattingEnabled = true;
+            this.nemVersionBox.Items.AddRange(new object[] {
+            "1.4.6-1.4.7",
+            "1.5.1",
+            "1.5.2"});
+            this.nemVersionBox.Location = new System.Drawing.Point(88, 9);
+            this.nemVersionBox.Name = "nemVersionBox";
+            this.nemVersionBox.Size = new System.Drawing.Size(121, 21);
+            this.nemVersionBox.TabIndex = 3;
+            this.nemVersionBox.SelectedIndexChanged += new System.EventHandler(this.nemVersionBox_SelectedIndexChanged);
             // 
             // nemCountLabel
             // 
@@ -355,6 +370,8 @@ namespace SinZ_MC_Launcher {
             // 
             // playerList
             // 
+            this.playerList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.playerList.Location = new System.Drawing.Point(492, 6);
             this.playerList.MultiSelect = false;
             this.playerList.Name = "playerList";
@@ -478,6 +495,8 @@ namespace SinZ_MC_Launcher {
             // 
             // modpackModList
             // 
+            this.modpackModList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.modpackModList.Location = new System.Drawing.Point(7, 65);
             this.modpackModList.Name = "modpackModList";
             this.modpackModList.Size = new System.Drawing.Size(216, 373);
@@ -507,25 +526,13 @@ namespace SinZ_MC_Launcher {
             // 
             // minecraftVersionBox
             // 
+            this.minecraftVersionBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.minecraftVersionBox.FormattingEnabled = true;
             this.minecraftVersionBox.Location = new System.Drawing.Point(13, 485);
             this.minecraftVersionBox.Name = "minecraftVersionBox";
             this.minecraftVersionBox.Size = new System.Drawing.Size(121, 21);
             this.minecraftVersionBox.TabIndex = 28;
             this.minecraftVersionBox.Text = "Versions";
-            // 
-            // nemVersionBox
-            // 
-            this.nemVersionBox.FormattingEnabled = true;
-            this.nemVersionBox.Items.AddRange(new object[] {
-            "1.4.6-1.4.7",
-            "1.5.1",
-            "1.5.2"});
-            this.nemVersionBox.Location = new System.Drawing.Point(88, 9);
-            this.nemVersionBox.Name = "nemVersionBox";
-            this.nemVersionBox.Size = new System.Drawing.Size(121, 21);
-            this.nemVersionBox.TabIndex = 3;
-            this.nemVersionBox.SelectedIndexChanged += new System.EventHandler(this.nemVersionBox_SelectedIndexChanged);
             // 
             // MainForm
             // 

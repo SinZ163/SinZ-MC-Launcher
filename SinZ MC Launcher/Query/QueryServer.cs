@@ -13,8 +13,6 @@ namespace SinZ_MC_Launcher.Query {
     {
 
         UdpClient client;
-        IPAddress[] ip;
-        int port;
         IPEndPoint connection;
 
         int token;
@@ -22,7 +20,7 @@ namespace SinZ_MC_Launcher.Query {
         String[] result;
         public Dictionary<String, String> output = new Dictionary<String, String>();
         public List<String> players = new List<String>();
-        public Dictionary<string, string> plugins;
+        public Dictionary<string, string> plugins = new Dictionary<string, string>();
 
         private bool disposed = false;
         public void Dispose()
@@ -54,11 +52,9 @@ namespace SinZ_MC_Launcher.Query {
             }
         }
         public QueryServer(String address, int port) {
-            this.port = port;
-            ip = Dns.GetHostAddresses(address);
             client = new UdpClient();
-            client.Connect(ip[0], port);
-            connection = new IPEndPoint(ip[0], port);
+            client.Connect(address, port);
+            connection = new IPEndPoint(IPAddress.Any, port);
             Thread thread = new Thread(new ThreadStart(DoQuery));
             thread.Start();
             while (thread.IsAlive) {
@@ -75,7 +71,8 @@ namespace SinZ_MC_Launcher.Query {
                 for (int i = 0; i + 1 < result.Length; i = i + 2) {
                     output[result[i]] = result[i + 1];
                 }
-                if (output["plugins"] != "") {
+                if (output["plugins"] != "")
+                {
                     plugins = ParsePlugins(output["plugins"]);
                 }
                 output.Remove("plugins");

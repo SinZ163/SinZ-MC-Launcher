@@ -166,23 +166,18 @@ namespace SinZ_MC_Launcher {
             foreach (String msg in query.output.Values) {
                 data += "|" + msg;
             }
-            try {
-                if (query.plugins.Keys.Count > 0) {
-                    //MessageBox.Show(query.plugins["SERVER_MOD"]);
-                    serverModLabel.Text = query.plugins["SERVER_MOD"];
-                    query.plugins.Remove("SERVER_MOD");
-                    String pluginList = "";
-                    foreach (String key in query.plugins.Keys) {
-                        pluginList += key + "_" + query.plugins[key] + " | ";
-                    }
-                    //MessageBox.Show(pluginList);
-                    pluginsLabel.Text = pluginList;
+
+            if (query.plugins.Keys.Count > 0) {
+                //MessageBox.Show(query.plugins["SERVER_MOD"]);
+                serverModLabel.Text = query.plugins["SERVER_MOD"];
+                query.plugins.Remove("SERVER_MOD");
+                String pluginList = "";
+                foreach (String key in query.plugins.Keys) {
+                    pluginList += key + "_" + query.plugins[key] + " | ";
                 }
+                //MessageBox.Show(pluginList);
+                pluginsLabel.Text = pluginList;
             }
-            catch (Exception) {
-            }
-            //MessageBox.Show(data);
-            //MessageBox.Show(playerList);
         }
 #endregion
 
