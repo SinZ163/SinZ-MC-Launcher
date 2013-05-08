@@ -19,7 +19,11 @@ namespace SinZ_MC_Launcher.Repo {
 
         String version = "";
 
-        public QueryRepo() {
+        MainForm form;
+
+        public QueryRepo(MainForm form) {
+            this.form = form;
+
             Thread thread = new Thread(new ThreadStart(CheckVersions));
             thread.Start();
             //client.DownloadFileCompleted += QueryCompleted;
@@ -29,19 +33,30 @@ namespace SinZ_MC_Launcher.Repo {
             }
         }
         private void CheckVersions() {
-            //Console.WriteLine("Querying Repository");
-            WebClient client = new WebClient();
-            String result = client.DownloadString(versionCheck);
+            try
+            {
+                Console.WriteLine("Querying Repository");
+                WebClient client = new WebClient();
+                String result = client.DownloadString(versionCheck);
 
-            if (!result.Contains('|')) {
-                version = result;
+                if (!result.Contains('|'))
+                {
+                    version = result;
+                }
+                else
+                {
+                    String[] versions = result.Split('|');
+                    version = versions.Last<String>();
+                }
+                client.DownloadFile(new Uri("http://sinz.mca.d3s.co/repo/" + version + ".txt"), Path.Combine(location, version + ".txt"));
+                Dictionary<String,object> db = parseRepo();
+                Console.WriteLine("Finished reading repository");
+                form.RefreshOldRepo(db);
             }
-            else {
-                String[] versions = result.Split('|');
-                version = versions.Last<String>();
+            catch (WebException)
+            {
+                Console.WriteLine("Old mod repository must be down... =S");
             }
-            client.DownloadFile(new Uri("http://sinz.mca.d3s.co/repo/" + version + ".txt"), Path.Combine(location, version + ".txt"));
-            parseRepo();
         }
         public Dictionary<String, object> parseRepo() {
             //Console.WriteLine("Reading repository");

@@ -80,6 +80,10 @@ namespace SinZ_MC_Launcher {
             //NEM
             nemVersionBox.SelectedIndex = nemVersionBox.Items.Count - 1;
             //END NEM
+
+            //OLD REPO
+            repo = new Repo.QueryRepo(this);
+            //END OLD REPO
         }
 
         private void loginButton_Click(object sender, EventArgs e) {
@@ -113,15 +117,6 @@ namespace SinZ_MC_Launcher {
             stream.Close();
             //END SETTINGS
 
-            Repo.QueryRepo repo = new Repo.QueryRepo();
-            db = repo.parseRepo();
-            Console.WriteLine("Finished reading repository");
-            foreach (String modName in db.Keys) {
-                //modName == Minecraft Forge, Not Enough Items, Modular Power Suits
-                modBox.Items.Add(modName);
-            }
-            modBox.SelectedIndex = 0;
-
             Assets downloadAssets = new Assets();
             Libraries downloadLibraries = new Libraries((String)minecraftVersionBox.SelectedItem);
             DownloadMinecraft downloadMinecraft = new DownloadMinecraft((String)minecraftVersionBox.SelectedItem);
@@ -129,7 +124,27 @@ namespace SinZ_MC_Launcher {
         }
 
         #region repo
+        Repo.QueryRepo repo;
         Dictionary<String, object> db;
+
+        private delegate void RefreshOldRepo_(Dictionary<String,Object> db);
+        public void RefreshOldRepo(Dictionary<String, Object> db)
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new RefreshOldRepo_(RefreshOldRepo), db);
+            }
+            else
+            {
+                this.db = db;
+                foreach (String modName in db.Keys)
+                {
+                    //modName == Minecraft Forge, Not Enough Items, Modular Power Suits
+                    modBox.Items.Add(modName);
+                }
+                modBox.SelectedIndex = 0;
+            }
+        }
 
         private void modBox_SelectedIndexChanged(object sender, EventArgs e) {
             Dictionary<String, object> mod = (Dictionary<String,object>)db[modBox.SelectedItem.ToString()];
