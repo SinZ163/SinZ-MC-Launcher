@@ -44,37 +44,39 @@ namespace SinZ_MC_Launcher {
             this.nemCountLabel = new System.Windows.Forms.Label();
             this.nemModList = new System.Windows.Forms.ListView();
             this.nemRefreshButton = new System.Windows.Forms.Button();
-            this.modList = new System.Windows.Forms.TabPage();
+            this.modpackTab = new System.Windows.Forms.TabPage();
+            this.modpackModList = new System.Windows.Forms.ListView();
+            this.modpackVersionBox = new System.Windows.Forms.ComboBox();
+            this.modpackRefreshButton = new System.Windows.Forms.Button();
+            this.oldRepoTab = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.queryList = new System.Windows.Forms.TabPage();
+            this.queryTab = new System.Windows.Forms.TabPage();
             this.playerList = new System.Windows.Forms.ListView();
             this.pluginsLabel = new System.Windows.Forms.Label();
             this.serverModLabel = new System.Windows.Forms.Label();
-            this.consoleList = new System.Windows.Forms.TabPage();
-            this.consoleBox = new System.Windows.Forms.TextBox();
-            this.serverStatusList = new System.Windows.Forms.TabPage();
+            this.serverStatusTab = new System.Windows.Forms.TabPage();
             this.serverStatusLabel = new System.Windows.Forms.Label();
             this.serverNameLabel = new System.Windows.Forms.Label();
             this.initStatusBox = new System.Windows.Forms.Button();
             this.browserTab = new System.Windows.Forms.TabPage();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
-            this.modpackTab = new System.Windows.Forms.TabPage();
-            this.modpackModList = new System.Windows.Forms.ListView();
-            this.modpackVersionBox = new System.Windows.Forms.ComboBox();
-            this.modpackRefreshButton = new System.Windows.Forms.Button();
+            this.consoleTab = new System.Windows.Forms.TabPage();
+            this.consoleBox = new System.Windows.Forms.TextBox();
+            this.optionTab = new System.Windows.Forms.TabPage();
             this.minecraftVersionBox = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.nemTab.SuspendLayout();
-            this.modList.SuspendLayout();
-            this.queryList.SuspendLayout();
-            this.consoleList.SuspendLayout();
-            this.serverStatusList.SuspendLayout();
-            this.browserTab.SuspendLayout();
             this.modpackTab.SuspendLayout();
+            this.oldRepoTab.SuspendLayout();
+            this.queryTab.SuspendLayout();
+            this.serverStatusTab.SuspendLayout();
+            this.browserTab.SuspendLayout();
+            this.consoleTab.SuspendLayout();
+            this.optionTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // loginButton
@@ -134,7 +136,7 @@ namespace SinZ_MC_Launcher {
             this.rememberBox.AutoSize = true;
             this.rememberBox.Checked = true;
             this.rememberBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.rememberBox.Location = new System.Drawing.Point(13, 533);
+            this.rememberBox.Location = new System.Drawing.Point(3, -35);
             this.rememberBox.Name = "rememberBox";
             this.rememberBox.Size = new System.Drawing.Size(98, 17);
             this.rememberBox.TabIndex = 5;
@@ -214,12 +216,13 @@ namespace SinZ_MC_Launcher {
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.nemTab);
-            this.tabControl1.Controls.Add(this.modList);
-            this.tabControl1.Controls.Add(this.queryList);
-            this.tabControl1.Controls.Add(this.consoleList);
-            this.tabControl1.Controls.Add(this.serverStatusList);
-            this.tabControl1.Controls.Add(this.browserTab);
             this.tabControl1.Controls.Add(this.modpackTab);
+            this.tabControl1.Controls.Add(this.oldRepoTab);
+            this.tabControl1.Controls.Add(this.queryTab);
+            this.tabControl1.Controls.Add(this.serverStatusTab);
+            this.tabControl1.Controls.Add(this.browserTab);
+            this.tabControl1.Controls.Add(this.consoleTab);
+            this.tabControl1.Controls.Add(this.optionTab);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -285,23 +288,67 @@ namespace SinZ_MC_Launcher {
             this.nemRefreshButton.UseVisualStyleBackColor = true;
             this.nemRefreshButton.Click += new System.EventHandler(this.nemRefreshButton_Click);
             // 
-            // modList
+            // modpackTab
             // 
-            this.modList.Controls.Add(this.label2);
-            this.modList.Controls.Add(this.button2);
-            this.modList.Controls.Add(this.button1);
-            this.modList.Controls.Add(this.comboBox1);
-            this.modList.Controls.Add(this.listView1);
-            this.modList.Controls.Add(this.mcVersionBox);
-            this.modList.Controls.Add(this.versionBox);
-            this.modList.Controls.Add(this.modBox);
-            this.modList.Location = new System.Drawing.Point(4, 22);
-            this.modList.Name = "modList";
-            this.modList.Padding = new System.Windows.Forms.Padding(3);
-            this.modList.Size = new System.Drawing.Size(752, 444);
-            this.modList.TabIndex = 0;
-            this.modList.Text = "Mod List";
-            this.modList.UseVisualStyleBackColor = true;
+            this.modpackTab.Controls.Add(this.modpackModList);
+            this.modpackTab.Controls.Add(this.modpackVersionBox);
+            this.modpackTab.Controls.Add(this.modpackRefreshButton);
+            this.modpackTab.Location = new System.Drawing.Point(4, 22);
+            this.modpackTab.Name = "modpackTab";
+            this.modpackTab.Padding = new System.Windows.Forms.Padding(3);
+            this.modpackTab.Size = new System.Drawing.Size(752, 482);
+            this.modpackTab.TabIndex = 6;
+            this.modpackTab.Text = "Modpacks";
+            this.modpackTab.UseVisualStyleBackColor = true;
+            // 
+            // modpackModList
+            // 
+            this.modpackModList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.modpackModList.Location = new System.Drawing.Point(7, 65);
+            this.modpackModList.Name = "modpackModList";
+            this.modpackModList.Size = new System.Drawing.Size(216, 411);
+            this.modpackModList.TabIndex = 2;
+            this.modpackModList.UseCompatibleStateImageBehavior = false;
+            this.modpackModList.View = System.Windows.Forms.View.List;
+            // 
+            // modpackVersionBox
+            // 
+            this.modpackVersionBox.FormattingEnabled = true;
+            this.modpackVersionBox.Location = new System.Drawing.Point(7, 37);
+            this.modpackVersionBox.Name = "modpackVersionBox";
+            this.modpackVersionBox.Size = new System.Drawing.Size(121, 21);
+            this.modpackVersionBox.TabIndex = 1;
+            this.modpackVersionBox.Text = "Modlist version";
+            this.modpackVersionBox.SelectedIndexChanged += new System.EventHandler(this.modpackVersionBox_SelectedIndexChanged);
+            // 
+            // modpackRefreshButton
+            // 
+            this.modpackRefreshButton.Location = new System.Drawing.Point(7, 7);
+            this.modpackRefreshButton.Name = "modpackRefreshButton";
+            this.modpackRefreshButton.Size = new System.Drawing.Size(75, 23);
+            this.modpackRefreshButton.TabIndex = 0;
+            this.modpackRefreshButton.Text = "Refresh!";
+            this.modpackRefreshButton.UseVisualStyleBackColor = true;
+            this.modpackRefreshButton.Click += new System.EventHandler(this.modpackRefreshButton_Click);
+            // 
+            // oldRepoTab
+            // 
+            this.oldRepoTab.Controls.Add(this.label2);
+            this.oldRepoTab.Controls.Add(this.button2);
+            this.oldRepoTab.Controls.Add(this.button1);
+            this.oldRepoTab.Controls.Add(this.comboBox1);
+            this.oldRepoTab.Controls.Add(this.listView1);
+            this.oldRepoTab.Controls.Add(this.mcVersionBox);
+            this.oldRepoTab.Controls.Add(this.versionBox);
+            this.oldRepoTab.Controls.Add(this.modBox);
+            this.oldRepoTab.Location = new System.Drawing.Point(4, 22);
+            this.oldRepoTab.Name = "oldRepoTab";
+            this.oldRepoTab.Padding = new System.Windows.Forms.Padding(3);
+            this.oldRepoTab.Size = new System.Drawing.Size(752, 482);
+            this.oldRepoTab.TabIndex = 0;
+            this.oldRepoTab.Text = "Mod List";
+            this.oldRepoTab.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -352,21 +399,21 @@ namespace SinZ_MC_Launcher {
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.Visible = false;
             // 
-            // queryList
+            // queryTab
             // 
-            this.queryList.Controls.Add(this.playerList);
-            this.queryList.Controls.Add(this.pluginsLabel);
-            this.queryList.Controls.Add(this.serverModLabel);
-            this.queryList.Controls.Add(this.queryHostText);
-            this.queryList.Controls.Add(this.queryButton);
-            this.queryList.Controls.Add(this.queryPortText);
-            this.queryList.Location = new System.Drawing.Point(4, 22);
-            this.queryList.Name = "queryList";
-            this.queryList.Padding = new System.Windows.Forms.Padding(3);
-            this.queryList.Size = new System.Drawing.Size(752, 444);
-            this.queryList.TabIndex = 1;
-            this.queryList.Text = "Query Server";
-            this.queryList.UseVisualStyleBackColor = true;
+            this.queryTab.Controls.Add(this.playerList);
+            this.queryTab.Controls.Add(this.pluginsLabel);
+            this.queryTab.Controls.Add(this.serverModLabel);
+            this.queryTab.Controls.Add(this.queryHostText);
+            this.queryTab.Controls.Add(this.queryButton);
+            this.queryTab.Controls.Add(this.queryPortText);
+            this.queryTab.Location = new System.Drawing.Point(4, 22);
+            this.queryTab.Name = "queryTab";
+            this.queryTab.Padding = new System.Windows.Forms.Padding(3);
+            this.queryTab.Size = new System.Drawing.Size(752, 482);
+            this.queryTab.TabIndex = 1;
+            this.queryTab.Text = "Query Server";
+            this.queryTab.UseVisualStyleBackColor = true;
             // 
             // playerList
             // 
@@ -375,7 +422,7 @@ namespace SinZ_MC_Launcher {
             this.playerList.Location = new System.Drawing.Point(492, 6);
             this.playerList.MultiSelect = false;
             this.playerList.Name = "playerList";
-            this.playerList.Size = new System.Drawing.Size(254, 432);
+            this.playerList.Size = new System.Drawing.Size(254, 470);
             this.playerList.TabIndex = 25;
             this.playerList.UseCompatibleStateImageBehavior = false;
             this.playerList.View = System.Windows.Forms.View.List;
@@ -396,42 +443,18 @@ namespace SinZ_MC_Launcher {
             this.serverModLabel.Size = new System.Drawing.Size(0, 13);
             this.serverModLabel.TabIndex = 23;
             // 
-            // consoleList
+            // serverStatusTab
             // 
-            this.consoleList.Controls.Add(this.consoleBox);
-            this.consoleList.Location = new System.Drawing.Point(4, 22);
-            this.consoleList.Name = "consoleList";
-            this.consoleList.Padding = new System.Windows.Forms.Padding(3);
-            this.consoleList.Size = new System.Drawing.Size(752, 444);
-            this.consoleList.TabIndex = 2;
-            this.consoleList.Text = "Launcher Console";
-            this.consoleList.UseVisualStyleBackColor = true;
-            // 
-            // consoleBox
-            // 
-            this.consoleBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.consoleBox.Location = new System.Drawing.Point(6, 6);
-            this.consoleBox.Multiline = true;
-            this.consoleBox.Name = "consoleBox";
-            this.consoleBox.ReadOnly = true;
-            this.consoleBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.consoleBox.Size = new System.Drawing.Size(740, 432);
-            this.consoleBox.TabIndex = 0;
-            // 
-            // serverStatusList
-            // 
-            this.serverStatusList.Controls.Add(this.serverStatusLabel);
-            this.serverStatusList.Controls.Add(this.serverNameLabel);
-            this.serverStatusList.Controls.Add(this.initStatusBox);
-            this.serverStatusList.Location = new System.Drawing.Point(4, 22);
-            this.serverStatusList.Name = "serverStatusList";
-            this.serverStatusList.Padding = new System.Windows.Forms.Padding(3);
-            this.serverStatusList.Size = new System.Drawing.Size(752, 444);
-            this.serverStatusList.TabIndex = 3;
-            this.serverStatusList.Text = "Server Status";
-            this.serverStatusList.UseVisualStyleBackColor = true;
+            this.serverStatusTab.Controls.Add(this.serverStatusLabel);
+            this.serverStatusTab.Controls.Add(this.serverNameLabel);
+            this.serverStatusTab.Controls.Add(this.initStatusBox);
+            this.serverStatusTab.Location = new System.Drawing.Point(4, 22);
+            this.serverStatusTab.Name = "serverStatusTab";
+            this.serverStatusTab.Padding = new System.Windows.Forms.Padding(3);
+            this.serverStatusTab.Size = new System.Drawing.Size(752, 482);
+            this.serverStatusTab.TabIndex = 3;
+            this.serverStatusTab.Text = "Server Status";
+            this.serverStatusTab.UseVisualStyleBackColor = true;
             // 
             // serverStatusLabel
             // 
@@ -465,7 +488,7 @@ namespace SinZ_MC_Launcher {
             this.browserTab.Location = new System.Drawing.Point(4, 22);
             this.browserTab.Name = "browserTab";
             this.browserTab.Padding = new System.Windows.Forms.Padding(3);
-            this.browserTab.Size = new System.Drawing.Size(752, 444);
+            this.browserTab.Size = new System.Drawing.Size(752, 482);
             this.browserTab.TabIndex = 5;
             this.browserTab.Text = "Web Browser";
             this.browserTab.UseVisualStyleBackColor = true;
@@ -477,52 +500,44 @@ namespace SinZ_MC_Launcher {
             this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.ScriptErrorsSuppressed = true;
-            this.webBrowser.Size = new System.Drawing.Size(746, 438);
+            this.webBrowser.Size = new System.Drawing.Size(746, 476);
             this.webBrowser.TabIndex = 0;
+            this.webBrowser.Url = new System.Uri("http://mcupdate.tumblr.com", System.UriKind.Absolute);
+            this.webBrowser.FileDownload += new System.EventHandler(this.webBrowser_FileDownload);
             // 
-            // modpackTab
+            // consoleTab
             // 
-            this.modpackTab.Controls.Add(this.modpackModList);
-            this.modpackTab.Controls.Add(this.modpackVersionBox);
-            this.modpackTab.Controls.Add(this.modpackRefreshButton);
-            this.modpackTab.Location = new System.Drawing.Point(4, 22);
-            this.modpackTab.Name = "modpackTab";
-            this.modpackTab.Padding = new System.Windows.Forms.Padding(3);
-            this.modpackTab.Size = new System.Drawing.Size(752, 444);
-            this.modpackTab.TabIndex = 6;
-            this.modpackTab.Text = "Modpacks";
-            this.modpackTab.UseVisualStyleBackColor = true;
+            this.consoleTab.Controls.Add(this.consoleBox);
+            this.consoleTab.Location = new System.Drawing.Point(4, 22);
+            this.consoleTab.Name = "consoleTab";
+            this.consoleTab.Padding = new System.Windows.Forms.Padding(3);
+            this.consoleTab.Size = new System.Drawing.Size(752, 482);
+            this.consoleTab.TabIndex = 2;
+            this.consoleTab.Text = "Launcher Console";
+            this.consoleTab.UseVisualStyleBackColor = true;
             // 
-            // modpackModList
+            // consoleBox
             // 
-            this.modpackModList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.modpackModList.Location = new System.Drawing.Point(7, 65);
-            this.modpackModList.Name = "modpackModList";
-            this.modpackModList.Size = new System.Drawing.Size(216, 373);
-            this.modpackModList.TabIndex = 2;
-            this.modpackModList.UseCompatibleStateImageBehavior = false;
-            this.modpackModList.View = System.Windows.Forms.View.List;
+            this.consoleBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.consoleBox.Location = new System.Drawing.Point(6, 6);
+            this.consoleBox.Multiline = true;
+            this.consoleBox.Name = "consoleBox";
+            this.consoleBox.ReadOnly = true;
+            this.consoleBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.consoleBox.Size = new System.Drawing.Size(740, 470);
+            this.consoleBox.TabIndex = 0;
             // 
-            // modpackVersionBox
+            // optionTab
             // 
-            this.modpackVersionBox.FormattingEnabled = true;
-            this.modpackVersionBox.Location = new System.Drawing.Point(7, 37);
-            this.modpackVersionBox.Name = "modpackVersionBox";
-            this.modpackVersionBox.Size = new System.Drawing.Size(121, 21);
-            this.modpackVersionBox.TabIndex = 1;
-            this.modpackVersionBox.Text = "Modlist version";
-            this.modpackVersionBox.SelectedIndexChanged += new System.EventHandler(this.modpackVersionBox_SelectedIndexChanged);
-            // 
-            // modpackRefreshButton
-            // 
-            this.modpackRefreshButton.Location = new System.Drawing.Point(7, 7);
-            this.modpackRefreshButton.Name = "modpackRefreshButton";
-            this.modpackRefreshButton.Size = new System.Drawing.Size(75, 23);
-            this.modpackRefreshButton.TabIndex = 0;
-            this.modpackRefreshButton.Text = "Refresh!";
-            this.modpackRefreshButton.UseVisualStyleBackColor = true;
-            this.modpackRefreshButton.Click += new System.EventHandler(this.modpackRefreshButton_Click);
+            this.optionTab.Controls.Add(this.rememberBox);
+            this.optionTab.Location = new System.Drawing.Point(4, 22);
+            this.optionTab.Name = "optionTab";
+            this.optionTab.Size = new System.Drawing.Size(752, 444);
+            this.optionTab.TabIndex = 7;
+            this.optionTab.Text = "Options";
+            this.optionTab.UseVisualStyleBackColor = true;
             // 
             // minecraftVersionBox
             // 
@@ -543,7 +558,6 @@ namespace SinZ_MC_Launcher {
             this.Controls.Add(this.minecraftVersionBox);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.loginStatus);
-            this.Controls.Add(this.rememberBox);
             this.Controls.Add(this.passLabel);
             this.Controls.Add(this.userLabel);
             this.Controls.Add(this.userText);
@@ -555,16 +569,18 @@ namespace SinZ_MC_Launcher {
             this.tabControl1.ResumeLayout(false);
             this.nemTab.ResumeLayout(false);
             this.nemTab.PerformLayout();
-            this.modList.ResumeLayout(false);
-            this.modList.PerformLayout();
-            this.queryList.ResumeLayout(false);
-            this.queryList.PerformLayout();
-            this.consoleList.ResumeLayout(false);
-            this.consoleList.PerformLayout();
-            this.serverStatusList.ResumeLayout(false);
-            this.serverStatusList.PerformLayout();
-            this.browserTab.ResumeLayout(false);
             this.modpackTab.ResumeLayout(false);
+            this.oldRepoTab.ResumeLayout(false);
+            this.oldRepoTab.PerformLayout();
+            this.queryTab.ResumeLayout(false);
+            this.queryTab.PerformLayout();
+            this.serverStatusTab.ResumeLayout(false);
+            this.serverStatusTab.PerformLayout();
+            this.browserTab.ResumeLayout(false);
+            this.consoleTab.ResumeLayout(false);
+            this.consoleTab.PerformLayout();
+            this.optionTab.ResumeLayout(false);
+            this.optionTab.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -586,9 +602,9 @@ namespace SinZ_MC_Launcher {
         private System.Windows.Forms.ComboBox mcVersionBox;
         private System.Windows.Forms.ComboBox versionBox;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage modList;
-        private System.Windows.Forms.TabPage queryList;
-        private System.Windows.Forms.TabPage consoleList;
+        private System.Windows.Forms.TabPage oldRepoTab;
+        private System.Windows.Forms.TabPage queryTab;
+        private System.Windows.Forms.TabPage consoleTab;
         private System.Windows.Forms.TextBox consoleBox;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ComboBox comboBox1;
@@ -598,7 +614,7 @@ namespace SinZ_MC_Launcher {
         private System.Windows.Forms.Label serverModLabel;
         private System.Windows.Forms.Label pluginsLabel;
         private System.Windows.Forms.ListView playerList;
-        private System.Windows.Forms.TabPage serverStatusList;
+        private System.Windows.Forms.TabPage serverStatusTab;
         private System.Windows.Forms.Button initStatusBox;
         private System.Windows.Forms.Label serverNameLabel;
         private System.Windows.Forms.Label serverStatusLabel;
@@ -614,6 +630,7 @@ namespace SinZ_MC_Launcher {
         private ComboBox modpackVersionBox;
         private ListView modpackModList;
         private ComboBox nemVersionBox;
+        private TabPage optionTab;
     }
 }
 
