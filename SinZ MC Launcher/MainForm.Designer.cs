@@ -132,11 +132,10 @@ namespace SinZ_MC_Launcher {
             // 
             // rememberBox
             // 
-            this.rememberBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.rememberBox.AutoSize = true;
             this.rememberBox.Checked = true;
             this.rememberBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.rememberBox.Location = new System.Drawing.Point(3, -35);
+            this.rememberBox.Location = new System.Drawing.Point(6, 3);
             this.rememberBox.Name = "rememberBox";
             this.rememberBox.Size = new System.Drawing.Size(98, 17);
             this.rememberBox.TabIndex = 5;
@@ -223,10 +222,10 @@ namespace SinZ_MC_Launcher {
             this.tabControl1.Controls.Add(this.browserTab);
             this.tabControl1.Controls.Add(this.consoleTab);
             this.tabControl1.Controls.Add(this.optionTab);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Location = new System.Drawing.Point(3, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(760, 470);
+            this.tabControl1.Size = new System.Drawing.Size(781, 470);
             this.tabControl1.TabIndex = 27;
             // 
             // nemTab
@@ -238,7 +237,7 @@ namespace SinZ_MC_Launcher {
             this.nemTab.Location = new System.Drawing.Point(4, 22);
             this.nemTab.Name = "nemTab";
             this.nemTab.Padding = new System.Windows.Forms.Padding(3);
-            this.nemTab.Size = new System.Drawing.Size(752, 444);
+            this.nemTab.Size = new System.Drawing.Size(773, 444);
             this.nemTab.TabIndex = 4;
             this.nemTab.Text = "Not Enough Mods";
             this.nemTab.UseVisualStyleBackColor = true;
@@ -296,7 +295,7 @@ namespace SinZ_MC_Launcher {
             this.modpackTab.Location = new System.Drawing.Point(4, 22);
             this.modpackTab.Name = "modpackTab";
             this.modpackTab.Padding = new System.Windows.Forms.Padding(3);
-            this.modpackTab.Size = new System.Drawing.Size(752, 482);
+            this.modpackTab.Size = new System.Drawing.Size(773, 444);
             this.modpackTab.TabIndex = 6;
             this.modpackTab.Text = "Modpacks";
             this.modpackTab.UseVisualStyleBackColor = true;
@@ -345,7 +344,7 @@ namespace SinZ_MC_Launcher {
             this.oldRepoTab.Location = new System.Drawing.Point(4, 22);
             this.oldRepoTab.Name = "oldRepoTab";
             this.oldRepoTab.Padding = new System.Windows.Forms.Padding(3);
-            this.oldRepoTab.Size = new System.Drawing.Size(752, 482);
+            this.oldRepoTab.Size = new System.Drawing.Size(773, 444);
             this.oldRepoTab.TabIndex = 0;
             this.oldRepoTab.Text = "Mod List";
             this.oldRepoTab.UseVisualStyleBackColor = true;
@@ -410,7 +409,7 @@ namespace SinZ_MC_Launcher {
             this.queryTab.Location = new System.Drawing.Point(4, 22);
             this.queryTab.Name = "queryTab";
             this.queryTab.Padding = new System.Windows.Forms.Padding(3);
-            this.queryTab.Size = new System.Drawing.Size(752, 482);
+            this.queryTab.Size = new System.Drawing.Size(773, 444);
             this.queryTab.TabIndex = 1;
             this.queryTab.Text = "Query Server";
             this.queryTab.UseVisualStyleBackColor = true;
@@ -451,7 +450,7 @@ namespace SinZ_MC_Launcher {
             this.serverStatusTab.Location = new System.Drawing.Point(4, 22);
             this.serverStatusTab.Name = "serverStatusTab";
             this.serverStatusTab.Padding = new System.Windows.Forms.Padding(3);
-            this.serverStatusTab.Size = new System.Drawing.Size(752, 482);
+            this.serverStatusTab.Size = new System.Drawing.Size(773, 444);
             this.serverStatusTab.TabIndex = 3;
             this.serverStatusTab.Text = "Server Status";
             this.serverStatusTab.UseVisualStyleBackColor = true;
@@ -488,7 +487,7 @@ namespace SinZ_MC_Launcher {
             this.browserTab.Location = new System.Drawing.Point(4, 22);
             this.browserTab.Name = "browserTab";
             this.browserTab.Padding = new System.Windows.Forms.Padding(3);
-            this.browserTab.Size = new System.Drawing.Size(752, 482);
+            this.browserTab.Size = new System.Drawing.Size(773, 444);
             this.browserTab.TabIndex = 5;
             this.browserTab.Text = "Web Browser";
             this.browserTab.UseVisualStyleBackColor = true;
@@ -500,10 +499,9 @@ namespace SinZ_MC_Launcher {
             this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.ScriptErrorsSuppressed = true;
-            this.webBrowser.Size = new System.Drawing.Size(746, 476);
+            this.webBrowser.Size = new System.Drawing.Size(767, 438);
             this.webBrowser.TabIndex = 0;
             this.webBrowser.Url = new System.Uri("http://mcupdate.tumblr.com", System.UriKind.Absolute);
-            this.webBrowser.FileDownload += new System.EventHandler(this.webBrowser_FileDownload);
             // 
             // consoleTab
             // 
@@ -511,7 +509,7 @@ namespace SinZ_MC_Launcher {
             this.consoleTab.Location = new System.Drawing.Point(4, 22);
             this.consoleTab.Name = "consoleTab";
             this.consoleTab.Padding = new System.Windows.Forms.Padding(3);
-            this.consoleTab.Size = new System.Drawing.Size(752, 482);
+            this.consoleTab.Size = new System.Drawing.Size(773, 444);
             this.consoleTab.TabIndex = 2;
             this.consoleTab.Text = "Launcher Console";
             this.consoleTab.UseVisualStyleBackColor = true;
@@ -526,7 +524,7 @@ namespace SinZ_MC_Launcher {
             this.consoleBox.Name = "consoleBox";
             this.consoleBox.ReadOnly = true;
             this.consoleBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.consoleBox.Size = new System.Drawing.Size(740, 470);
+            this.consoleBox.Size = new System.Drawing.Size(761, 470);
             this.consoleBox.TabIndex = 0;
             // 
             // optionTab
@@ -534,7 +532,7 @@ namespace SinZ_MC_Launcher {
             this.optionTab.Controls.Add(this.rememberBox);
             this.optionTab.Location = new System.Drawing.Point(4, 22);
             this.optionTab.Name = "optionTab";
-            this.optionTab.Size = new System.Drawing.Size(752, 444);
+            this.optionTab.Size = new System.Drawing.Size(773, 444);
             this.optionTab.TabIndex = 7;
             this.optionTab.Text = "Options";
             this.optionTab.UseVisualStyleBackColor = true;
