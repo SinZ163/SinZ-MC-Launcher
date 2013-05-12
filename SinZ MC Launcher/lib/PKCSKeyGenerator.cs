@@ -124,10 +124,10 @@ namespace SharpLauncher
         /// </summary>
         /// <param name="keystring">This is the same as the "password" of the PBEWithMD5AndDES method.</param>
         /// <param name="salt">This is the salt used to provide extra security to the algorythim.</param>
-        /// <param name="iterationsMd5">Fill out iterationsMd5 later.</param>
+        /// <param name="iterationsMD5">Fill out iterationsMd5 later.</param>
         /// <param name="segments">Fill out segments later.</param>
         /// <returns>ICryptoTransform interface used to perform the encryption.</returns>
-        public ICryptoTransform Generate(string keystring, byte[] salt, int iterationsMd5, int segments)
+        public ICryptoTransform Generate(string keystring, byte[] salt, int iterationsMD5, int segments)
         {
             // MD5 bytes
             int hashLength = 16;
@@ -170,7 +170,7 @@ namespace SharpLauncher
                     result = hashtarget;
                 }
 
-                for (int i = 0; i < iterationsMd5; i++)
+                for (int i = 0; i < iterationsMD5; i++)
                 {
                     result = md5.ComputeHash(result);
                 }
@@ -178,6 +178,7 @@ namespace SharpLauncher
                 // contatenate to keymaterial
                 Array.Copy(result, 0, keyMaterial, j * hashLength, result.Length);
             }
+            md5.Dispose();
 
             Array.Copy(keyMaterial, 0, this.key, 0, 8);
             Array.Copy(keyMaterial, 8, this.iv, 0, 8);

@@ -71,14 +71,14 @@ namespace SinZ_MC_Launcher.Query {
                 for (int i = 0; i + 1 < result.Length; i = i + 2) {
                     output[result[i]] = result[i + 1];
                 }
-                if (output["plugins"] != "")
+                if (!String.IsNullOrEmpty(output["plugins"]))
                 {
                     plugins = ParsePlugins(output["plugins"]);
                 }
                 output.Remove("plugins");
             }
             catch (SocketException) {
-                MessageBox.Show("Server is down or doesn't like Query");
+                MessageBox.Show("Server is down or doesn't like Query", "Socket error in QueryServer", MessageBoxButtons.OK);
             }
             /*}
             catch (Exception) {
@@ -169,7 +169,7 @@ namespace SinZ_MC_Launcher.Query {
                 }
             }
             catch (Exception) {
-                MessageBox.Show("No mods/plugins, but there is a server package, DAFUQ");
+                MessageBox.Show("No mods/plugins, but there is a server package, DAFUQ", "Unknown derp in QueryServer", MessageBoxButtons.OK);
             }
             return output;
         }

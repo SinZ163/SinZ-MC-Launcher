@@ -29,7 +29,7 @@ namespace SinZ_MC_Launcher.Modlist
             {
                 WebClient client = new WebClient();
                 String rawOutput = client.DownloadString(url);
-
+                client.Dispose();
                 modlist = new Dictionary<string, Dictionary<string, string>>();
                 JObject json = JObject.Parse(rawOutput);
                 IList<string> listVersions = json.Properties().Select(p => p.Name).ToList();

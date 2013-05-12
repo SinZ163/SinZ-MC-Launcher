@@ -52,6 +52,7 @@ namespace SinZ_MC_Launcher.Repo {
                 Dictionary<String,object> db = parseRepo();
                 Console.WriteLine("Finished reading repository");
                 form.RefreshOldRepo(db);
+                client.Dispose();
             }
             catch (WebException)
             {
@@ -63,6 +64,7 @@ namespace SinZ_MC_Launcher.Repo {
             FileStream stream = new FileStream(Path.Combine(location, version + ".txt"), FileMode.Open, FileAccess.Read);
             StreamReader reader = new StreamReader(stream);
             String json = reader.ReadToEnd();
+            reader.Dispose();
             return deserializeToDictionary(json);
         }
 

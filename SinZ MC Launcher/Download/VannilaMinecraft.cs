@@ -46,6 +46,7 @@ namespace SinZ_MC_Launcher.Download {
             WebClient client = new WebClient();
             client.DownloadProgressChanged += SetProgress;
             client.DownloadFile(URL, path + "minecraft.jar");
+            client.Dispose();
         }
         public void DownloadNewMinecraft() {
             if (!File.Exists(path + Path.DirectorySeparatorChar + version + ".jar"))
@@ -57,6 +58,7 @@ namespace SinZ_MC_Launcher.Download {
                 WebClient client = new WebClient();
                 client.DownloadProgressChanged += SetProgress;
                 client.DownloadFile(URL, path + Path.DirectorySeparatorChar + version + ".jar");
+                client.Dispose();
             }
         }
 

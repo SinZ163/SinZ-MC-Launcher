@@ -17,6 +17,7 @@ namespace SinZ_MC_Launcher.Repo {
         private void DoQuery() {
             WebClient client = new WebClient();
             String nemOutput = client.DownloadString(serverURL + version + ".json");
+            client.Dispose();
             JArray jsonArray = JArray.Parse(nemOutput);
             NEMDB.Clear();
             foreach (JObject mod in jsonArray) {
@@ -29,9 +30,9 @@ namespace SinZ_MC_Launcher.Repo {
                 NEMDB.Add(mod["name"].ToString(), modInfo);
             }
         }
-        public void UpdateQuery(String version)
+        public void UpdateQuery(String _version)
         {
-            this.version = version;
+            this.version = _version;
             Thread thread = new Thread(new ThreadStart(DoQuery));
             thread.Start();
             while (thread.IsAlive)

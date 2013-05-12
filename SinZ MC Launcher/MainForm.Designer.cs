@@ -562,7 +562,7 @@ namespace SinZ_MC_Launcher {
             this.Controls.Add(this.passText);
             this.Controls.Add(this.loginButton);
             this.Name = "MainForm";
-            this.Text = "SinZ MC Launcher - 11.0.51106.1";
+            this.Text = "SinZ MC Launcher - "+Application.ProductVersion;
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.nemTab.ResumeLayout(false);

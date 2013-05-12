@@ -31,6 +31,7 @@ namespace SinZ_MC_Launcher.Login {
                 File.Delete(lastLoginPath);
             using (Stream stream = File.Create(lastLoginPath))
                 stream.Write(encrypted, 0, encrypted.Length);
+            crypto.Dispose();
         }
 
         public String[] GetLastLogin() {
@@ -46,10 +47,11 @@ namespace SinZ_MC_Launcher.Login {
                 String[] result = new String[2];
                 result[0] = System.Text.Encoding.UTF8.GetString(user);
                 result[1] = System.Text.Encoding.UTF8.GetString(password);
+                crypto.Dispose();
                 return result;
             }
             catch (Exception e) {
-                MessageBox.Show(e.StackTrace);
+                MessageBox.Show(e.StackTrace, "Retrieving the lastlogin file failed",MessageBoxButtons.OK);
                 return null;
             }
         }

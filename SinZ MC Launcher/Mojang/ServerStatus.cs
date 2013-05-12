@@ -25,7 +25,7 @@ namespace SinZ_MC_Launcher.Mojang {
             {
                 WebClient client = new WebClient();
                 String serverResult = client.DownloadString(serverCheck);
-
+                client.Dispose();
                 serverResult = serverResult.TrimStart('[');
                 serverResult = serverResult.TrimEnd(']');
                 serverResult = Regex.Replace(serverResult, "},{", ",");

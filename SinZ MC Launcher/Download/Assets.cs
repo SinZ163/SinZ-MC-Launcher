@@ -64,6 +64,7 @@ namespace SinZ_MC_Launcher.Download {
                 }
                 counter++;
             }
+            client.Dispose();
         }
 
         private void QueryAssets() {
@@ -72,7 +73,7 @@ namespace SinZ_MC_Launcher.Download {
             WebClient client = new WebClient();
 
             String xmlData = client.DownloadString(RESOURCE_LINK);
-
+            client.Dispose();
             keys = new List<String>();
             md5s = new Dictionary<String, String>();
             using (XmlReader reader = XmlReader.Create(new StringReader(xmlData))) {

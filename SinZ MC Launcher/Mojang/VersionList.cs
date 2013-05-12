@@ -29,6 +29,7 @@ namespace SinZ_MC_Launcher.Mojang
             {
                 WebClient client = new WebClient();
                 String versionInfo = client.DownloadString(DOWNLOAD_LINK + "versions/versions.json");
+                client.Dispose();
                 Dictionary<String, object> output = deserializeToDictionary(versionInfo);
                 JArray jsonArray = (JArray)output["versions"];
                 foreach (JObject version in jsonArray)
@@ -39,7 +40,7 @@ namespace SinZ_MC_Launcher.Mojang
             }
             catch (WebException)
             {
-                Console.WriteLine("The mojang download server must be down..");
+                Console.WriteLine("The Mojang download server must be down..");
             }
         }
 
