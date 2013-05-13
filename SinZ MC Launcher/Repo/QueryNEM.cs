@@ -40,5 +40,38 @@ namespace SinZ_MC_Launcher.Repo {
                 Application.DoEvents();
             }
         }
+        public List<String> GetVersions()
+        {
+            try
+            {
+                WebClient client = new WebClient();
+                byte[] webPage = client.DownloadData(new Uri("http://bot.notenoughmods.com"));
+                client.Dispose();
+
+                String lineArray = Encoding.UTF8.GetString(webPage);
+                String[] lines = lineArray.Split(new Char[] { });
+
+                List<String> results = new List<String>();
+                for (int i = 0; i < lines.Count(); i++)
+                {
+                    if (lines[i].Contains(".json"))
+                    {
+                        String message = lines[i].Substring(6); //to remove " href=" "
+                        message = message.Replace(".json", ""); //the start of removing everything after the version
+                        int j = message.IndexOf('"');           //To get the position of the first character after the version
+                        message = message.Substring(0,j);       //Clean our entry to what we want
+                        Console.WriteLine("Detected NEM Version: "+message);
+                        results.Add(message);
+                    }
+                }
+                return results;
+                
+            }
+            catch (WebException e)
+            {
+                MessageBox.Show(e.StackTrace);
+            }
+            return new List<string>();
+        }
     }
 }

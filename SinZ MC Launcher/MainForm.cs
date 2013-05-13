@@ -78,6 +78,11 @@ namespace SinZ_MC_Launcher {
             //END VERSIONLIST
 
             //NEM
+            List<String> versions = nemQuery.GetVersions();
+            nemVersionBox.Items.Clear();
+            foreach(String version in versions) {
+                nemVersionBox.Items.Add(version);
+            }
             nemVersionBox.SelectedIndex = nemVersionBox.Items.Count - 1;
             //END NEM
 

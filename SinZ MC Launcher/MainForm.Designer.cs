@@ -245,10 +245,6 @@ namespace SinZ_MC_Launcher {
             // nemVersionBox
             // 
             this.nemVersionBox.FormattingEnabled = true;
-            this.nemVersionBox.Items.AddRange(new object[] {
-            "1.4.6-1.4.7",
-            "1.5.1",
-            "1.5.2"});
             this.nemVersionBox.Location = new System.Drawing.Point(88, 9);
             this.nemVersionBox.Name = "nemVersionBox";
             this.nemVersionBox.Size = new System.Drawing.Size(121, 21);
