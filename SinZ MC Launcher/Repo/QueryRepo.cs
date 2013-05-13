@@ -26,11 +26,6 @@ namespace SinZ_MC_Launcher.Repo {
 
             Thread thread = new Thread(new ThreadStart(CheckVersions));
             thread.Start();
-            //client.DownloadFileCompleted += QueryCompleted;
-            //client.DownloadFileAsync(repo, Path.Combine(location, "modList.txt"));
-            while (thread.IsAlive) {
-                Application.DoEvents();
-            }
         }
         private void CheckVersions() {
             try

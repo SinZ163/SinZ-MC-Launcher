@@ -46,12 +46,14 @@ namespace SinZ_MC_Launcher {
 
         ConsoleStringWriter _writer;
         private void MainForm_Load(object sender, EventArgs e) {
+            if (!Directory.Exists(location))
+                Directory.CreateDirectory(location);
+
+
             //CONSOLE
             _writer = new ConsoleStringWriter(this);
             Console.SetOut(_writer);
             //END CONSOLE
-            if (!Directory.Exists(location))
-                Directory.CreateDirectory(location);
 
             //SETTINGS
             lastLogin = new LastLogin();
@@ -73,18 +75,13 @@ namespace SinZ_MC_Launcher {
             status = new ServerStatus(this);
             //END SERVER STATUS
 
+            //NEM
+            nemQuery = new QueryNEM(this);
+            //END NEM
+
             //VERSIONLIST
             versionList = new VersionList(this);
             //END VERSIONLIST
-
-            //NEM
-            List<String> versions = nemQuery.GetVersions();
-            nemVersionBox.Items.Clear();
-            foreach(String version in versions) {
-                nemVersionBox.Items.Add(version);
-            }
-            nemVersionBox.SelectedIndex = nemVersionBox.Items.Count - 1;
-            //END NEM
 
             //OLD REPO
             repo = new Repo.QueryRepo(this);
@@ -224,7 +221,7 @@ namespace SinZ_MC_Launcher {
         #region nemTab
         private Dictionary<string, Dictionary<string, string>> nemDB;
         private String nemVersion;
-        QueryNEM nemQuery = new QueryNEM();
+        QueryNEM nemQuery;
 
         private void nemRefreshButton_Click(object sender, EventArgs e) {
             nemQuery.UpdateQuery(nemVersion);
@@ -250,6 +247,24 @@ namespace SinZ_MC_Launcher {
         private void nemVersionBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             nemVersion = (String)nemVersionBox.SelectedItem;
+        }
+
+        private delegate void RefreshNEMVersions_(List<String> versions);
+        public void RefreshNEMVersions(List<String> versions)
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new RefreshNEMVersions_(RefreshNEMVersions), versions);
+            }
+            else
+            {
+                nemVersionBox.Items.Clear();
+                foreach (String version in versions)
+                {
+                    nemVersionBox.Items.Add(version);
+                }
+                nemVersionBox.SelectedIndex = nemVersionBox.Items.Count - 1;
+            }
         }
 #endregion
 

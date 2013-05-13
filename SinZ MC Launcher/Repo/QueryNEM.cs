@@ -14,6 +14,13 @@ namespace SinZ_MC_Launcher.Repo {
         private String version;
         public Dictionary<String,Dictionary<String,String>> NEMDB = new Dictionary<string,Dictionary<string,string>>();
 
+        MainForm form;
+        public QueryNEM(MainForm form)
+        {
+            this.form = form;
+            GetVersions();
+        }
+
         private void DoQuery() {
             WebClient client = new WebClient();
             String nemOutput = client.DownloadString(serverURL + version + ".json");
@@ -40,7 +47,14 @@ namespace SinZ_MC_Launcher.Repo {
                 Application.DoEvents();
             }
         }
-        public List<String> GetVersions()
+        List<String> versions = new List<string>();
+        public void GetVersions()
+        {
+            Thread thread = new Thread(new ThreadStart(DoVersions));
+            thread.Start();
+        }
+
+        private void DoVersions()
         {
             try
             {
@@ -51,7 +65,6 @@ namespace SinZ_MC_Launcher.Repo {
                 String lineArray = Encoding.UTF8.GetString(webPage);
                 String[] lines = lineArray.Split(new Char[] { });
 
-                List<String> results = new List<String>();
                 for (int i = 0; i < lines.Count(); i++)
                 {
                     if (lines[i].Contains(".json"))
@@ -61,17 +74,15 @@ namespace SinZ_MC_Launcher.Repo {
                         int j = message.IndexOf('"');           //To get the position of the first character after the version
                         message = message.Substring(0,j);       //Clean our entry to what we want
                         Console.WriteLine("Detected NEM Version: "+message);
-                        results.Add(message);
+                        versions.Add(message);
                     }
                 }
-                return results;
-                
+                form.RefreshNEMVersions(versions);
             }
             catch (WebException e)
             {
                 MessageBox.Show(e.StackTrace);
             }
-            return new List<string>();
         }
     }
 }

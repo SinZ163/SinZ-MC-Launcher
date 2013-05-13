@@ -249,6 +249,7 @@ namespace SinZ_MC_Launcher {
             this.nemVersionBox.Name = "nemVersionBox";
             this.nemVersionBox.Size = new System.Drawing.Size(121, 21);
             this.nemVersionBox.TabIndex = 3;
+            this.nemVersionBox.Text = "Refreshing versions!";
             this.nemVersionBox.SelectedIndexChanged += new System.EventHandler(this.nemVersionBox_SelectedIndexChanged);
             // 
             // nemCountLabel
@@ -558,7 +559,7 @@ namespace SinZ_MC_Launcher {
             this.Controls.Add(this.passText);
             this.Controls.Add(this.loginButton);
             this.Name = "MainForm";
-            this.Text = "SinZ MC Launcher - "+Application.ProductVersion;
+            this.Text = "SinZ MC Launcher - 11.0.60315.1";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.nemTab.ResumeLayout(false);
