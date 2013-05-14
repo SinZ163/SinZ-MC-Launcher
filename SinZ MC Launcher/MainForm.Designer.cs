@@ -30,7 +30,7 @@ namespace SinZ_MC_Launcher {
             this.userText = new System.Windows.Forms.TextBox();
             this.userLabel = new System.Windows.Forms.Label();
             this.passLabel = new System.Windows.Forms.Label();
-            this.rememberBox = new System.Windows.Forms.CheckBox();
+            this.optionRememberBox = new System.Windows.Forms.CheckBox();
             this.loginStatus = new System.Windows.Forms.Label();
             this.queryHostText = new System.Windows.Forms.TextBox();
             this.queryPortText = new System.Windows.Forms.TextBox();
@@ -68,6 +68,7 @@ namespace SinZ_MC_Launcher {
             this.consoleBox = new System.Windows.Forms.TextBox();
             this.optionTab = new System.Windows.Forms.TabPage();
             this.minecraftVersionBox = new System.Windows.Forms.ComboBox();
+            this.optionConsoleBox = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.nemTab.SuspendLayout();
             this.modpackTab.SuspendLayout();
@@ -130,17 +131,17 @@ namespace SinZ_MC_Launcher {
             this.passLabel.Text = "Password:";
             this.passLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // rememberBox
+            // optionRememberBox
             // 
-            this.rememberBox.AutoSize = true;
-            this.rememberBox.Checked = true;
-            this.rememberBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.rememberBox.Location = new System.Drawing.Point(6, 3);
-            this.rememberBox.Name = "rememberBox";
-            this.rememberBox.Size = new System.Drawing.Size(98, 17);
-            this.rememberBox.TabIndex = 5;
-            this.rememberBox.Text = "Remember Me!";
-            this.rememberBox.UseVisualStyleBackColor = true;
+            this.optionRememberBox.AutoSize = true;
+            this.optionRememberBox.Checked = true;
+            this.optionRememberBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.optionRememberBox.Location = new System.Drawing.Point(6, 3);
+            this.optionRememberBox.Name = "optionRememberBox";
+            this.optionRememberBox.Size = new System.Drawing.Size(98, 17);
+            this.optionRememberBox.TabIndex = 5;
+            this.optionRememberBox.Text = "Remember Me!";
+            this.optionRememberBox.UseVisualStyleBackColor = true;
             // 
             // loginStatus
             // 
@@ -526,7 +527,8 @@ namespace SinZ_MC_Launcher {
             // 
             // optionTab
             // 
-            this.optionTab.Controls.Add(this.rememberBox);
+            this.optionTab.Controls.Add(this.optionConsoleBox);
+            this.optionTab.Controls.Add(this.optionRememberBox);
             this.optionTab.Location = new System.Drawing.Point(4, 22);
             this.optionTab.Name = "optionTab";
             this.optionTab.Size = new System.Drawing.Size(773, 444);
@@ -543,6 +545,18 @@ namespace SinZ_MC_Launcher {
             this.minecraftVersionBox.Size = new System.Drawing.Size(121, 21);
             this.minecraftVersionBox.TabIndex = 28;
             this.minecraftVersionBox.Text = "Versions";
+            // 
+            // optionConsoleBox
+            // 
+            this.optionConsoleBox.AutoSize = true;
+            this.optionConsoleBox.Checked = true;
+            this.optionConsoleBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.optionConsoleBox.Location = new System.Drawing.Point(6, 27);
+            this.optionConsoleBox.Name = "optionConsoleBox";
+            this.optionConsoleBox.Size = new System.Drawing.Size(109, 17);
+            this.optionConsoleBox.TabIndex = 6;
+            this.optionConsoleBox.Text = "Console Enabled!";
+            this.optionConsoleBox.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -588,7 +602,7 @@ namespace SinZ_MC_Launcher {
         private System.Windows.Forms.TextBox userText;
         private System.Windows.Forms.Label userLabel;
         private System.Windows.Forms.Label passLabel;
-        private System.Windows.Forms.CheckBox rememberBox;
+        private System.Windows.Forms.CheckBox optionRememberBox;
         private System.Windows.Forms.Label loginStatus;
         private System.Windows.Forms.TextBox queryHostText;
         private System.Windows.Forms.TextBox queryPortText;
@@ -626,6 +640,7 @@ namespace SinZ_MC_Launcher {
         private ListView modpackModList;
         private ComboBox nemVersionBox;
         private TabPage optionTab;
+        private CheckBox optionConsoleBox;
     }
 }
 
