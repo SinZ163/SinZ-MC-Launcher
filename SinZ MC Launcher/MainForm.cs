@@ -325,5 +325,24 @@ namespace SinZ_MC_Launcher {
             }
         }
         #endregion
+
+        #region forgeTab
+        private void forgeRefreshButton_Click(object sender, EventArgs e)
+        {
+            QueryForge forge = new QueryForge();
+            forgeVersionList.Items.Clear();
+            foreach (String forgeBuildVer in forge.ForgeInfo.Keys)
+            {
+                ListViewItem item = new ListViewItem(new[] { forgeBuildVer, forge.ForgeInfo[forgeBuildVer]["mcVersion"] });
+                item.Tag = forge.ForgeInfo[forgeBuildVer]["url"];
+                forgeVersionList.Items.Add(item);
+            }
+        }
+
+        private void forgeSelectButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(forgeVersionList.SelectedItems[0].Tag.ToString());
+        }
+        #endregion
     }
 }

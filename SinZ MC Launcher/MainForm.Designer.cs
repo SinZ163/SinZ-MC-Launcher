@@ -44,6 +44,9 @@ namespace SinZ_MC_Launcher {
             this.nemCountLabel = new System.Windows.Forms.Label();
             this.nemModList = new System.Windows.Forms.ListView();
             this.nemRefreshButton = new System.Windows.Forms.Button();
+            this.forgeTab = new System.Windows.Forms.TabPage();
+            this.forgeVersionList = new System.Windows.Forms.ListView();
+            this.forgeRefreshButton = new System.Windows.Forms.Button();
             this.modpackTab = new System.Windows.Forms.TabPage();
             this.modpackModList = new System.Windows.Forms.ListView();
             this.modpackVersionBox = new System.Windows.Forms.ComboBox();
@@ -67,10 +70,14 @@ namespace SinZ_MC_Launcher {
             this.consoleTab = new System.Windows.Forms.TabPage();
             this.consoleBox = new System.Windows.Forms.TextBox();
             this.optionTab = new System.Windows.Forms.TabPage();
-            this.minecraftVersionBox = new System.Windows.Forms.ComboBox();
             this.optionConsoleBox = new System.Windows.Forms.CheckBox();
+            this.minecraftVersionBox = new System.Windows.Forms.ComboBox();
+            this.forgeVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.mcVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.forgeSelectButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.nemTab.SuspendLayout();
+            this.forgeTab.SuspendLayout();
             this.modpackTab.SuspendLayout();
             this.oldRepoTab.SuspendLayout();
             this.queryTab.SuspendLayout();
@@ -216,6 +223,7 @@ namespace SinZ_MC_Launcher {
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.nemTab);
+            this.tabControl1.Controls.Add(this.forgeTab);
             this.tabControl1.Controls.Add(this.modpackTab);
             this.tabControl1.Controls.Add(this.oldRepoTab);
             this.tabControl1.Controls.Add(this.queryTab);
@@ -284,6 +292,41 @@ namespace SinZ_MC_Launcher {
             this.nemRefreshButton.Text = "Refresh!";
             this.nemRefreshButton.UseVisualStyleBackColor = true;
             this.nemRefreshButton.Click += new System.EventHandler(this.nemRefreshButton_Click);
+            // 
+            // forgeTab
+            // 
+            this.forgeTab.Controls.Add(this.forgeSelectButton);
+            this.forgeTab.Controls.Add(this.forgeVersionList);
+            this.forgeTab.Controls.Add(this.forgeRefreshButton);
+            this.forgeTab.Location = new System.Drawing.Point(4, 22);
+            this.forgeTab.Name = "forgeTab";
+            this.forgeTab.Size = new System.Drawing.Size(773, 444);
+            this.forgeTab.TabIndex = 8;
+            this.forgeTab.Text = "Minecraft Forge";
+            this.forgeTab.UseVisualStyleBackColor = true;
+            // 
+            // forgeVersionList
+            // 
+            this.forgeVersionList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.forgeVersion,
+            this.mcVersion});
+            this.forgeVersionList.FullRowSelect = true;
+            this.forgeVersionList.Location = new System.Drawing.Point(4, 46);
+            this.forgeVersionList.Name = "forgeVersionList";
+            this.forgeVersionList.Size = new System.Drawing.Size(382, 395);
+            this.forgeVersionList.TabIndex = 1;
+            this.forgeVersionList.UseCompatibleStateImageBehavior = false;
+            this.forgeVersionList.View = System.Windows.Forms.View.Details;
+            // 
+            // forgeRefreshButton
+            // 
+            this.forgeRefreshButton.Location = new System.Drawing.Point(15, 12);
+            this.forgeRefreshButton.Name = "forgeRefreshButton";
+            this.forgeRefreshButton.Size = new System.Drawing.Size(75, 27);
+            this.forgeRefreshButton.TabIndex = 0;
+            this.forgeRefreshButton.Text = "Refresh!";
+            this.forgeRefreshButton.UseVisualStyleBackColor = true;
+            this.forgeRefreshButton.Click += new System.EventHandler(this.forgeRefreshButton_Click);
             // 
             // modpackTab
             // 
@@ -536,16 +579,6 @@ namespace SinZ_MC_Launcher {
             this.optionTab.Text = "Options";
             this.optionTab.UseVisualStyleBackColor = true;
             // 
-            // minecraftVersionBox
-            // 
-            this.minecraftVersionBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.minecraftVersionBox.FormattingEnabled = true;
-            this.minecraftVersionBox.Location = new System.Drawing.Point(13, 485);
-            this.minecraftVersionBox.Name = "minecraftVersionBox";
-            this.minecraftVersionBox.Size = new System.Drawing.Size(121, 21);
-            this.minecraftVersionBox.TabIndex = 28;
-            this.minecraftVersionBox.Text = "Versions";
-            // 
             // optionConsoleBox
             // 
             this.optionConsoleBox.AutoSize = true;
@@ -557,6 +590,36 @@ namespace SinZ_MC_Launcher {
             this.optionConsoleBox.TabIndex = 6;
             this.optionConsoleBox.Text = "Console Enabled!";
             this.optionConsoleBox.UseVisualStyleBackColor = true;
+            // 
+            // minecraftVersionBox
+            // 
+            this.minecraftVersionBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.minecraftVersionBox.FormattingEnabled = true;
+            this.minecraftVersionBox.Location = new System.Drawing.Point(13, 485);
+            this.minecraftVersionBox.Name = "minecraftVersionBox";
+            this.minecraftVersionBox.Size = new System.Drawing.Size(121, 21);
+            this.minecraftVersionBox.TabIndex = 28;
+            this.minecraftVersionBox.Text = "Versions";
+            // 
+            // forgeVersion
+            // 
+            this.forgeVersion.Text = "Minecraft Forge Version";
+            this.forgeVersion.Width = 243;
+            // 
+            // mcVersion
+            // 
+            this.mcVersion.Text = "Minecraft  Version";
+            this.mcVersion.Width = 316;
+            // 
+            // forgeSelectButton
+            // 
+            this.forgeSelectButton.Location = new System.Drawing.Point(392, 414);
+            this.forgeSelectButton.Name = "forgeSelectButton";
+            this.forgeSelectButton.Size = new System.Drawing.Size(75, 27);
+            this.forgeSelectButton.TabIndex = 2;
+            this.forgeSelectButton.Text = "Select!";
+            this.forgeSelectButton.UseVisualStyleBackColor = true;
+            this.forgeSelectButton.Click += new System.EventHandler(this.forgeSelectButton_Click);
             // 
             // MainForm
             // 
@@ -578,6 +641,7 @@ namespace SinZ_MC_Launcher {
             this.tabControl1.ResumeLayout(false);
             this.nemTab.ResumeLayout(false);
             this.nemTab.PerformLayout();
+            this.forgeTab.ResumeLayout(false);
             this.modpackTab.ResumeLayout(false);
             this.oldRepoTab.ResumeLayout(false);
             this.oldRepoTab.PerformLayout();
@@ -641,6 +705,12 @@ namespace SinZ_MC_Launcher {
         private ComboBox nemVersionBox;
         private TabPage optionTab;
         private CheckBox optionConsoleBox;
+        private TabPage forgeTab;
+        private Button forgeRefreshButton;
+        private ListView forgeVersionList;
+        private ColumnHeader forgeVersion;
+        private ColumnHeader mcVersion;
+        private Button forgeSelectButton;
     }
 }
 

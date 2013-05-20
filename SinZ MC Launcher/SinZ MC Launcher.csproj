@@ -92,6 +92,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query\QueryServer.cs" />
+    <Compile Include="Repo\QueryForge.cs" />
     <Compile Include="Repo\QueryNEM.cs" />
     <Compile Include="Repo\QueryRepo.cs" />
     <Compile Include="Download\VannilaMinecraft.cs" />
