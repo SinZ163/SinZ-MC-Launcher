@@ -47,7 +47,6 @@ namespace SinZ_MC_Launcher.Repo {
                 Application.DoEvents();
             }
         }
-        List<String> versions = new List<string>();
         public void GetVersions()
         {
             Thread thread = new Thread(new ThreadStart(DoVersions));
@@ -59,24 +58,19 @@ namespace SinZ_MC_Launcher.Repo {
             try
             {
                 WebClient client = new WebClient();
-                byte[] webPage = client.DownloadData(new Uri("http://bot.notenoughmods.com"));
+                String webPage = client.DownloadString(new Uri("http://bot.notenoughmods.com?json"));
                 client.Dispose();
 
-                String lineArray = Encoding.UTF8.GetString(webPage);
-                String[] lines = lineArray.Split(new Char[] { });
+                JObject json = JObject.Parse(webPage);
+                IList<string> keys = json.Properties().Select(p => p.Name).ToList();
 
-                for (int i = 0; i < lines.Count(); i++)
+                List<String> versions = new List<string>();
+                foreach (String key in keys)
                 {
-                    if (lines[i].Contains(".json"))
-                    {
-                        String message = lines[i].Substring(6); //to remove " href=" "
-                        message = message.Replace(".json", ""); //the start of removing everything after the version
-                        int j = message.IndexOf('"');           //To get the position of the first character after the version
-                        message = message.Substring(0,j);       //Clean our entry to what we want
-                        Console.WriteLine("Detected NEM Version: "+message);
-                        versions.Add(message);
-                    }
+                    Console.WriteLine("Detected NEM Version: " + key);
+                    versions.Add(key);
                 }
+
                 form.RefreshNEMVersions(versions);
             }
             catch (WebException e)

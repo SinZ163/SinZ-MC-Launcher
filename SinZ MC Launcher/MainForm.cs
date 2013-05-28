@@ -45,6 +45,7 @@ namespace SinZ_MC_Launcher {
         LastLogin lastLogin;
 
         ConsoleStringWriter _writer;
+
         private void MainForm_Load(object sender, EventArgs e) {
             if (!Directory.Exists(location))
                 Directory.CreateDirectory(location);
@@ -87,30 +88,47 @@ namespace SinZ_MC_Launcher {
             //OLD REPO
             repo = new Repo.QueryRepo(this);
             //END OLD REPO
+
         }
 
+        Boolean loggedIn = false;
         private void loginButton_Click(object sender, EventArgs e) {
-            Console.WriteLine("Attempting Login!");
-            Login.Login login = new Login.Login(userText.Text, passText.Text);
-            this.username = login.username;
-            this.sessionID = login.sessionID;
-            if (login.error == "Success") {
-                LoginSuccessful();
-            } else {
-                switch (login.error) {
-                    case "Bad login":
-                        MessageBox.Show("Invalid username and/or password.");
-                        break;
-                    default:
-                        MessageBox.Show("Login failed: "+login.error);
-                        break;
+            if (loggedIn)
+            {
+                Assets downloadAssets = new Assets();
+                Libraries downloadLibraries = new Libraries((String)minecraftVersionBox.SelectedItem);
+                DownloadMinecraft downloadMinecraft = new DownloadMinecraft((String)minecraftVersionBox.SelectedItem);
+                LaunchMinecraft mc = new LaunchMinecraft(username, sessionID, optionConsoleBox.Checked, (String)minecraftVersionBox.SelectedItem, downloadLibraries.results);
+            }
+            else
+            {
+                Console.WriteLine("Attempting Login!");
+                Login.Login login = new Login.Login(userText.Text, passText.Text);
+                this.username = login.username;
+                this.sessionID = login.sessionID;
+                if (login.error == "Success")
+                {
+                    LoginSuccessful();
+                }
+                else
+                {
+                    switch (login.error)
+                    {
+                        case "Bad login":
+                            MessageBox.Show("Invalid username and/or password.");
+                            break;
+                        default:
+                            MessageBox.Show("Login failed: " + login.error);
+                            break;
+                    }
                 }
             }
         }
         public void LoginSuccessful() {
             Console.WriteLine("Login successful: " + sessionID);
+            loggedIn = true;
             loginStatus.Text = "Login Status: Logged in as " + username;
-            loginButton.Enabled = false;
+            loginButton.Text = "Start Minecraft!";
             //SETTINGS
             FileStream stream = new FileStream(location + "settings", FileMode.OpenOrCreate);
             stream.WriteByte(optionRememberBox.Checked ? (byte)1 : (byte)0);
@@ -121,11 +139,6 @@ namespace SinZ_MC_Launcher {
             }
             stream.Close();
             //END SETTINGS
-
-            Assets downloadAssets = new Assets();
-            Libraries downloadLibraries = new Libraries((String)minecraftVersionBox.SelectedItem);
-            DownloadMinecraft downloadMinecraft = new DownloadMinecraft((String)minecraftVersionBox.SelectedItem);
-            LaunchMinecraft mc = new LaunchMinecraft(username, sessionID, optionConsoleBox.Checked, (String)minecraftVersionBox.SelectedItem, downloadLibraries.results);
         }
 
         #region repo
