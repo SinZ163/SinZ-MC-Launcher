@@ -5,6 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace SinZ_MC_Launcher.Modlist
@@ -12,7 +13,7 @@ namespace SinZ_MC_Launcher.Modlist
     class ReadModlist
     {
         Uri url = new Uri("http://sinz.x10.mx/repo/modlists/test.json");
-        public Dictionary<String, Dictionary<String, String>> modlist;
+        public Dictionary<String, object> modlist;
         public ReadModlist()
         {
             Thread downloadThread = new Thread(new ThreadStart(DownloadModlist));
@@ -30,19 +31,7 @@ namespace SinZ_MC_Launcher.Modlist
                 WebClient client = new WebClient();
                 String rawOutput = client.DownloadString(url);
                 client.Dispose();
-                modlist = new Dictionary<string, Dictionary<string, string>>();
-                JObject json = JObject.Parse(rawOutput);
-                IList<string> listVersions = json.Properties().Select(p => p.Name).ToList();
-                foreach (String version in listVersions)
-                {
-                    Dictionary<String, String> a = new Dictionary<string, string>();
-                    IList<string> mods = ((JObject)json[version]).Properties().Select(p => p.Name).ToList();
-                    foreach (String mod in mods)
-                    {
-                        a.Add(mod, json[version][mod].ToString());
-                    }
-                    modlist.Add(version, a);
-                }
+                modlist = deserializeToDictionary(rawOutput);
             }
             catch (WebException)
             {
@@ -52,6 +41,24 @@ namespace SinZ_MC_Launcher.Modlist
             {
                 Console.WriteLine("Something isn't right...");
             }
+        }
+        //Got from http://stackoverflow.com/questions/1207731
+        private Dictionary<string, object> deserializeToDictionary(string jo)
+        {
+            Dictionary<string, object> values = JsonConvert.DeserializeObject<Dictionary<string, object>>(jo);
+            Dictionary<string, object> values2 = new Dictionary<string, object>();
+            foreach (KeyValuePair<string, object> d in values)
+            {
+                if (d.Value.GetType().FullName.Contains("Newtonsoft.Json.Linq.JObject"))
+                {
+                    values2.Add(d.Key, deserializeToDictionary(d.Value.ToString()));
+                }
+                else
+                {
+                    values2.Add(d.Key, d.Value);
+                }
+            }
+            return values2;
         }
     }
 }

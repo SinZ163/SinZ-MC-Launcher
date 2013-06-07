@@ -331,11 +331,29 @@ namespace SinZ_MC_Launcher {
 
         private void modpackVersionBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            modpackModList.Items.Clear();
-            foreach (String mod in modlist.modlist[(String)modpackVersionBox.SelectedItem].Keys)
+            modpackViewer.Nodes.Clear();
+            Dictionary<String, object> tmp = (Dictionary<String, object>)modlist.modlist[(String)modpackVersionBox.SelectedItem];
+            foreach (String type in tmp.Keys)
             {
-                modpackModList.Items.Add(mod + " - " + modlist.modlist[(String)modpackVersionBox.SelectedItem][mod]);
+                if (type == "Minecraft")
+                {
+                    TreeNode mcVersion = new TreeNode((String)tmp["Minecraft"]);
+                    modpackViewer.Nodes.Add(new TreeNode("Minecraft", new TreeNode[]{mcVersion}));
+                }
+                else
+                {
+                    List<TreeNode> array = new List<TreeNode>();
+                    Dictionary<String, object> tmp2 = (Dictionary<String, object>)tmp[type];
+                    foreach (String mod in tmp2.Keys)
+                    {
+                        TreeNode modVersion = new TreeNode((String)tmp2[mod]);
+                        array.Add(new TreeNode(mod, new TreeNode[] { modVersion }));
+
+                    }
+                    modpackViewer.Nodes.Add(new TreeNode(type,array.ToArray()));
+                }
             }
+            modpackViewer.ExpandAll();
         }
         #endregion
 

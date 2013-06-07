@@ -45,10 +45,12 @@ namespace SinZ_MC_Launcher {
             this.nemModList = new System.Windows.Forms.ListView();
             this.nemRefreshButton = new System.Windows.Forms.Button();
             this.forgeTab = new System.Windows.Forms.TabPage();
+            this.forgeSelectButton = new System.Windows.Forms.Button();
             this.forgeVersionList = new System.Windows.Forms.ListView();
+            this.forgeVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.mcVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.forgeRefreshButton = new System.Windows.Forms.Button();
             this.modpackTab = new System.Windows.Forms.TabPage();
-            this.modpackModList = new System.Windows.Forms.ListView();
             this.modpackVersionBox = new System.Windows.Forms.ComboBox();
             this.modpackRefreshButton = new System.Windows.Forms.Button();
             this.oldRepoTab = new System.Windows.Forms.TabPage();
@@ -72,9 +74,7 @@ namespace SinZ_MC_Launcher {
             this.optionTab = new System.Windows.Forms.TabPage();
             this.optionConsoleBox = new System.Windows.Forms.CheckBox();
             this.minecraftVersionBox = new System.Windows.Forms.ComboBox();
-            this.forgeVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.mcVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.forgeSelectButton = new System.Windows.Forms.Button();
+            this.modpackViewer = new System.Windows.Forms.TreeView();
             this.tabControl1.SuspendLayout();
             this.nemTab.SuspendLayout();
             this.forgeTab.SuspendLayout();
@@ -305,6 +305,16 @@ namespace SinZ_MC_Launcher {
             this.forgeTab.Text = "Minecraft Forge";
             this.forgeTab.UseVisualStyleBackColor = true;
             // 
+            // forgeSelectButton
+            // 
+            this.forgeSelectButton.Location = new System.Drawing.Point(392, 414);
+            this.forgeSelectButton.Name = "forgeSelectButton";
+            this.forgeSelectButton.Size = new System.Drawing.Size(75, 27);
+            this.forgeSelectButton.TabIndex = 2;
+            this.forgeSelectButton.Text = "Select!";
+            this.forgeSelectButton.UseVisualStyleBackColor = true;
+            this.forgeSelectButton.Click += new System.EventHandler(this.forgeSelectButton_Click);
+            // 
             // forgeVersionList
             // 
             this.forgeVersionList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -318,6 +328,16 @@ namespace SinZ_MC_Launcher {
             this.forgeVersionList.UseCompatibleStateImageBehavior = false;
             this.forgeVersionList.View = System.Windows.Forms.View.Details;
             // 
+            // forgeVersion
+            // 
+            this.forgeVersion.Text = "Minecraft Forge Version";
+            this.forgeVersion.Width = 243;
+            // 
+            // mcVersion
+            // 
+            this.mcVersion.Text = "Minecraft  Version";
+            this.mcVersion.Width = 316;
+            // 
             // forgeRefreshButton
             // 
             this.forgeRefreshButton.Location = new System.Drawing.Point(15, 12);
@@ -330,7 +350,7 @@ namespace SinZ_MC_Launcher {
             // 
             // modpackTab
             // 
-            this.modpackTab.Controls.Add(this.modpackModList);
+            this.modpackTab.Controls.Add(this.modpackViewer);
             this.modpackTab.Controls.Add(this.modpackVersionBox);
             this.modpackTab.Controls.Add(this.modpackRefreshButton);
             this.modpackTab.Location = new System.Drawing.Point(4, 22);
@@ -340,17 +360,6 @@ namespace SinZ_MC_Launcher {
             this.modpackTab.TabIndex = 6;
             this.modpackTab.Text = "Modpacks";
             this.modpackTab.UseVisualStyleBackColor = true;
-            // 
-            // modpackModList
-            // 
-            this.modpackModList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.modpackModList.Location = new System.Drawing.Point(7, 65);
-            this.modpackModList.Name = "modpackModList";
-            this.modpackModList.Size = new System.Drawing.Size(216, 411);
-            this.modpackModList.TabIndex = 2;
-            this.modpackModList.UseCompatibleStateImageBehavior = false;
-            this.modpackModList.View = System.Windows.Forms.View.List;
             // 
             // modpackVersionBox
             // 
@@ -601,25 +610,16 @@ namespace SinZ_MC_Launcher {
             this.minecraftVersionBox.TabIndex = 28;
             this.minecraftVersionBox.Text = "Versions";
             // 
-            // forgeVersion
+            // modpackViewer
             // 
-            this.forgeVersion.Text = "Minecraft Forge Version";
-            this.forgeVersion.Width = 243;
-            // 
-            // mcVersion
-            // 
-            this.mcVersion.Text = "Minecraft  Version";
-            this.mcVersion.Width = 316;
-            // 
-            // forgeSelectButton
-            // 
-            this.forgeSelectButton.Location = new System.Drawing.Point(392, 414);
-            this.forgeSelectButton.Name = "forgeSelectButton";
-            this.forgeSelectButton.Size = new System.Drawing.Size(75, 27);
-            this.forgeSelectButton.TabIndex = 2;
-            this.forgeSelectButton.Text = "Select!";
-            this.forgeSelectButton.UseVisualStyleBackColor = true;
-            this.forgeSelectButton.Click += new System.EventHandler(this.forgeSelectButton_Click);
+            this.modpackViewer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.modpackViewer.Cursor = System.Windows.Forms.Cursors.Default;
+            this.modpackViewer.HotTracking = true;
+            this.modpackViewer.Location = new System.Drawing.Point(3, 64);
+            this.modpackViewer.Name = "modpackViewer";
+            this.modpackViewer.Size = new System.Drawing.Size(256, 374);
+            this.modpackViewer.TabIndex = 3;
             // 
             // MainForm
             // 
@@ -701,7 +701,6 @@ namespace SinZ_MC_Launcher {
         private TabPage modpackTab;
         private Button modpackRefreshButton;
         private ComboBox modpackVersionBox;
-        private ListView modpackModList;
         private ComboBox nemVersionBox;
         private TabPage optionTab;
         private CheckBox optionConsoleBox;
@@ -711,6 +710,7 @@ namespace SinZ_MC_Launcher {
         private ColumnHeader forgeVersion;
         private ColumnHeader mcVersion;
         private Button forgeSelectButton;
+        private TreeView modpackViewer;
     }
 }
 
