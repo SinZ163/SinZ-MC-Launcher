@@ -89,6 +89,7 @@
     <Compile Include="lib\PKCSKeyGenerator.cs" />
     <Compile Include="Modlist\ReadModlist.cs" />
     <Compile Include="Mojang\VersionList.cs" />
+    <Compile Include="Platform\Technic\TechnicNews.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query\QueryServer.cs" />

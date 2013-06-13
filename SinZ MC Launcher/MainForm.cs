@@ -18,6 +18,7 @@ using SinZ_MC_Launcher.Repo;
 using SinZ_MC_Launcher.Mojang;
 using SinZ_MC_Launcher.UI;
 using SinZ_MC_Launcher.Modlist;
+using SinZ_MC_Launcher.Platform.Technic;
 
 namespace SinZ_MC_Launcher {
     public partial class MainForm : Form
@@ -373,6 +374,34 @@ namespace SinZ_MC_Launcher {
         private void forgeSelectButton_Click(object sender, EventArgs e)
         {
             MessageBox.Show(forgeVersionList.SelectedItems[0].Tag.ToString());
+        }
+        #endregion
+        TechnicNews technicNews = new TechnicNews();
+        bool technicHasInitiatedNews = false;
+        #region technicTab
+        private void technicNewsButton_Click(object sender, EventArgs e)
+        {
+            technicNews.RefreshNews();
+            int baseY = 45;
+            foreach (Dictionary<String, String> article in technicNews.articles)
+            {
+                LinkLabel articleLabel = new LinkLabel();
+                articleLabel.Text = article["created_at"] + Environment.NewLine + article["display_title"];
+                articleLabel.Location = new Point(10,baseY);
+                articleLabel.AutoSize = true;
+                articleLabel.MaximumSize = new Size(this.Width-articleLabel.Width,this.Height-articleLabel.Height);
+                articleLabel.Links.Add(new LinkLabel.Link(article["created_at"].Length, articleLabel.Text.Length, article["link"]));
+                articleLabel.LinkClicked += technicNewsClicked;
+                technicNewsBox.Controls.Add(articleLabel);
+                baseY = baseY + articleLabel.Height + 10;
+            }
+        }
+
+        private void technicNewsClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            webBrowser.Url = new Uri(e.Link.LinkData as String);
+            tabControl1.SelectedTab = browserTab;
+
         }
         #endregion
     }

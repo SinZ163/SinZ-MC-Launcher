@@ -44,6 +44,8 @@ namespace SinZ_MC_Launcher {
             this.nemCountLabel = new System.Windows.Forms.Label();
             this.nemModList = new System.Windows.Forms.ListView();
             this.nemRefreshButton = new System.Windows.Forms.Button();
+            this.technicTab = new System.Windows.Forms.TabPage();
+            this.technicNewsButton = new System.Windows.Forms.Button();
             this.forgeTab = new System.Windows.Forms.TabPage();
             this.forgeSelectButton = new System.Windows.Forms.Button();
             this.forgeVersionList = new System.Windows.Forms.ListView();
@@ -51,6 +53,7 @@ namespace SinZ_MC_Launcher {
             this.mcVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.forgeRefreshButton = new System.Windows.Forms.Button();
             this.modpackTab = new System.Windows.Forms.TabPage();
+            this.modpackViewer = new System.Windows.Forms.TreeView();
             this.modpackVersionBox = new System.Windows.Forms.ComboBox();
             this.modpackRefreshButton = new System.Windows.Forms.Button();
             this.oldRepoTab = new System.Windows.Forms.TabPage();
@@ -74,9 +77,10 @@ namespace SinZ_MC_Launcher {
             this.optionTab = new System.Windows.Forms.TabPage();
             this.optionConsoleBox = new System.Windows.Forms.CheckBox();
             this.minecraftVersionBox = new System.Windows.Forms.ComboBox();
-            this.modpackViewer = new System.Windows.Forms.TreeView();
+            this.technicNewsBox = new System.Windows.Forms.GroupBox();
             this.tabControl1.SuspendLayout();
             this.nemTab.SuspendLayout();
+            this.technicTab.SuspendLayout();
             this.forgeTab.SuspendLayout();
             this.modpackTab.SuspendLayout();
             this.oldRepoTab.SuspendLayout();
@@ -85,6 +89,7 @@ namespace SinZ_MC_Launcher {
             this.browserTab.SuspendLayout();
             this.consoleTab.SuspendLayout();
             this.optionTab.SuspendLayout();
+            this.technicNewsBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // loginButton
@@ -223,6 +228,7 @@ namespace SinZ_MC_Launcher {
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.nemTab);
+            this.tabControl1.Controls.Add(this.technicTab);
             this.tabControl1.Controls.Add(this.forgeTab);
             this.tabControl1.Controls.Add(this.modpackTab);
             this.tabControl1.Controls.Add(this.oldRepoTab);
@@ -293,6 +299,26 @@ namespace SinZ_MC_Launcher {
             this.nemRefreshButton.UseVisualStyleBackColor = true;
             this.nemRefreshButton.Click += new System.EventHandler(this.nemRefreshButton_Click);
             // 
+            // technicTab
+            // 
+            this.technicTab.Controls.Add(this.technicNewsBox);
+            this.technicTab.Location = new System.Drawing.Point(4, 22);
+            this.technicTab.Name = "technicTab";
+            this.technicTab.Size = new System.Drawing.Size(773, 444);
+            this.technicTab.TabIndex = 9;
+            this.technicTab.Text = "Technic Platform";
+            this.technicTab.UseVisualStyleBackColor = true;
+            // 
+            // technicNewsButton
+            // 
+            this.technicNewsButton.Location = new System.Drawing.Point(6, 19);
+            this.technicNewsButton.Name = "technicNewsButton";
+            this.technicNewsButton.Size = new System.Drawing.Size(85, 23);
+            this.technicNewsButton.TabIndex = 0;
+            this.technicNewsButton.Text = "Check News!";
+            this.technicNewsButton.UseVisualStyleBackColor = true;
+            this.technicNewsButton.Click += new System.EventHandler(this.technicNewsButton_Click);
+            // 
             // forgeTab
             // 
             this.forgeTab.Controls.Add(this.forgeSelectButton);
@@ -360,6 +386,17 @@ namespace SinZ_MC_Launcher {
             this.modpackTab.TabIndex = 6;
             this.modpackTab.Text = "Modpacks";
             this.modpackTab.UseVisualStyleBackColor = true;
+            // 
+            // modpackViewer
+            // 
+            this.modpackViewer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.modpackViewer.Cursor = System.Windows.Forms.Cursors.Default;
+            this.modpackViewer.HotTracking = true;
+            this.modpackViewer.Location = new System.Drawing.Point(3, 64);
+            this.modpackViewer.Name = "modpackViewer";
+            this.modpackViewer.Size = new System.Drawing.Size(256, 374);
+            this.modpackViewer.TabIndex = 3;
             // 
             // modpackVersionBox
             // 
@@ -610,16 +647,18 @@ namespace SinZ_MC_Launcher {
             this.minecraftVersionBox.TabIndex = 28;
             this.minecraftVersionBox.Text = "Versions";
             // 
-            // modpackViewer
+            // technicNewsBox
             // 
-            this.modpackViewer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.modpackViewer.Cursor = System.Windows.Forms.Cursors.Default;
-            this.modpackViewer.HotTracking = true;
-            this.modpackViewer.Location = new System.Drawing.Point(3, 64);
-            this.modpackViewer.Name = "modpackViewer";
-            this.modpackViewer.Size = new System.Drawing.Size(256, 374);
-            this.modpackViewer.TabIndex = 3;
+            this.technicNewsBox.AutoSize = true;
+            this.technicNewsBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.technicNewsBox.Controls.Add(this.technicNewsButton);
+            this.technicNewsBox.Location = new System.Drawing.Point(10, 10);
+            this.technicNewsBox.Name = "technicNewsBox";
+            this.technicNewsBox.Size = new System.Drawing.Size(97, 61);
+            this.technicNewsBox.TabIndex = 1;
+            this.technicNewsBox.TabStop = false;
+            this.technicNewsBox.Text = "News";
+            this.technicNewsBox.UseCompatibleTextRendering = true;
             // 
             // MainForm
             // 
@@ -641,6 +680,8 @@ namespace SinZ_MC_Launcher {
             this.tabControl1.ResumeLayout(false);
             this.nemTab.ResumeLayout(false);
             this.nemTab.PerformLayout();
+            this.technicTab.ResumeLayout(false);
+            this.technicTab.PerformLayout();
             this.forgeTab.ResumeLayout(false);
             this.modpackTab.ResumeLayout(false);
             this.oldRepoTab.ResumeLayout(false);
@@ -654,6 +695,7 @@ namespace SinZ_MC_Launcher {
             this.consoleTab.PerformLayout();
             this.optionTab.ResumeLayout(false);
             this.optionTab.PerformLayout();
+            this.technicNewsBox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -711,6 +753,9 @@ namespace SinZ_MC_Launcher {
         private ColumnHeader mcVersion;
         private Button forgeSelectButton;
         private TreeView modpackViewer;
+        private TabPage technicTab;
+        private Button technicNewsButton;
+        private GroupBox technicNewsBox;
     }
 }
 
