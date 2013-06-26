@@ -45,6 +45,10 @@ namespace SinZ_MC_Launcher {
             this.nemModList = new System.Windows.Forms.ListView();
             this.nemRefreshButton = new System.Windows.Forms.Button();
             this.technicTab = new System.Windows.Forms.TabPage();
+            this.technicPackBox = new System.Windows.Forms.GroupBox();
+            this.technicPackRefreshButton = new System.Windows.Forms.Button();
+            this.technicPackList = new System.Windows.Forms.TreeView();
+            this.technicNewsBox = new System.Windows.Forms.GroupBox();
             this.technicNewsButton = new System.Windows.Forms.Button();
             this.forgeTab = new System.Windows.Forms.TabPage();
             this.forgeSelectButton = new System.Windows.Forms.Button();
@@ -77,10 +81,11 @@ namespace SinZ_MC_Launcher {
             this.optionTab = new System.Windows.Forms.TabPage();
             this.optionConsoleBox = new System.Windows.Forms.CheckBox();
             this.minecraftVersionBox = new System.Windows.Forms.ComboBox();
-            this.technicNewsBox = new System.Windows.Forms.GroupBox();
             this.tabControl1.SuspendLayout();
             this.nemTab.SuspendLayout();
             this.technicTab.SuspendLayout();
+            this.technicPackBox.SuspendLayout();
+            this.technicNewsBox.SuspendLayout();
             this.forgeTab.SuspendLayout();
             this.modpackTab.SuspendLayout();
             this.oldRepoTab.SuspendLayout();
@@ -89,7 +94,6 @@ namespace SinZ_MC_Launcher {
             this.browserTab.SuspendLayout();
             this.consoleTab.SuspendLayout();
             this.optionTab.SuspendLayout();
-            this.technicNewsBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // loginButton
@@ -301,6 +305,7 @@ namespace SinZ_MC_Launcher {
             // 
             // technicTab
             // 
+            this.technicTab.Controls.Add(this.technicPackBox);
             this.technicTab.Controls.Add(this.technicNewsBox);
             this.technicTab.Location = new System.Drawing.Point(4, 22);
             this.technicTab.Name = "technicTab";
@@ -308,6 +313,53 @@ namespace SinZ_MC_Launcher {
             this.technicTab.TabIndex = 9;
             this.technicTab.Text = "Technic Platform";
             this.technicTab.UseVisualStyleBackColor = true;
+            // 
+            // technicPackBox
+            // 
+            this.technicPackBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.technicPackBox.Controls.Add(this.technicPackRefreshButton);
+            this.technicPackBox.Controls.Add(this.technicPackList);
+            this.technicPackBox.Location = new System.Drawing.Point(6, 7);
+            this.technicPackBox.Name = "technicPackBox";
+            this.technicPackBox.Size = new System.Drawing.Size(323, 434);
+            this.technicPackBox.TabIndex = 2;
+            this.technicPackBox.TabStop = false;
+            this.technicPackBox.Text = "Technic Platform Modpacks";
+            // 
+            // technicPackRefreshButton
+            // 
+            this.technicPackRefreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.technicPackRefreshButton.Location = new System.Drawing.Point(7, 18);
+            this.technicPackRefreshButton.Name = "technicPackRefreshButton";
+            this.technicPackRefreshButton.Size = new System.Drawing.Size(310, 23);
+            this.technicPackRefreshButton.TabIndex = 1;
+            this.technicPackRefreshButton.Text = "Refresh Technic Platform Modpacks";
+            this.technicPackRefreshButton.UseVisualStyleBackColor = true;
+            this.technicPackRefreshButton.Click += new System.EventHandler(this.technicPackRefreshButton_Click);
+            // 
+            // technicPackList
+            // 
+            this.technicPackList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.technicPackList.Location = new System.Drawing.Point(6, 47);
+            this.technicPackList.Name = "technicPackList";
+            this.technicPackList.Size = new System.Drawing.Size(311, 381);
+            this.technicPackList.TabIndex = 0;
+            // 
+            // technicNewsBox
+            // 
+            this.technicNewsBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.technicNewsBox.Controls.Add(this.technicNewsButton);
+            this.technicNewsBox.Location = new System.Drawing.Point(673, 7);
+            this.technicNewsBox.Name = "technicNewsBox";
+            this.technicNewsBox.Size = new System.Drawing.Size(97, 61);
+            this.technicNewsBox.TabIndex = 1;
+            this.technicNewsBox.TabStop = false;
+            this.technicNewsBox.Text = "News";
+            this.technicNewsBox.UseCompatibleTextRendering = true;
             // 
             // technicNewsButton
             // 
@@ -647,19 +699,6 @@ namespace SinZ_MC_Launcher {
             this.minecraftVersionBox.TabIndex = 28;
             this.minecraftVersionBox.Text = "Versions";
             // 
-            // technicNewsBox
-            // 
-            this.technicNewsBox.AutoSize = true;
-            this.technicNewsBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.technicNewsBox.Controls.Add(this.technicNewsButton);
-            this.technicNewsBox.Location = new System.Drawing.Point(10, 10);
-            this.technicNewsBox.Name = "technicNewsBox";
-            this.technicNewsBox.Size = new System.Drawing.Size(97, 61);
-            this.technicNewsBox.TabIndex = 1;
-            this.technicNewsBox.TabStop = false;
-            this.technicNewsBox.Text = "News";
-            this.technicNewsBox.UseCompatibleTextRendering = true;
-            // 
             // MainForm
             // 
             this.AcceptButton = this.loginButton;
@@ -681,7 +720,8 @@ namespace SinZ_MC_Launcher {
             this.nemTab.ResumeLayout(false);
             this.nemTab.PerformLayout();
             this.technicTab.ResumeLayout(false);
-            this.technicTab.PerformLayout();
+            this.technicPackBox.ResumeLayout(false);
+            this.technicNewsBox.ResumeLayout(false);
             this.forgeTab.ResumeLayout(false);
             this.modpackTab.ResumeLayout(false);
             this.oldRepoTab.ResumeLayout(false);
@@ -695,7 +735,6 @@ namespace SinZ_MC_Launcher {
             this.consoleTab.PerformLayout();
             this.optionTab.ResumeLayout(false);
             this.optionTab.PerformLayout();
-            this.technicNewsBox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -756,6 +795,9 @@ namespace SinZ_MC_Launcher {
         private TabPage technicTab;
         private Button technicNewsButton;
         private GroupBox technicNewsBox;
+        private GroupBox technicPackBox;
+        private TreeView technicPackList;
+        private Button technicPackRefreshButton;
     }
 }
 

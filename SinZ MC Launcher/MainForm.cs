@@ -39,7 +39,7 @@ namespace SinZ_MC_Launcher {
         }
         #endregion
 
-        String location = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), ".sinzmc/");
+        public static String location = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), ".sinzmc/");
 
         String username;
         String sessionID;
@@ -90,10 +90,14 @@ namespace SinZ_MC_Launcher {
             repo = new Repo.QueryRepo(this);
             //END OLD REPO
 
+            //TECHNIC PLATFORM
+            technicDefaultPacks = new TechnicDefaultPacks(this);
+
         }
 
         Boolean loggedIn = false;
         private void loginButton_Click(object sender, EventArgs e) {
+            //Yggdrasil newLogin = new Yggdrasil(userText.Text, passText.Text);
             if (loggedIn)
             {
                 Assets downloadAssets = new Assets();
@@ -376,32 +380,55 @@ namespace SinZ_MC_Launcher {
             MessageBox.Show(forgeVersionList.SelectedItems[0].Tag.ToString());
         }
         #endregion
-        TechnicNews technicNews = new TechnicNews();
-        bool technicHasInitiatedNews = false;
+
         #region technicTab
+        TechnicNews technicNews = new TechnicNews();
+        TechnicDefaultPacks technicDefaultPacks;
+
         private void technicNewsButton_Click(object sender, EventArgs e)
         {
             technicNews.RefreshNews();
             int baseY = 45;
+            int baseX = 0;
             foreach (Dictionary<String, String> article in technicNews.articles)
             {
                 LinkLabel articleLabel = new LinkLabel();
                 articleLabel.Text = article["created_at"] + Environment.NewLine + article["display_title"];
-                articleLabel.Location = new Point(10,baseY);
+                articleLabel.Location = new Point(10, baseY);
                 articleLabel.AutoSize = true;
                 articleLabel.MaximumSize = new Size(this.Width-articleLabel.Width,this.Height-articleLabel.Height);
                 articleLabel.Links.Add(new LinkLabel.Link(article["created_at"].Length, articleLabel.Text.Length, article["link"]));
                 articleLabel.LinkClicked += technicNewsClicked;
                 technicNewsBox.Controls.Add(articleLabel);
+                if (articleLabel.Width > baseX)
+                {
+                    baseX = articleLabel.Width;
+                }
                 baseY = baseY + articleLabel.Height + 10;
             }
+            technicNewsBox.Height = baseY;
+            technicNewsBox.Width = baseX;
+            technicNewsBox.Location = new Point(this.Width - baseX -30, technicNewsBox.Location.Y);
         }
 
         private void technicNewsClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             webBrowser.Url = new Uri(e.Link.LinkData as String);
             tabControl1.SelectedTab = browserTab;
-
+        }
+        private void technicPackRefreshButton_Click(object sender, EventArgs e)
+        {
+            technicDefaultPacks.RefreshList();
+            technicPackList.Nodes.Clear();
+            foreach (String modpack in technicDefaultPacks.DefaultModpacks.Keys)
+            {
+                List<TreeNode> modpackNodes = new List<TreeNode>();
+                foreach (String modpackElement in technicDefaultPacks.DefaultModpacks[modpack].Keys)
+                {
+                    modpackNodes.Add(new TreeNode(modpackElement, new TreeNode[]{new TreeNode(technicDefaultPacks.DefaultModpacks[modpack][modpackElement])}));
+                }
+                technicPackList.Nodes.Add(new TreeNode(modpack, modpackNodes.ToArray()));
+            }
         }
         #endregion
     }

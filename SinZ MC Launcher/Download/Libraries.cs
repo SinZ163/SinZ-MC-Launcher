@@ -84,6 +84,7 @@ namespace SinZ_MC_Launcher.Download {
         {
             WebClient client = new WebClient();
             String versionInfo = client.DownloadString(DOWNLOAD_LINK + "versions" + Path.DirectorySeparatorChar + version + Path.DirectorySeparatorChar + version + ".json");
+            client.Dispose();
             Dictionary<String, object> output = deserializeToDictionary(versionInfo);
 
             List<String> libraries = new List<String>();
@@ -104,7 +105,6 @@ namespace SinZ_MC_Launcher.Download {
                     //it isn't a native...
                 }
             }
-
             foreach (String library in libraries)
             {
                 String[] a = library.Split(':');

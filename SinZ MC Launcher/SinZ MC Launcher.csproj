@@ -79,6 +79,7 @@
     <Compile Include="Launch\LaunchMinecraft.cs" />
     <Compile Include="Download\Libraries.cs" />
     <Compile Include="Login\LastLogin.cs" />
+    <Compile Include="Login\Yggdrasil.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,7 +89,9 @@
     <Compile Include="Login\Login.cs" />
     <Compile Include="lib\PKCSKeyGenerator.cs" />
     <Compile Include="Modlist\ReadModlist.cs" />
+    <Compile Include="Mojang\VersionInfo.cs" />
     <Compile Include="Mojang\VersionList.cs" />
+    <Compile Include="Platform\Technic\TechnicDefaultPacks.cs" />
     <Compile Include="Platform\Technic\TechnicNews.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

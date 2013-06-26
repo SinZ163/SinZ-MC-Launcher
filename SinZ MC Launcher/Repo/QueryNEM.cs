@@ -61,14 +61,13 @@ namespace SinZ_MC_Launcher.Repo {
                 String webPage = client.DownloadString(new Uri("http://bot.notenoughmods.com?json"));
                 client.Dispose();
 
-                JObject json = JObject.Parse(webPage);
-                IList<string> keys = json.Properties().Select(p => p.Name).ToList();
+                JArray json = JArray.Parse(webPage);
 
                 List<String> versions = new List<string>();
-                foreach (String key in keys)
+                foreach (JToken key in json)
                 {
-                    Console.WriteLine("Detected NEM Version: " + key);
-                    versions.Add(key);
+                    Console.WriteLine("Detected NEM Version: " + key.ToString());
+                    versions.Add(key.ToString());
                 }
 
                 form.RefreshNEMVersions(versions);
