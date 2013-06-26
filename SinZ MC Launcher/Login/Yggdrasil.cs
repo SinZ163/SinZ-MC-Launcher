@@ -36,7 +36,6 @@ namespace SinZ_MC_Launcher.Login
             {
                 {"agent","Agent{name='" + "MINECRAFT" + "'" + ", version=" + 1 + '}'},
                 {"username",username},
-                {"clientToken","046b6c7f-0b8a-43b9-b35d-6489e6daee91"},
                 {"password",password}
             };
              String json = JsonConvert.SerializeObject(PostInfo);
