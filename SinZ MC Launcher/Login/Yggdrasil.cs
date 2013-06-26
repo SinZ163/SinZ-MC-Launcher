@@ -32,14 +32,16 @@ namespace SinZ_MC_Launcher.Login
 
         private void DoLogin()
         {
-            Dictionary<String, String> PostInfo = new Dictionary<string, string>
+            Dictionary<String, object> PostInfo = new Dictionary<string, object>
             {
-                {"agent","Agent{name='" + "MINECRAFT" + "'" + ", version=" + 1 + '}'},
+                //{"agent","Agent{name='" + "Minecraft" + "'" + ", version=" + 1 + "}"}, //TODO: use variables
+                {"agent", new Dictionary<String,String>{{"name","Minecraft"},{"version", "1"}}},
                 {"username",username},
                 {"password",password}
             };
-             String json = JsonConvert.SerializeObject(PostInfo);
-
+            //String json = "{'agent':'Agent{name='Minecraft', version=1}','username':'" + username + "','password':'" + password + "'}";
+            String json = JsonConvert.SerializeObject(PostInfo, Formatting.Indented);
+            MessageBox.Show(json);
             byte[] bytes = new byte[json.Length * sizeof(char)];
             Buffer.BlockCopy(json.ToCharArray(), 0, bytes, 0, bytes.Length);
 

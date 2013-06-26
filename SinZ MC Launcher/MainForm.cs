@@ -97,7 +97,7 @@ namespace SinZ_MC_Launcher {
 
         Boolean loggedIn = false;
         private void loginButton_Click(object sender, EventArgs e) {
-            //Yggdrasil newLogin = new Yggdrasil(userText.Text, passText.Text);
+            Yggdrasil newLogin = new Yggdrasil(userText.Text, passText.Text);
             if (loggedIn)
             {
                 Assets downloadAssets = new Assets();
