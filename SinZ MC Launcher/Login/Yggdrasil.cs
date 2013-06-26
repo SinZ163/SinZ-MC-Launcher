@@ -45,7 +45,7 @@ namespace SinZ_MC_Launcher.Login
             byte[] bytes = new byte[json.Length * sizeof(char)];
             Buffer.BlockCopy(json.ToCharArray(), 0, bytes, 0, bytes.Length);
 
-            HttpWebRequest request = (HttpWebRequest)
+            /*HttpWebRequest request = (HttpWebRequest)
             WebRequest.Create(YGGDRASIL_BASE + YGGDRASIL_LOGIN);
             request.Method = "POST";
             request.ContentType = "application/json";
@@ -59,7 +59,20 @@ namespace SinZ_MC_Launcher.Login
             HttpWebResponse respnse = (HttpWebResponse)request.GetResponse();
             StreamReader sr = new StreamReader(respnse.GetResponseStream());
             string tmp = sr.ReadToEnd();
-            MessageBox.Show(tmp);
+            MessageBox.Show(tmp);*/
+            try
+            {
+                WebClient client = new WebClient();
+                client.Headers[HttpRequestHeader.ContentType] = "application/json";
+                byte[] response = client.UploadData(YGGDRASIL_BASE + YGGDRASIL_LOGIN, bytes);
+                String output = Encoding.UTF8.GetString(response);
+                MessageBox.Show(output);
+            }
+            catch (WebException e)
+            {
+                //Badlogin?
+                MessageBox.Show(e.StackTrace);
+            }
         }
     }
 }
