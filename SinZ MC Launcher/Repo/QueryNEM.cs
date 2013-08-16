@@ -66,8 +66,11 @@ namespace SinZ_MC_Launcher.Repo {
                 List<String> versions = new List<string>();
                 foreach (JToken key in json)
                 {
-                    Console.WriteLine("Detected NEM Version: " + key.ToString());
-                    versions.Add(key.ToString());
+                    if (!key.ToString().Contains("-dev"))
+                    {
+                        Console.WriteLine("Detected NEM Version: " + key.ToString());
+                        versions.Add(key.ToString());
+                    }
                 }
 
                 form.RefreshNEMVersions(versions);

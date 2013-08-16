@@ -81,6 +81,9 @@ namespace SinZ_MC_Launcher {
             this.optionTab = new System.Windows.Forms.TabPage();
             this.optionConsoleBox = new System.Windows.Forms.CheckBox();
             this.minecraftVersionBox = new System.Windows.Forms.ComboBox();
+            this.nameCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.versionCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.devCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.nemTab.SuspendLayout();
             this.technicTab.SuspendLayout();
@@ -284,13 +287,17 @@ namespace SinZ_MC_Launcher {
             this.nemModList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.nemModList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.nameCol,
+            this.versionCol,
+            this.devCol});
             this.nemModList.Location = new System.Drawing.Point(7, 37);
             this.nemModList.MultiSelect = false;
             this.nemModList.Name = "nemModList";
             this.nemModList.Size = new System.Drawing.Size(739, 401);
             this.nemModList.TabIndex = 1;
             this.nemModList.UseCompatibleStateImageBehavior = false;
-            this.nemModList.View = System.Windows.Forms.View.List;
+            this.nemModList.View = System.Windows.Forms.View.Details;
             this.nemModList.SelectedIndexChanged += new System.EventHandler(this.nemModList_SelectedIndexChanged);
             // 
             // nemRefreshButton
@@ -699,6 +706,21 @@ namespace SinZ_MC_Launcher {
             this.minecraftVersionBox.TabIndex = 28;
             this.minecraftVersionBox.Text = "Versions";
             // 
+            // nameCol
+            // 
+            this.nameCol.Text = "Name";
+            this.nameCol.Width = 456;
+            // 
+            // versionCol
+            // 
+            this.versionCol.Text = "Version";
+            this.versionCol.Width = 155;
+            // 
+            // devCol
+            // 
+            this.devCol.Text = "Dev version";
+            this.devCol.Width = 124;
+            // 
             // MainForm
             // 
             this.AcceptButton = this.loginButton;
@@ -798,6 +820,9 @@ namespace SinZ_MC_Launcher {
         private GroupBox technicPackBox;
         private TreeView technicPackList;
         private Button technicPackRefreshButton;
+        private ColumnHeader nameCol;
+        private ColumnHeader versionCol;
+        private ColumnHeader devCol;
     }
 }
 

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace SinZ_MC_Launcher.Login
 {
@@ -45,28 +46,14 @@ namespace SinZ_MC_Launcher.Login
             byte[] bytes = new byte[json.Length * sizeof(char)];
             Buffer.BlockCopy(json.ToCharArray(), 0, bytes, 0, bytes.Length);
 
-            /*HttpWebRequest request = (HttpWebRequest)
-            WebRequest.Create(YGGDRASIL_BASE + YGGDRASIL_LOGIN);
-            request.Method = "POST";
-            request.ContentType = "application/json";
-            request.ContentLength = bytes.Length;
-
-            Stream requestStream = request.GetRequestStream();
-            requestStream.Write(bytes, 0, bytes.Length);
-            requestStream.Close();
-            requestStream.Dispose();
-
-            HttpWebResponse respnse = (HttpWebResponse)request.GetResponse();
-            StreamReader sr = new StreamReader(respnse.GetResponseStream());
-            string tmp = sr.ReadToEnd();
-            MessageBox.Show(tmp);*/
             try
             {
                 WebClient client = new WebClient();
                 client.Headers[HttpRequestHeader.ContentType] = "application/json";
                 byte[] response = client.UploadData(YGGDRASIL_BASE + YGGDRASIL_LOGIN, bytes);
                 String output = Encoding.UTF8.GetString(response);
-                MessageBox.Show(output);
+                JObject jsonOutput = JObject.Parse(output);
+                MessageBox.Show(jsonOutput.ToString(Formatting.Indented));
             }
             catch (WebException e)
             {

@@ -20,16 +20,20 @@ using SinZ_MC_Launcher.UI;
 using SinZ_MC_Launcher.Modlist;
 using SinZ_MC_Launcher.Platform.Technic;
 
-namespace SinZ_MC_Launcher {
+namespace SinZ_MC_Launcher
+{
     public partial class MainForm : Form
     {
         #region FormCreation
-        public MainForm() {
-            AppDomain.CurrentDomain.AssemblyResolve += (sender, args) => {
+        public MainForm()
+        {
+            AppDomain.CurrentDomain.AssemblyResolve += (sender, args) =>
+            {
                 string resourceName = new AssemblyName(args.Name).Name + ".dll";
                 string resource = Array.Find(this.GetType().Assembly.GetManifestResourceNames(), element => element.EndsWith(resourceName));
 
-                using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resource)) {
+                using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resource))
+                {
                     Byte[] assemblyData = new Byte[stream.Length];
                     stream.Read(assemblyData, 0, assemblyData.Length);
                     return Assembly.Load(assemblyData);
@@ -47,7 +51,8 @@ namespace SinZ_MC_Launcher {
 
         ConsoleStringWriter _writer;
 
-        private void MainForm_Load(object sender, EventArgs e) {
+        private void MainForm_Load(object sender, EventArgs e)
+        {
             if (!Directory.Exists(location))
                 Directory.CreateDirectory(location);
 
@@ -60,13 +65,15 @@ namespace SinZ_MC_Launcher {
             //SETTINGS
             lastLogin = new LastLogin();
 
-            if (File.Exists(Path.Combine(location, "lastlogin"))) {
+            if (File.Exists(Path.Combine(location, "lastlogin")))
+            {
                 String[] lastLoginData = lastLogin.GetLastLogin();
                 userText.Text = lastLoginData[0];
                 passText.Text = lastLoginData[1];
             }
 
-            try {
+            try
+            {
                 FileStream stream = new FileStream(location + "settings", FileMode.Open);
                 optionRememberBox.Checked = Convert.ToBoolean(stream.ReadByte());
                 optionConsoleBox.Checked = Convert.ToBoolean(stream.ReadByte());
@@ -96,7 +103,8 @@ namespace SinZ_MC_Launcher {
         }
 
         Boolean loggedIn = false;
-        private void loginButton_Click(object sender, EventArgs e) {
+        private void loginButton_Click(object sender, EventArgs e)
+        {
             Yggdrasil newLogin = new Yggdrasil(userText.Text, passText.Text);
             if (loggedIn)
             {
@@ -129,7 +137,8 @@ namespace SinZ_MC_Launcher {
                 }
             }
         }
-        public void LoginSuccessful() {
+        public void LoginSuccessful()
+        {
             Console.WriteLine("Login successful: " + sessionID);
             loggedIn = true;
             loginStatus.Text = "Login Status: Logged in as " + username;
@@ -137,7 +146,8 @@ namespace SinZ_MC_Launcher {
             //SETTINGS
             FileStream stream = new FileStream(location + "settings", FileMode.OpenOrCreate);
             stream.WriteByte(optionRememberBox.Checked ? (byte)1 : (byte)0);
-            if (optionRememberBox.Checked) {
+            if (optionRememberBox.Checked)
+            {
                 stream.WriteByte(optionConsoleBox.Checked ? (byte)1 : (byte)0);
 
                 lastLogin.SetLastLogin(userText.Text, passText.Text);
@@ -150,7 +160,7 @@ namespace SinZ_MC_Launcher {
         Repo.QueryRepo repo;
         Dictionary<String, object> db;
 
-        private delegate void RefreshOldRepo_(Dictionary<String,Object> db);
+        private delegate void RefreshOldRepo_(Dictionary<String, Object> db);
         public void RefreshOldRepo(Dictionary<String, Object> db)
         {
             if (this.InvokeRequired)
@@ -169,59 +179,71 @@ namespace SinZ_MC_Launcher {
             }
         }
 
-        private void modBox_SelectedIndexChanged(object sender, EventArgs e) {
-            Dictionary<String, object> mod = (Dictionary<String,object>)db[modBox.SelectedItem.ToString()];
+        private void modBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Dictionary<String, object> mod = (Dictionary<String, object>)db[modBox.SelectedItem.ToString()];
             versionBox.Items.Clear();
-            foreach (String key in mod.Keys) {
+            foreach (String key in mod.Keys)
+            {
                 versionBox.Items.Add(key);
             }
             versionBox.SelectedIndex = 0;
         }
-#endregion
+        #endregion
 
         #region Query
-        private void queryButton_Click(object sender, EventArgs e) {
+        private void queryButton_Click(object sender, EventArgs e)
+        {
             QueryServer query = new QueryServer(queryHostText.Text, int.Parse(queryPortText.Text));
             //String playerList = "";
-            foreach (String msg in query.players) {
+            foreach (String msg in query.players)
+            {
                 //playerList += "|"+msg;
                 playerList.Items.Add(msg);
             }
             String data = "";
-            foreach (String msg in query.output.Values) {
+            foreach (String msg in query.output.Values)
+            {
                 data += "|" + msg;
             }
 
-            if (query.plugins.Keys.Count > 0) {
+            if (query.plugins.Keys.Count > 0)
+            {
                 //MessageBox.Show(query.plugins["SERVER_MOD"]);
                 serverModLabel.Text = query.plugins["SERVER_MOD"];
                 query.plugins.Remove("SERVER_MOD");
                 String pluginList = "";
-                foreach (String key in query.plugins.Keys) {
+                foreach (String key in query.plugins.Keys)
+                {
                     pluginList += key + "_" + query.plugins[key] + " | ";
                 }
                 //MessageBox.Show(pluginList);
                 pluginsLabel.Text = pluginList;
             }
         }
-#endregion
+        #endregion
 
         #region serverStatus
         ServerStatus status;
 
-        private void initStatusBox_Click(object sender, EventArgs e) {
+        private void initStatusBox_Click(object sender, EventArgs e)
+        {
             status.Refresh();
         }
 
         private delegate void UpdateServerStatus_(Dictionary<String, object> statusReport);
-        public void UpdateServerStatus(Dictionary<String, object> statusReport) {
-            if (this.InvokeRequired) {
+        public void UpdateServerStatus(Dictionary<String, object> statusReport)
+        {
+            if (this.InvokeRequired)
+            {
                 this.Invoke(new UpdateServerStatus_(UpdateServerStatus), statusReport);
             }
-            else {
+            else
+            {
                 serverNameLabel.Text = "";
                 serverStatusLabel.Text = "";
-                foreach (String key in statusReport.Keys) {
+                foreach (String key in statusReport.Keys)
+                {
                     serverNameLabel.Text += key + Environment.NewLine;
                     serverStatusLabel.Text += statusReport[key].ToString() + Environment.NewLine;
                 }
@@ -231,11 +253,14 @@ namespace SinZ_MC_Launcher {
 
         #region console
         private delegate void UpdateConsole_(String text);
-        public void UpdateConsole(String text) {
-            if (this.InvokeRequired) {
+        public void UpdateConsole(String text)
+        {
+            if (this.InvokeRequired)
+            {
                 this.Invoke(new UpdateConsole_(UpdateConsole), text);
             }
-            else {
+            else
+            {
                 consoleBox.AppendText(text);
             }
         }
@@ -246,18 +271,22 @@ namespace SinZ_MC_Launcher {
         private String nemVersion;
         QueryNEM nemQuery;
 
-        private void nemRefreshButton_Click(object sender, EventArgs e) {
+        private void nemRefreshButton_Click(object sender, EventArgs e)
+        {
             nemQuery.UpdateQuery(nemVersion);
             nemDB = nemQuery.NEMDB;
             nemModList.Items.Clear();
-            foreach (String modName in nemQuery.NEMDB.Keys) {
-                nemModList.Items.Add(modName);
+            foreach (String modName in nemQuery.NEMDB.Keys)
+            {
+                nemModList.Items.Add(new ListViewItem(new [] {modName, nemDB[modName]["version"], nemDB[modName]["dev"]}));
             }
             nemCountLabel.Text = nemDB.Keys.Count + " mods loaded!";
         }
 
-        private void nemModList_SelectedIndexChanged(object sender, EventArgs e) {
-            if (nemModList.SelectedItems.Count > 0) {
+        private void nemModList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (nemModList.SelectedItems.Count > 0)
+            {
                 Console.WriteLine(nemModList.SelectedItems[0].Text);
                 Uri test = new Uri(nemDB[nemModList.SelectedItems[0].Text]["longurl"]);
                 Console.WriteLine(test);
@@ -289,7 +318,7 @@ namespace SinZ_MC_Launcher {
                 nemVersionBox.SelectedIndex = nemVersionBox.Items.Count - 1;
             }
         }
-#endregion
+        #endregion
 
         #region mcVersion
         VersionList versionList;
@@ -343,7 +372,7 @@ namespace SinZ_MC_Launcher {
                 if (type == "Minecraft")
                 {
                     TreeNode mcVersion = new TreeNode((String)tmp["Minecraft"]);
-                    modpackViewer.Nodes.Add(new TreeNode("Minecraft", new TreeNode[]{mcVersion}));
+                    modpackViewer.Nodes.Add(new TreeNode("Minecraft", new TreeNode[] { mcVersion }));
                 }
                 else
                 {
@@ -355,7 +384,7 @@ namespace SinZ_MC_Launcher {
                         array.Add(new TreeNode(mod, new TreeNode[] { modVersion }));
 
                     }
-                    modpackViewer.Nodes.Add(new TreeNode(type,array.ToArray()));
+                    modpackViewer.Nodes.Add(new TreeNode(type, array.ToArray()));
                 }
             }
             modpackViewer.ExpandAll();
@@ -396,7 +425,7 @@ namespace SinZ_MC_Launcher {
                 articleLabel.Text = article["created_at"] + Environment.NewLine + article["display_title"];
                 articleLabel.Location = new Point(10, baseY);
                 articleLabel.AutoSize = true;
-                articleLabel.MaximumSize = new Size(this.Width-articleLabel.Width,this.Height-articleLabel.Height);
+                articleLabel.MaximumSize = new Size(this.Width - articleLabel.Width, this.Height - articleLabel.Height);
                 articleLabel.Links.Add(new LinkLabel.Link(article["created_at"].Length, articleLabel.Text.Length, article["link"]));
                 articleLabel.LinkClicked += technicNewsClicked;
                 technicNewsBox.Controls.Add(articleLabel);
@@ -408,7 +437,7 @@ namespace SinZ_MC_Launcher {
             }
             technicNewsBox.Height = baseY;
             technicNewsBox.Width = baseX;
-            technicNewsBox.Location = new Point(this.Width - baseX -30, technicNewsBox.Location.Y);
+            technicNewsBox.Location = new Point(this.Width - baseX - 30, technicNewsBox.Location.Y);
         }
 
         private void technicNewsClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -425,7 +454,7 @@ namespace SinZ_MC_Launcher {
                 List<TreeNode> modpackNodes = new List<TreeNode>();
                 foreach (String modpackElement in technicDefaultPacks.DefaultModpacks[modpack].Keys)
                 {
-                    modpackNodes.Add(new TreeNode(modpackElement, new TreeNode[]{new TreeNode(technicDefaultPacks.DefaultModpacks[modpack][modpackElement])}));
+                    modpackNodes.Add(new TreeNode(modpackElement, new TreeNode[] { new TreeNode(technicDefaultPacks.DefaultModpacks[modpack][modpackElement]) }));
                 }
                 technicPackList.Nodes.Add(new TreeNode(modpack, modpackNodes.ToArray()));
             }
