@@ -17,15 +17,25 @@ namespace SinZ_MC_Launcher.Launch {
         String version;
         List<String> results;
 
-        String location = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), ".sinzmc/");
+        String location;
+        String assets;
+
+        String launchArgs;
+        String launchClass;
         //String jvmArgs;
 
-        public LaunchMinecraft(String username, String sessionID, Boolean consoleEnabled, String version, List<String> results, Boolean demo = false) {
+        public LaunchMinecraft(String location, String assets, String username, String sessionID, Boolean consoleEnabled, String version, List<String> results, String launchArgs, String launchClass, Boolean demo = false) {
+            this.location = location;
+            this.assets = assets;
+            
             this.username = username;
             this.sessionID = sessionID;
             this.consoleEnabled = consoleEnabled;
             this.version = version;
             this.results = results;
+
+            this.launchArgs = launchArgs;
+            this.launchClass = launchClass;
             //this.jvmArgs = jvmArgs;
 
             launch();
@@ -36,6 +46,7 @@ namespace SinZ_MC_Launcher.Launch {
             message += Path.Combine(location, "versions", version, version + ".jar");
             message += "\";\"";
 
+            //Libraries time
             List<String> libraries = new List<string>();
             foreach (String library in results)
             {
@@ -48,16 +59,49 @@ namespace SinZ_MC_Launcher.Launch {
             message = message.Replace('\\', '/');
             MessageBox.Show(message);
 
+            //Natives time
             String nativesLocation = Path.Combine(location,"versions", version,version+"-natives");
             nativesLocation = nativesLocation.Replace('\\', '/');
             MessageBox.Show(nativesLocation);
 
-            ProcessStartInfo procStartInfo = new System.Diagnostics.ProcessStartInfo("cmd.exe", "/c java -Xmx1G -Djava.library.path=\""+nativesLocation+"\" -cp "+message+" net.minecraft.client.main.Main --workDir \""+location+"\" --username " + username + " --session " + sessionID);
+            //Launch Arguments
+            String[] launchWords = launchArgs.Split(' ');
+            List<String> launchArguments = new List<string>();
+            foreach (String launchWord in launchWords)
+            {
+                if (!launchWord.StartsWith("$"))
+                    continue;
+                //"--username ${auth_player_name} --session ${auth_session} --version ${version_name} --gameDir ${game_directory} --assetsDir ${game_assets}"
+                String tmp = launchWord.Substring(1);
+                tmp = launchWord.Trim(new[] { '{', '}' });
+                switch (tmp)
+                {
+                    case "auth_player_name":
+                        launchArguments.Add(username);
+                        break;
+                    case "auth_session":
+                        launchArguments.Add(sessionID);
+                        break;
+                    case "version_name":
+                        launchArguments.Add(version);
+                        break;
+                    case "game_directory":
+                        launchArguments.Add(location);
+                        break;
+                    case "game_assets":
+                        launchArguments.Add(assets);
+                        break;
+                }
+            }
+            String outputArgs = String.Join(" ", launchArguments);
+
+            //Time to Do everything
+            ProcessStartInfo procStartInfo = new ProcessStartInfo("cmd.exe", "/c java -Xmx1G -Djava.library.path=\""+nativesLocation+"\" -cp "+message+" "+launchClass+" "+outputArgs);
             procStartInfo.WorkingDirectory = location;
-            Process proc = new System.Diagnostics.Process();
+            Process proc = new Process();
 
             if (consoleEnabled == false) {
-                procStartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+                procStartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             }
             else {
                 procStartInfo.Arguments += " &pause";

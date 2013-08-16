@@ -29,25 +29,8 @@ namespace SinZ_MC_Launcher.Download {
                     Application.DoEvents();
                 }
             }
-            else {
-                Thread thread = new Thread(new ThreadStart(DownloadOldMinecraft));
-                thread.Start();
-                while (thread.IsAlive) {
-                    Application.DoEvents();
-                }
-            }
         }
 
-        public void DownloadOldMinecraft() {
-            String URL = String.Format("http://assets.minecraft.net/{0}/minecraft.jar", version);
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
-
-            WebClient client = new WebClient();
-            client.DownloadProgressChanged += SetProgress;
-            client.DownloadFile(URL, path + "minecraft.jar");
-            client.Dispose();
-        }
         public void DownloadNewMinecraft() {
             if (!File.Exists(path + Path.DirectorySeparatorChar + version + ".jar"))
             {

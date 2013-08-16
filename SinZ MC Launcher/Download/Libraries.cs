@@ -17,7 +17,8 @@ namespace SinZ_MC_Launcher.Download {
         public Uri DOWNLOAD_LINK = new Uri("https://s3.amazonaws.com/Minecraft.Download/");
         String location = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), ".sinzmc/");
         private string version;
-
+        public String launchArgs;
+        public String launchClass;
         List<String> natives = new List<string>();
         public List<String> results = new List<string>();
 
@@ -86,12 +87,25 @@ namespace SinZ_MC_Launcher.Download {
             String versionInfo = client.DownloadString(DOWNLOAD_LINK + "versions" + Path.DirectorySeparatorChar + version + Path.DirectorySeparatorChar + version + ".json");
             client.Dispose();
             Dictionary<String, object> output = deserializeToDictionary(versionInfo);
-
+            launchArgs = output["minecraftArguments"].ToString();
+            launchClass = output["mainClass"].ToString();
             List<String> libraries = new List<String>();
             List<String> natives = new List<string>();
             foreach (JObject library in (JArray)output["libraries"])
             {
                 libraries.Add(library["name"].ToString());
+                try
+                {
+                    if (library["rules"].ToString().Length > 0)
+                    {
+                        continue;
+                        //TODO: Actually check if it is allow/deny and OSX
+                    }
+                }
+                catch (NullReferenceException)
+                {
+                    //No conditions, lovelly
+                }
                 try
                 {
                     if (library["natives"].ToString().Length > 0)

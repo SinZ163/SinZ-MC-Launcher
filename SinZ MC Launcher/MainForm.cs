@@ -111,7 +111,7 @@ namespace SinZ_MC_Launcher
                 Assets downloadAssets = new Assets();
                 Libraries downloadLibraries = new Libraries((String)minecraftVersionBox.SelectedItem);
                 DownloadMinecraft downloadMinecraft = new DownloadMinecraft((String)minecraftVersionBox.SelectedItem);
-                LaunchMinecraft mc = new LaunchMinecraft(username, sessionID, optionConsoleBox.Checked, (String)minecraftVersionBox.SelectedItem, downloadLibraries.results);
+                LaunchMinecraft mc = new LaunchMinecraft(location, Path.Combine(location, "assets"),username, sessionID, optionConsoleBox.Checked, (String)minecraftVersionBox.SelectedItem, downloadLibraries.results, downloadLibraries.launchArgs, downloadLibraries.launchClass);
             }
             else
             {
